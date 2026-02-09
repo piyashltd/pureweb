@@ -1,42 +1,39 @@
 // File: src/components/EpisodeCard.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { PlayCircle } from 'lucide-react';
 
 const EpisodeCard = ({ episode, isGrid }) => {
-  // If Grid view, take full width of column. If Horizontal, fixed width.
+  // Width logic: Grid takes full width, Horizontal has fixed width
   const widthClass = isGrid ? 'w-full' : 'w-[200px] sm:w-[240px]';
 
   return (
     <Link to={`/watch/${episode.id}`} className={`block group ${widthClass}`}>
-      <div className="relative aspect-video rounded-lg overflow-hidden bg-gray-800">
+      {/* Clean Thumbnail - No Play Icon */}
+      <div className="relative aspect-video rounded-lg overflow-hidden bg-gray-900 border border-gray-800">
         <img 
           src={episode.thumbnail} 
           alt={episode.title} 
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
         />
-        
-        {/* Play Icon Overlay */}
-        <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all">
-          <PlayCircle size={32} className="text-white opacity-80 group-hover:opacity-100 scale-90 group-hover:scale-110 transition-all" />
-        </div>
-
-        {/* Badge (Optional) */}
-        <div className="absolute bottom-1 right-1 bg-black/60 px-1.5 rounded text-[10px] text-white font-mono">
+        {/* Only Duration at bottom right */}
+        <div className="absolute bottom-1 right-1 bg-black/80 px-1.5 rounded text-[10px] text-white font-mono">
             {episode.duration}
         </div>
       </div>
       
-      <div className="mt-2">
-        <h4 className="text-xs font-bold text-gray-200 line-clamp-2 leading-tight group-hover:text-brand-pink transition-colors">
+      <div className="mt-2.5">
+        <h4 className="text-sm font-medium text-white line-clamp-1 group-hover:text-brand-pink transition-colors">
           {episode.title}
         </h4>
-        <div className="flex justify-between items-center mt-1">
-            <span className="text-[10px] text-gray-500">
-                {episode.date}
+        
+        {/* Episode Number with Date-like Color (Grayish/Subtle) & Full Spelling */}
+        <div className="flex items-center gap-2 mt-1">
+             <span className="text-xs text-[#a1a1aa] font-medium">
+                Episode {episode.episodeNumber}
             </span>
-             <span className="text-[10px] text-brand-primary bg-brand-primary/10 px-1 rounded">
-                E{episode.episodeNumber}
+            <span className="w-1 h-1 rounded-full bg-gray-600"></span>
+            <span className="text-[11px] text-gray-500">
+                {episode.date}
             </span>
         </div>
       </div>
