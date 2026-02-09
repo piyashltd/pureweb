@@ -132,7 +132,7 @@ export const episodes = [
     thumbnail: 'https://ik.imagekit.io/ottstream/KS-S04-E01.webp?tr=w-1000,q-50', // একদম ঠিক করে দেওয়া হলো
     date: 'Feb 7, 2026',
     duration: '22m',
-    videoUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8'
+    videoUrl: 'https://stream.mux.com/uP9wqVLCyfOMLJ7DZl7ANqqUxkH5jVYdZo5SF1qz4zk.m3u8'
   },
   {
     id: 'e3',
