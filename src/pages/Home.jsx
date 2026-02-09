@@ -1,65 +1,53 @@
+// File: src/pages/Home.jsx
 import React from 'react';
 import HeroSlider from '../components/HeroSlider';
 import ChannelRow from '../components/ChannelRow';
-import ShowCard from '../components/ShowCard';
-import { channels, sliders, shows } from '../data/dummyData';
-import { ChevronRight } from 'lucide-react';
+import ContentSection from '../components/ContentSection'; // Import the new component
+import { channels, sliders, shows, episodes } from '../data/dummyData';
 
 const Home = () => {
-  // Helper to get shows by channel
+  // Filter logic
   const getShowsByChannel = (channelId) => shows.filter(s => s.channelId === channelId);
-  const freeShows = shows.filter(s => s.isFree);
+  
+  // For "Latest Free Episodes", we just take the episodes array (or filter strictly free ones)
+  const latestEpisodes = episodes; 
 
   return (
-    <div className="pb-10">
+    <div className="pb-20">
+      {/* 1. Hero Carousel */}
       <HeroSlider slides={sliders} />
       
+      {/* 2. Channel Icons (Circular) */}
       <ChannelRow channels={channels} />
 
-      {/* Latest Free Episodes Section */}
-      <section className="mt-4">
-        <div className="flex justify-between items-center px-4 mb-3">
-          <h2 className="text-lg font-bold text-white">Latest Free Episodes</h2>
-          <button className="text-xs text-gray-400 flex items-center hover:text-white">
-            More <ChevronRight size={14} />
-          </button>
-        </div>
-        <div className="flex gap-4 overflow-x-auto px-4 pb-4 no-scrollbar">
-          {freeShows.map(show => (
-            <ShowCard key={show.id} show={show} isLandscape={true} />
-          ))}
-        </div>
-      </section>
+      {/* 3. Latest Free Episodes (Horizontal Scroll -> Click More -> Grid) */}
+      <ContentSection 
+        title="Latest Free Episodes" 
+        data={latestEpisodes} 
+        type="episode" 
+      />
 
-      {/* Zee Bangla Section */}
-      <section className="mt-6">
-        <div className="flex justify-between items-center px-4 mb-3">
-          <h2 className="text-lg font-bold text-white uppercase">ZEE BANGLA</h2>
-          <button className="text-xs text-gray-400 flex items-center hover:text-white">
-            More <ChevronRight size={14} />
-          </button>
-        </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 px-4">
-           {getShowsByChannel('zee').map(show => (
-             <ShowCard key={show.id} show={show} isLandscape={false} />
-           ))}
-        </div>
-      </section>
+      {/* 4. Zee Bangla Shows (Horizontal Scroll -> Click More -> Grid) */}
+      <ContentSection 
+        title="Zee Bangla" 
+        data={getShowsByChannel('zee')} 
+        type="show" 
+      />
 
-       {/* Star Jalsha Section */}
-       <section className="mt-8">
-        <div className="flex justify-between items-center px-4 mb-3">
-          <h2 className="text-lg font-bold text-white uppercase">STAR JALSHA</h2>
-          <button className="text-xs text-gray-400 flex items-center hover:text-white">
-            More <ChevronRight size={14} />
-          </button>
-        </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 px-4">
-           {getShowsByChannel('star').map(show => (
-             <ShowCard key={show.id} show={show} isLandscape={false} />
-           ))}
-        </div>
-      </section>
+       {/* 5. Star Jalsha Shows */}
+       <ContentSection 
+        title="Star Jalsha" 
+        data={getShowsByChannel('star')} 
+        type="show" 
+      />
+      
+      {/* 6. Sun Bangla Shows */}
+      <ContentSection 
+        title="Sun Bangla" 
+        data={getShowsByChannel('sun')} 
+        type="show" 
+      />
+
     </div>
   );
 };
