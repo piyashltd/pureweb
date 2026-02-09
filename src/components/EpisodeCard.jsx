@@ -6,6 +6,9 @@ const EpisodeCard = ({ episode, isGrid }) => {
   // Width logic: Grid takes full width, Horizontal has fixed width
   const widthClass = isGrid ? 'w-full' : 'w-[200px] sm:w-[240px]';
 
+  // Safety check: episode data might be undefined initially
+  if (!episode) return null;
+
   return (
     <Link to={`/watch/${episode.id}`} className={`block group ${widthClass}`}>
       {/* Clean Thumbnail - No Play Icon */}
@@ -26,7 +29,6 @@ const EpisodeCard = ({ episode, isGrid }) => {
           {episode.title}
         </h4>
         
-        {/* Episode Number with Date-like Color (Grayish/Subtle) & Full Spelling */}
         <div className="flex items-center gap-2 mt-1">
              <span className="text-xs text-[#a1a1aa] font-medium">
                 Episode {episode.episodeNumber}
