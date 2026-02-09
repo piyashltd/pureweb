@@ -11,6 +11,7 @@ export const sliders = [
   { id: 1, title: "Amader Dadamoni", image: "https://t3.ftcdn.net/jpg/06/15/80/36/360_F_615803658_S53m6x6x6x6x6x6x6x6x6x6x6x6x6x6x6x6x6x6x6x.jpg", showId: 's1' },
   { id: 2, title: "Naagin S07 (Hindi)", image: "https://img.freepik.com/free-photo/mysterious-woman-forest_23-2150795893.jpg", showId: 's2' },
   { id: 3, title: "Parineeta", image: "https://img.freepik.com/free-photo/indian-couple-wedding-attire_23-2150935821.jpg", showId: 's3' },
+  { id: 10, title: "Kurulus Osman", image: "https://ik.imagekit.io/ottstream/Ks-S4-Poster.jpg", showId: 'ks4' },
   // নতুন স্লাইডার যোগ করতে চাইলে এখানে কমা দিয়ে অবজেক্ট দিন
   { id: 4, title: "Mithai", image: "https://img.freepik.com/free-photo/wide-banner-indian_23-2149539227.jpg", showId: 's5' }
 ];
@@ -32,6 +33,15 @@ export const shows = [
     poster: 'https://img.freepik.com/free-photo/fantasy-woman-portrait-forest_23-2150795908.jpg',
     description: 'The shapeshifting serpent returns for revenge.',
     badge: { text: "Premium", color: "#1e3a8a" }, 
+    isFree: true
+  },
+  {
+    id: 'ks4',
+    channelId: 'toffee',
+    title: 'Kurulus Osman (Toffee Bengali)',
+    poster: 'https://ik.imagekit.io/ottstream/Ks-S4-Poster.jpg',
+    description: 'The shapeshifting serpent returns for revenge.',
+    badge: { text: "Watch Free", color: "#1e3a8a" }, 
     isFree: true
   },
   {
@@ -108,6 +118,17 @@ export const episodes = [
     season: 7,
     episodeNumber: 13,
     title: 'The Mystic Ritual',
+    thumbnail: 'https://img.freepik.com/free-photo/mystic-ritual-scene_23-2150795925.jpg',
+    date: 'Feb 7, 2026',
+    duration: '22m',
+    videoUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8'
+  },
+  {
+    id: 'e10',
+    showId: 'ks4',
+    season: 4,
+    episodeNumber: 1,
+    title: 'Rise of the Hidden Foe',
     thumbnail: 'https://img.freepik.com/free-photo/mystic-ritual-scene_23-2150795925.jpg',
     date: 'Feb 7, 2026',
     duration: '22m',
