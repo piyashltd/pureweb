@@ -2,28 +2,30 @@
 import React, { useState } from 'react';
 import { ChevronRight, ChevronDown } from 'lucide-react';
 import ShowCard from './ShowCard';
-import EpisodeCard from './EpisodeCard'; // We will create this below
+import EpisodeCard from './EpisodeCard';
 import { motion } from 'framer-motion';
 
 const ContentSection = ({ title, data, type = 'show' }) => {
   const [isGrid, setIsGrid] = useState(false);
 
-  // Toggle function
   const toggleView = () => setIsGrid(!isGrid);
 
   return (
     <section className="mt-6 mb-4">
-      {/* Section Header */}
-      <div className="flex justify-between items-center px-4 mb-3">
-        <h2 className="text-lg font-bold text-white uppercase border-l-4 border-brand-pink pl-2">
+      {/* Section Header - Clean Style */}
+      <div className="flex justify-between items-end px-4 mb-3">
+        {/* Title: Normal Case (Not Uppercase), No colored border */}
+        <h2 className="text-lg font-bold text-white leading-none">
           {title}
         </h2>
+        
+        {/* More Button */}
         <button 
           onClick={toggleView}
-          className="text-xs text-brand-primary font-semibold flex items-center gap-1 hover:text-white transition-colors"
+          className="text-sm text-gray-400 flex items-center gap-0.5 hover:text-white transition-colors"
         >
-          {isGrid ? 'Show Less' : 'More'} 
-          {isGrid ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+          {isGrid ? 'Less' : 'More'} 
+          <ChevronRight size={16} className={`transform transition-transform ${isGrid ? 'rotate-90' : ''}`} />
         </button>
       </div>
 
@@ -35,10 +37,8 @@ const ContentSection = ({ title, data, type = 'show' }) => {
         {data.map((item) => (
           <div key={item.id} className={isGrid ? 'w-full' : 'flex-shrink-0'}>
             {type === 'episode' ? (
-              // For "Latest Free Episodes" (Landscape view)
               <EpisodeCard episode={item} isGrid={isGrid} />
             ) : (
-              // For "TV Shows / Serials" (Portrait view)
               <ShowCard show={item} isLandscape={false} isGrid={isGrid} />
             )}
           </div>
