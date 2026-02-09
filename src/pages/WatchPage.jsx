@@ -1,67 +1,63 @@
+// File: src/pages/WatchPage.jsx
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { episodes, shows } from '../data/dummyData';
-import { ArrowLeft, Settings, Maximize, RotateCcw, RotateCw, Download, ChevronLeft } from 'lucide-react';
+import { ArrowLeft, Download, HardDriveDownload } from 'lucide-react';
+import CustomPlayer from '../components/CustomPlayer'; // New Player
 
 const WatchPage = () => {
   const { episodeId } = useParams();
   const episode = episodes.find(e => e.id === episodeId);
   
-  if (!episode) return <div className="text-center p-10">Episode not found</div>;
+  if (!episode) return <div className="text-center p-10 text-white">Episode not found</div>;
   
   const show = shows.find(s => s.id === episode.showId);
   const upNext = episodes.filter(e => e.showId === episode.showId && e.id !== episodeId);
 
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
-      {/* Video Player Section */}
-      <div className="relative w-full aspect-video bg-black group">
-        <video 
-            src={episode.videoUrl} 
-            poster={episode.thumbnail}
-            controls
-            className="w-full h-full object-contain"
-        >
-        </video>
-        
-        {/* Custom Header Overlay in Player */}
-        <div className="absolute top-0 left-0 right-0 p-4 bg-gradient-to-b from-black/80 to-transparent flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity">
-            <Link to={`/show/${show.id}`} className="text-white flex items-center gap-2">
+       {/* Back Button */}
+      <div className="p-4 flex items-center gap-2 text-white">
+            <Link to={`/show/${show.id}`} className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition">
                 <ArrowLeft size={20} />
-                <span className="text-sm font-medium">Back to {show.title}</span>
             </Link>
-        </div>
+            <span className="font-semibold text-sm">{show.title}</span>
       </div>
 
-      {/* Info Section */}
-      <div className="p-4">
-        <h1 className="text-xl font-bold mb-1">EP{episode.episodeNumber}: {episode.title}</h1>
-        <p className="text-sm text-gray-400 mb-4">{show.title}</p>
+      {/* Video Player Container (Boxed, not full screen by default) */}
+      <div className="w-full max-w-5xl mx-auto px-0 sm:px-4">
+          <CustomPlayer src={episode.videoUrl} poster={episode.thumbnail} />
+      </div>
+
+      {/* Info & Actions */}
+      <div className="max-w-5xl mx-auto p-4">
         
-        <div className="flex gap-3 mb-6">
-            <button className="flex items-center gap-2 px-4 py-2 bg-[#1e1e1e] rounded border border-gray-700 text-sm">
-                <ChevronLeft size={16} /> Previous
-            </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-[#2e1025] text-brand-pink border border-brand-pink/30 rounded text-sm ml-auto">
-                <Download size={16} /> Download HD
+        <div className="flex justify-between items-start mt-2">
+            <div>
+                <h1 className="text-lg font-bold text-white leading-tight mb-1">{episode.title}</h1>
+                <p className="text-xs text-gray-400">Episode {episode.episodeNumber} • {episode.date}</p>
+            </div>
+            
+            {/* Small Download Button */}
+            <button className="flex items-center gap-1.5 px-3 py-1.5 bg-[#1f1f1f] border border-gray-700 rounded-md active:scale-95 transition hover:bg-gray-800">
+                <Download size={14} className="text-gray-300" />
+                <span className="text-[10px] font-bold text-gray-300">HD</span>
             </button>
         </div>
 
+        <hr className="border-gray-800 my-6" />
+
         {/* Up Next */}
-        <h3 className="text-brand-primary font-bold mb-3">Up Next</h3>
-        <div className="space-y-3">
+        <h3 className="text-white font-bold mb-3 text-sm uppercase tracking-wide opacity-80">Up Next</h3>
+        <div className="space-y-3 pb-10">
             {upNext.map(ep => (
-                <Link to={`/watch/${ep.id}`} key={ep.id} className="flex gap-3 bg-[#121212] p-2 rounded-lg border border-white/5">
-                    <div className="w-[100px] h-[60px] rounded overflow-hidden relative flex-shrink-0">
-                        <img src={ep.thumbnail} alt={ep.title} className="w-full h-full object-cover" />
+                <Link to={`/watch/${ep.id}`} key={ep.id} className="flex gap-3 bg-[#121212] p-2 rounded-lg border border-white/5 hover:border-white/20 transition group">
+                    <div className="w-[120px] h-[70px] rounded overflow-hidden relative flex-shrink-0">
+                        <img src={ep.thumbnail} alt={ep.title} className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
                     </div>
                     <div className="flex flex-col justify-center">
-                        <div className="text-xs text-gray-400 mb-0.5">{ep.date}</div>
-                        <h4 className="font-semibold text-sm text-white line-clamp-1">{ep.title}</h4>
-                        <div className="flex gap-2 text-[10px] text-gray-500 mt-1">
-                             <span className="bg-gray-800 px-1 rounded">E{ep.episodeNumber}</span>
-                             <span>{ep.duration}</span>
-                        </div>
+                        <h4 className="font-semibold text-sm text-white line-clamp-1 group-hover:text-brand-pink transition">{ep.title}</h4>
+                         <span className="text-xs text-gray-400 mt-1">Episode {ep.episodeNumber}</span>
                     </div>
                 </Link>
             ))}
