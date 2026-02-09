@@ -1,10 +1,15 @@
-import React, { useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+// File: src/pages/ShowDetails.jsx
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { shows, episodes } from '../data/dummyData';
-import ShowCard from '../components/ShowCard';
+import { ChevronRight, LayoutGrid, List } from 'lucide-react'; // Icons
+import EpisodeCard from '../components/EpisodeCard';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const ShowDetails = () => {
   const { id } = useParams();
+  const [viewMode, setViewMode] = useState('horizontal'); // 'horizontal' or 'grid'
+
   const show = shows.find(s => s.id === id);
   const showEpisodes = episodes.filter(e => e.showId === id);
 
@@ -12,49 +17,90 @@ const ShowDetails = () => {
     window.scrollTo(0, 0);
   }, [id]);
 
-  if (!show) return <div className="text-center p-10">Show not found</div>;
+  if (!show) return <div className="text-center p-10 text-white">Show not found</div>;
 
   return (
-    <div>
+    <div className="pb-20">
       {/* Banner */}
-      <div className="relative w-full h-[400px]">
+      <div className="relative w-full h-[350px] sm:h-[400px]">
         <img src={show.poster} alt={show.title} className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/60 to-transparent"></div>
-        <div className="absolute bottom-6 left-4 right-4 text-center">
-            {show.badges.includes('') && (
-                <span className="bg-brand-pink text-white text-[10px] font-bold px-2 py-0.5 rounded-sm mb-2 inline-block"></span>
-            )}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/50 to-transparent"></div>
+        <div className="absolute bottom-6 left-4 right-4">
             <h1 className="text-3xl font-bold text-white mb-2">{show.title}</h1>
-            <p className="text-gray-300 text-sm mb-4 line-clamp-2">{show.description}</p>
-            <div className="text-gray-400 text-xs mb-4">Total Episodes: {showEpisodes.length}</div>
+            <p className="text-gray-300 text-sm mb-4 line-clamp-2 max-w-lg">{show.description}</p>
         </div>
       </div>
 
-      {/* Episodes List */}
-      <div className="px-4 py-4">
-        <div className="flex justify-between items-center mb-4">
-            <h3 className="text-xl font-bold">Episodes</h3>
-            <span className="text-sm text-gray-400">{showEpisodes.length} episodes</span>
+      {/* Episodes Section */}
+      <div className="px-4 py-4 mt-2">
+        
+        {/* Header with Toggle Logic */}
+        <div className="flex justify-between items-center mb-5">
+           <div className="flex items-center gap-2">
+                {/* Dynamic Badge from JSON */}
+                {show.badge && (
+                    <span 
+                        className="text-[10px] font-bold px-2 py-0.5 rounded text-white uppercase tracking-wider"
+                        style={{ backgroundColor: show.badge.color }}
+                    >
+                        {show.badge.text}
+                    </span>
+                )}
+                
+                {/* Clickable Episode Count */}
+                <button 
+                    onClick={() => setViewMode('grid')}
+                    className="flex items-center gap-1 text-white hover:text-brand-pink transition group"
+                >
+                    <span className="text-lg font-bold">{showEpisodes.length} Episodes</span>
+                    <ChevronRight size={18} className={`transform transition-transform ${viewMode === 'grid' ? 'rotate-90' : ''} group-hover:translate-x-1`} />
+                </button>
+           </div>
+
+           {/* View Toggle Icon (Visible only in grid mode to switch back) */}
+           {viewMode === 'grid' && (
+               <button 
+                onClick={() => setViewMode('horizontal')}
+                className="bg-gray-800 p-1.5 rounded-full text-white hover:bg-gray-700 transition"
+               >
+                   <List size={18} />
+               </button>
+           )}
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {showEpisodes.map(ep => (
-                <Link to={`/watch/${ep.id}`} key={ep.id} className="flex gap-3 bg-[#1e1e1e] rounded-lg overflow-hidden group">
-                    <div className="w-[120px] h-[80px] flex-shrink-0 relative">
-                        <img src={ep.thumbnail} alt={ep.title} className="w-full h-full object-cover" />
-                        <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/10 transition">
-                            <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
-                                <div className="border-l-4 border-l-white border-y-4 border-y-transparent ml-0.5 h-2"></div>
-                            </div>
+        {/* Content Area */}
+        <AnimatePresence mode='wait'>
+            {viewMode === 'horizontal' ? (
+                // Horizontal Scroll View
+                <motion.div 
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    className="flex gap-4 overflow-x-auto no-scrollbar pb-4"
+                >
+                    {showEpisodes.map(ep => (
+                        <div key={ep.id} className="flex-shrink-0">
+                             <EpisodeCard episode={ep} />
                         </div>
-                    </div>
-                    <div className="p-2 flex flex-col justify-center">
-                        <h4 className="font-semibold text-sm line-clamp-1 group-hover:text-brand-pink transition">{ep.title}</h4>
-                        <span className="text-xs text-gray-500">E{ep.episodeNumber} • {ep.date}</span>
-                    </div>
-                </Link>
-            ))}
-        </div>
+                    ))}
+                </motion.div>
+            ) : (
+                // Grid View
+                <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 20 }}
+                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"
+                >
+                    {showEpisodes.map(ep => (
+                        <div key={ep.id} className="w-full">
+                             <EpisodeCard episode={ep} isGrid={true} />
+                        </div>
+                    ))}
+                </motion.div>
+            )}
+        </AnimatePresence>
+
       </div>
     </div>
   );
