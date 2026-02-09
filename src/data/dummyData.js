@@ -123,14 +123,13 @@ export const episodes = [
     duration: '22m',
     videoUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8'
   },
-  {
+    {
     id: 'e10',
     showId: 'ks4',
     season: 4,
     episodeNumber: 1,
     title: 'Rise of the Hidden Foe',
-    thumbnail: 'https://ik.imagekit.io/ottstream/KS-S04-E01.webp?tr=w-1000,q-50
-',
+    thumbnail: 'https://ik.imagekit.io/ottstream/KS-S04-E01.webp?tr=w-1000,q-50', // একদম ঠিক করে দেওয়া হলো
     date: 'Feb 7, 2026',
     duration: '22m',
     videoUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8'
