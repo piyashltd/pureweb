@@ -38,7 +38,7 @@ export const shows = [
   {
     id: 'ks4',
     channelId: 'toffee',
-    title: 'Kurulus Osman (Toffee Bengali)',
+    title: 'Kurulus Osman',
     poster: 'https://ik.imagekit.io/ottstream/Ks-S4-Poster.jpg',
     description: 'The shapeshifting serpent returns for revenge.',
     badge: { text: "Watch Free", color: "#1e3a8a" }, 
@@ -129,7 +129,8 @@ export const episodes = [
     season: 4,
     episodeNumber: 1,
     title: 'Rise of the Hidden Foe',
-    thumbnail: 'https://img.freepik.com/free-photo/mystic-ritual-scene_23-2150795925.jpg',
+    thumbnail: 'https://ik.imagekit.io/ottstream/KS-S04-E01.webp?tr=w-1000,q-50
+',
     date: 'Feb 7, 2026',
     duration: '22m',
     videoUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8'
