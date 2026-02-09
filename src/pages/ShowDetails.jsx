@@ -21,7 +21,7 @@ const ShowDetails = () => {
         <img src={show.poster} alt={show.title} className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/60 to-transparent"></div>
         <div className="absolute bottom-6 left-4 right-4 text-center">
-            {show.badges.includes('NEW EPISODE') && (
+            {show.badges.includes('') && (
                 <span className="bg-brand-pink text-white text-[10px] font-bold px-2 py-0.5 rounded-sm mb-2 inline-block">NEW EPISODE</span>
             )}
             <h1 className="text-3xl font-bold text-white mb-2">{show.title}</h1>
