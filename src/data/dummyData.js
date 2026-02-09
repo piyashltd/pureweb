@@ -141,3 +141,28 @@ export const episodes = [
   badge: null, // ব্যাজ না চাইলে null দিন
   isFree: false
 }
+// Episodes Array তে যুক্ত করুন:
+
+// উদাহরণ: Mithai সিরিয়ালের (id: 's5') এপিসোড
+{
+  id: 'e101', // ইউনিক এপিসোড ID
+  showId: 's5', // এটি অবশ্যই শো-এর ID (s5) হতে হবে
+  season: 1,
+  episodeNumber: 1,
+  title: 'Mithai First Meeting', // ছোট টাইটেল
+  thumbnail: 'https://img.freepik.com/free-photo/sweets-making_23-2150935845.jpg',
+  date: '10 Feb 2026',
+  duration: '21m',
+  videoUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8' 
+},
+{
+  id: 'e102',
+  showId: 's5', // সেইম শো ID
+  season: 1,
+  episodeNumber: 2,
+  title: 'The Challenge Begins',
+  thumbnail: 'https://img.freepik.com/free-photo/family-drama_23-2150795925.jpg',
+  date: '11 Feb 2026',
+  duration: '20m',
+  videoUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8' 
+}
