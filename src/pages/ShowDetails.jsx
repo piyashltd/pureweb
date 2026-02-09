@@ -8,7 +8,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const ShowDetails = () => {
   const { id } = useParams();
-  // Default view is horizontal (carousel)
   const [viewMode, setViewMode] = useState('horizontal'); 
 
   const show = shows.find(s => s.id === id);
@@ -24,6 +23,7 @@ const ShowDetails = () => {
     <div className="pb-20 min-h-screen bg-[#0a0a0a]">
       {/* Top Poster Section (Centered Layout) */}
       <div className="flex flex-col items-center pt-6 pb-4 px-4 bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a]">
+        
         {/* Main Poster Image */}
         <div className="w-[140px] h-[210px] rounded-lg overflow-hidden shadow-2xl mb-4 border border-white/10">
             <img src={show.poster} alt={show.title} className="w-full h-full object-cover" />
@@ -34,12 +34,20 @@ const ShowDetails = () => {
             {show.title}
         </h1>
 
-        {/* Watch Free Badge (Teal Color as per screenshot) */}
-        <div className="mb-2">
-            <span className="bg-[#00bfa5] text-black text-xs font-bold px-4 py-1.5 rounded-full shadow-lg">
-                Watch Free
-            </span>
-        </div>
+        {/* Dynamic Badge Section (JSON Controlled) */}
+        {show.badge && (
+            <div className="mb-2">
+                <span 
+                    className="text-xs font-bold px-4 py-1.5 rounded-full shadow-lg"
+                    style={{ 
+                        backgroundColor: show.badge.color,     // JSON থেকে ব্যাকগ্রাউন্ড কালার
+                        color: show.badge.textColor || '#fff'  // JSON থেকে টেক্সট কালার (ডিফল্ট সাদা)
+                    }}
+                >
+                    {show.badge.text}
+                </span>
+            </div>
+        )}
 
         {/* Total Episodes Text */}
         <p className="text-gray-400 text-xs font-medium">
@@ -54,9 +62,8 @@ const ShowDetails = () => {
         <div className="flex justify-between items-center mb-4 border-b border-white/5 pb-2">
            <h3 className="text-lg font-bold text-white">Episodes</h3>
 
-           {/* Toggle Logic: Text Link vs Button */}
+           {/* Toggle Logic */}
            {viewMode === 'horizontal' ? (
-               // State 1: Horizontal Mode -> Show "20 episodes >" link
                <button 
                 onClick={() => setViewMode('grid')}
                 className="flex items-center gap-1 text-sm text-gray-300 hover:text-white transition"
@@ -65,7 +72,6 @@ const ShowDetails = () => {
                    <ChevronRight size={16} />
                </button>
            ) : (
-               // State 2: Grid Mode -> Show "Carousel View" button
                <button 
                 onClick={() => setViewMode('horizontal')}
                 className="flex items-center gap-2 bg-[#1e1e1e] border border-white/10 px-3 py-1.5 rounded-full text-xs font-medium text-white hover:bg-white/10 transition"
@@ -76,10 +82,9 @@ const ShowDetails = () => {
            )}
         </div>
         
-        {/* Content Area (Horizontal vs Grid) */}
+        {/* Content Area */}
         <AnimatePresence mode='wait'>
             {viewMode === 'horizontal' ? (
-                // Horizontal Scroll View
                 <motion.div 
                     key="horizontal"
                     initial={{ opacity: 0, x: -10 }}
@@ -95,7 +100,6 @@ const ShowDetails = () => {
                     ))}
                 </motion.div>
             ) : (
-                // Grid View
                 <motion.div 
                     key="grid"
                     initial={{ opacity: 0, y: 10 }}
