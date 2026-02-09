@@ -1,11 +1,17 @@
+// File: src/components/ShowCard.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Play } from 'lucide-react';
 
-const ShowCard = ({ show, isLandscape = true }) => {
+const ShowCard = ({ show, isLandscape = false, isGrid = false }) => {
+  // Logic for width: If Grid view -> Full Width, If Scroll -> Fixed Width
+  const widthClass = isGrid 
+    ? 'w-full' 
+    : (isLandscape ? 'min-w-[260px] w-[260px]' : 'min-w-[130px] w-[130px] sm:min-w-[150px]');
+
   return (
-    <Link to={`/show/${show.id}`} className={`block group relative ${isLandscape ? 'min-w-[260px] w-[260px]' : 'w-full'}`}>
-      <div className={`relative overflow-hidden rounded-xl ${isLandscape ? 'aspect-video' : 'aspect-[2/3]'}`}>
+    <Link to={`/show/${show.id}`} className={`block group relative ${widthClass}`}>
+      <div className={`relative overflow-hidden rounded-xl bg-gray-800 ${isLandscape ? 'aspect-video' : 'aspect-[2/3]'}`}>
         <img 
           src={show.poster} 
           alt={show.title} 
@@ -13,33 +19,23 @@ const ShowCard = ({ show, isLandscape = true }) => {
         />
         
         {/* Badges */}
-        <div className="absolute top-2 left-2 flex flex-col gap-1 items-start">
-            {show.badges.includes('FREE') && (
-                <span className="bg-green-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-sm"></span>
+        <div className="absolute top-2 left-2 flex flex-col gap-1 items-start z-10">
+            {show.isFree && (
+                <span className="bg-brand-primary text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow-sm">FREE</span>
             )}
              {show.badges.includes('NEW EPISODE') && (
-                <span className="bg-brand-pink text-white text-[10px] font-bold px-2 py-0.5 rounded-sm"></span>
-            )}
-            {show.badges.includes('WATCH FOR FREE') && (
-                <span className="bg-brand-pink text-white text-[10px] font-bold px-2 py-0.5 rounded-sm"></span>
+                <span className="bg-brand-pink text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow-sm">NEW</span>
             )}
         </div>
 
-        {/* Play Overlay */}
-        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-             <div className="bg-white/20 backdrop-blur-sm p-3 rounded-full">
-                <Play fill="white" className="text-white" size={24} />
-             </div>
-        </div>
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
       </div>
       
-      <div className="mt-2">
+      <div className="mt-2 text-center sm:text-left">
         <h3 className="text-sm font-semibold text-white line-clamp-1 group-hover:text-brand-pink transition-colors">
             {show.title}
         </h3>
-        {show.episodeNumber && (
-            <p className="text-xs text-gray-400">E{show.episodeNumber} • {show.date}</p>
-        )}
       </div>
     </Link>
   );
