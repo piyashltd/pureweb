@@ -99,3 +99,45 @@ export const episodes = [
     videoUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8'
   }
 ];
+// Shows Array তে যুক্ত করুন:
+
+// উদাহরণ ১: "Watch Free" ব্যাজ (Teal কালার - কালো লেখা)
+{
+  id: 's5', // ইউনিক ID হতে হবে
+  channelId: 'zee', // channels অ্যারের ID এর সাথে মিল থাকতে হবে
+  title: 'Mithai',
+  poster: 'https://img.freepik.com/free-photo/sari-woman-portrait_23-2149539227.jpg',
+  description: 'A sweet tale of a confectioner.',
+  badge: { 
+      text: "Watch Free", 
+      color: "#00bfa5",    // Teal Background
+      textColor: "#000000" // Black Text
+  },
+  isFree: true
+},
+
+// উদাহরণ ২: "Premium" ব্যাজ (Red কালার - সাদা লেখা)
+{
+  id: 's6',
+  channelId: 'star',
+  title: 'Horogouri Pice Hotel',
+  poster: 'https://img.freepik.com/free-photo/indian-couple_23-2150935821.jpg',
+  description: 'Managing a family hotel business.',
+  badge: { 
+      text: "Premium", 
+      color: "#e50914",    // Red Background
+      textColor: "#ffffff" // White Text
+  },
+  isFree: false
+},
+
+// উদাহরণ ৩: কোনো ব্যাজ ছাড়া (No Badge)
+{
+  id: 's7',
+  channelId: 'sun',
+  title: 'Phaguner Mohona',
+  poster: 'https://img.freepik.com/free-photo/traditional-look_23-2149539250.jpg',
+  description: 'A romantic drama series.',
+  badge: null, // ব্যাজ না চাইলে null দিন
+  isFree: false
+}
