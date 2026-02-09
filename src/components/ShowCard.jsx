@@ -15,13 +15,13 @@ const ShowCard = ({ show, isLandscape = true }) => {
         {/* Badges */}
         <div className="absolute top-2 left-2 flex flex-col gap-1 items-start">
             {show.badges.includes('FREE') && (
-                <span className="bg-green-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-sm">FREE</span>
+                <span className="bg-green-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-sm"></span>
             )}
              {show.badges.includes('NEW EPISODE') && (
-                <span className="bg-brand-pink text-white text-[10px] font-bold px-2 py-0.5 rounded-sm">NEW EPISODE</span>
+                <span className="bg-brand-pink text-white text-[10px] font-bold px-2 py-0.5 rounded-sm"></span>
             )}
             {show.badges.includes('WATCH FOR FREE') && (
-                <span className="bg-brand-pink text-white text-[10px] font-bold px-2 py-0.5 rounded-sm">WATCH FOR FREE</span>
+                <span className="bg-brand-pink text-white text-[10px] font-bold px-2 py-0.5 rounded-sm"></span>
             )}
         </div>
 
