@@ -10,7 +10,9 @@ export const channels = [
 export const sliders = [
   { id: 1, title: "Amader Dadamoni", image: "https://t3.ftcdn.net/jpg/06/15/80/36/360_F_615803658_S53m6x6x6x6x6x6x6x6x6x6x6x6x6x6x6x6x6x6x6x.jpg", showId: 's1' },
   { id: 2, title: "Naagin S07 (Hindi)", image: "https://img.freepik.com/free-photo/mysterious-woman-forest_23-2150795893.jpg", showId: 's2' },
-  { id: 3, title: "Parineeta", image: "https://img.freepik.com/free-photo/indian-couple-wedding-attire_23-2150935821.jpg", showId: 's3' }
+  { id: 3, title: "Parineeta", image: "https://img.freepik.com/free-photo/indian-couple-wedding-attire_23-2150935821.jpg", showId: 's3' },
+  // নতুন স্লাইডার যোগ করতে চাইলে এখানে কমা দিয়ে অবজেক্ট দিন
+  { id: 4, title: "Mithai", image: "https://img.freepik.com/free-photo/wide-banner-indian_23-2149539227.jpg", showId: 's5' }
 ];
 
 export const shows = [
@@ -20,8 +22,7 @@ export const shows = [
     title: 'Jowar Bhanta',
     poster: 'https://img.freepik.com/free-photo/portrait-young-woman-traditional-sari_23-2149539227.jpg',
     description: 'A tale of two sisters separated by destiny.',
-    // Badge added with color code
-    badge: { text: "Watch Free", color: "#e50914" }, // Red
+    badge: { text: "Watch Free", color: "#e50914" }, 
     isFree: false
   },
   {
@@ -30,7 +31,7 @@ export const shows = [
     title: 'Naagin S07 (Hindi)',
     poster: 'https://img.freepik.com/free-photo/fantasy-woman-portrait-forest_23-2150795908.jpg',
     description: 'The shapeshifting serpent returns for revenge.',
-    badge: { text: "Premium", color: "#1e3a8a" }, // Navy Blue
+    badge: { text: "Premium", color: "#1e3a8a" }, 
     isFree: true
   },
   {
@@ -39,7 +40,7 @@ export const shows = [
     title: 'Parineeta',
     poster: 'https://img.freepik.com/free-photo/indian-wedding-couple-posing_23-2150935835.jpg',
     description: 'A love story that defies societal norms.',
-    badge: null, // No Badge
+    badge: null, 
     isFree: false
   },
   {
@@ -48,10 +49,46 @@ export const shows = [
     title: 'Besh Korechi Prem Korechi',
     poster: 'https://img.freepik.com/free-photo/young-students-campus_23-2148522338.jpg',
     description: 'High school romance and drama.',
-    badge: { text: "Free", color: "#16a34a" }, // Green
+    badge: { text: "Free", color: "#16a34a" }, 
     isFree: true
+  },
+  // -------- নতুন শো এখান থেকে শুরু (খেয়াল করুন সব একই ব্র্যাকেটের ভেতরে) --------
+  {
+    id: 's5', 
+    channelId: 'zee', 
+    title: 'Mithai',
+    poster: 'https://img.freepik.com/free-photo/sari-woman-portrait_23-2149539227.jpg',
+    description: 'A sweet tale of a confectioner.',
+    badge: { 
+        text: "Watch Free", 
+        color: "#00bfa5",    
+        textColor: "#000000" 
+    },
+    isFree: true
+  },
+  {
+    id: 's6',
+    channelId: 'star',
+    title: 'Horogouri Pice Hotel',
+    poster: 'https://img.freepik.com/free-photo/indian-couple_23-2150935821.jpg',
+    description: 'Managing a family hotel business.',
+    badge: { 
+        text: "Premium", 
+        color: "#e50914",    
+        textColor: "#ffffff" 
+    },
+    isFree: false
+  },
+  {
+    id: 's7',
+    channelId: 'sun',
+    title: 'Phaguner Mohona',
+    poster: 'https://img.freepik.com/free-photo/traditional-look_23-2149539250.jpg',
+    description: 'A romantic drama series.',
+    badge: null,
+    isFree: false
   }
-];
+]; // shows অ্যারে এখানে শেষ হয়েছে
 
 export const episodes = [
   {
@@ -59,7 +96,7 @@ export const episodes = [
     showId: 's2',
     season: 7,
     episodeNumber: 14,
-    title: 'Naagin Returns Home', // Removed "Episode 14" from title
+    title: 'Naagin Returns Home',
     thumbnail: 'https://img.freepik.com/free-photo/dark-forest-scene_23-2150795920.jpg',
     date: 'Feb 8, 2026',
     duration: '23m',
@@ -97,72 +134,28 @@ export const episodes = [
     date: 'Feb 7, 2026',
     duration: '21m',
     videoUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8'
+  },
+  // -------- নতুন এপিসোড এখান থেকে শুরু --------
+  {
+    id: 'e101', 
+    showId: 's5', // Mithai (s5) এর এপিসোড
+    season: 1,
+    episodeNumber: 1,
+    title: 'Mithai First Meeting', 
+    thumbnail: 'https://img.freepik.com/free-photo/sweets-making_23-2150935845.jpg',
+    date: '10 Feb 2026',
+    duration: '21m',
+    videoUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8' 
+  },
+  {
+    id: 'e102',
+    showId: 's5', 
+    season: 1,
+    episodeNumber: 2,
+    title: 'The Challenge Begins',
+    thumbnail: 'https://img.freepik.com/free-photo/family-drama_23-2150795925.jpg',
+    date: '11 Feb 2026',
+    duration: '20m',
+    videoUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8' 
   }
-];
-// Shows Array তে যুক্ত করুন:
-
-// উদাহরণ ১: "Watch Free" ব্যাজ (Teal কালার - কালো লেখা)
-{
-  id: 's5', // ইউনিক ID হতে হবে
-  channelId: 'zee', // channels অ্যারের ID এর সাথে মিল থাকতে হবে
-  title: 'Mithai',
-  poster: 'https://img.freepik.com/free-photo/sari-woman-portrait_23-2149539227.jpg',
-  description: 'A sweet tale of a confectioner.',
-  badge: { 
-      text: "Watch Free", 
-      color: "#00bfa5",    // Teal Background
-      textColor: "#000000" // Black Text
-  },
-  isFree: true
-},
-
-// উদাহরণ ২: "Premium" ব্যাজ (Red কালার - সাদা লেখা)
-{
-  id: 's6',
-  channelId: 'star',
-  title: 'Horogouri Pice Hotel',
-  poster: 'https://img.freepik.com/free-photo/indian-couple_23-2150935821.jpg',
-  description: 'Managing a family hotel business.',
-  badge: { 
-      text: "Premium", 
-      color: "#e50914",    // Red Background
-      textColor: "#ffffff" // White Text
-  },
-  isFree: false
-},
-
-// উদাহরণ ৩: কোনো ব্যাজ ছাড়া (No Badge)
-{
-  id: 's7',
-  channelId: 'sun',
-  title: 'Phaguner Mohona',
-  poster: 'https://img.freepik.com/free-photo/traditional-look_23-2149539250.jpg',
-  description: 'A romantic drama series.',
-  badge: null, // ব্যাজ না চাইলে null দিন
-  isFree: false
-}
-// Episodes Array তে যুক্ত করুন:
-
-// উদাহরণ: Mithai সিরিয়ালের (id: 's5') এপিসোড
-{
-  id: 'e101', // ইউনিক এপিসোড ID
-  showId: 's5', // এটি অবশ্যই শো-এর ID (s5) হতে হবে
-  season: 1,
-  episodeNumber: 1,
-  title: 'Mithai First Meeting', // ছোট টাইটেল
-  thumbnail: 'https://img.freepik.com/free-photo/sweets-making_23-2150935845.jpg',
-  date: '10 Feb 2026',
-  duration: '21m',
-  videoUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8' 
-},
-{
-  id: 'e102',
-  showId: 's5', // সেইম শো ID
-  season: 1,
-  episodeNumber: 2,
-  title: 'The Challenge Begins',
-  thumbnail: 'https://img.freepik.com/free-photo/family-drama_23-2150795925.jpg',
-  date: '11 Feb 2026',
-  duration: '20m',
-  videoUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8' 
-}
+]; // episodes অ্যারে এখানে শেষ হয়েছে
