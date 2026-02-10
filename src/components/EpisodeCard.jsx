@@ -1,4 +1,4 @@
-// File: src/components/EpisodeCard.jsx
+// File: src/components/EpisodeCard.jsxগ
 import React from 'react';
 import { Link } from 'react-router-dom';
 
