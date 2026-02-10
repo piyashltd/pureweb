@@ -1,5 +1,5 @@
 // File: src/pages/WatchPage.jsx
-import React from 'react';
+import React, { useEffect } from 'react'; // ১. useEffect ইম্পোর্ট করুন
 import { useParams, Link } from 'react-router-dom';
 import { episodes, shows } from '../data/dummyData';
 import { ArrowLeft, Download, Clock, Calendar, PlayCircle } from 'lucide-react';
@@ -9,10 +9,27 @@ const WatchPage = () => {
   const { episodeId } = useParams();
   const episode = episodes.find(e => e.id === episodeId);
   
+  // যদি এপিসোড না পাওয়া যায়
   if (!episode) return <div className="text-center p-10 text-white">Episode not found</div>;
   
   const show = shows.find(s => s.id === episode.showId);
   const upNext = episodes.filter(e => e.showId === episode.showId && e.id !== episodeId && e.season === episode.season);
+
+  // ✅ ২. ডাইনামিক টাইটেল সেট করার লজিক
+  useEffect(() => {
+    if (show && episode) {
+      // আপনার চাওয়া ফরম্যাট: Kurulus Osman (7 May, 2026) - Episode 1
+      const dynamicTitle = `${show.title} (${episode.date}) - Episode ${episode.episodeNumber}`;
+      
+      // ব্রাউজার ট্যাবের টাইটেল পরিবর্তন
+      document.title = dynamicTitle;
+    }
+
+    // ক্লিনআপ: পেজ থেকে বের হয়ে গেলে আবার ডিফল্ট টাইটেল সেট হবে
+    return () => {
+      document.title = "BengaliTVSerial24 Clone";
+    };
+  }, [show, episode]); // শো বা এপিসোড পাল্টালে টাইটেলও পাল্টাবে
 
   return (
     <div className="min-h-screen bg-transparent pb-20">
@@ -35,7 +52,7 @@ const WatchPage = () => {
         
         <div className="flex justify-between items-start mt-2">
             <div className="space-y-1">
-                {/* Main Title */}
+                {/* Main Title - Page UI */}
                 <h1 className="text-xl md:text-2xl font-bold text-white leading-tight drop-shadow-md">
                     {episode.title}
                 </h1>
@@ -76,7 +93,6 @@ const WatchPage = () => {
                     key={ep.id} 
                     className="flex gap-4 bg-[#121212]/40 backdrop-blur-md p-3 rounded-xl border border-white/5 hover:border-white/20 hover:bg-[#1a1a1a]/60 transition group relative overflow-hidden"
                 >
-                    {/* Left: Thumbnail Image */}
                     <div className="w-[140px] sm:w-[160px] h-[85px] rounded-lg overflow-hidden relative flex-shrink-0 shadow-lg bg-gray-900">
                         <img 
                             src={ep.thumbnail} 
@@ -88,21 +104,16 @@ const WatchPage = () => {
                         </div>
                     </div>
 
-                    {/* Right: Info Section */}
                     <div className="flex flex-col justify-center min-w-0 flex-grow py-1">
-                        
-                        {/* 1. ✅ UPDATED TITLE: Show Name (Date) - Episode X */}
-                        {/* line-clamp-2 দেওয়া হয়েছে যাতে নাম বড় হলে ২ লাইনে দেখায়, কেটে না যায় */}
+                        {/* Title Logic for Up Next */}
                         <h4 className="font-bold text-sm text-white line-clamp-2 pr-2 group-hover:text-brand-primary transition leading-snug mb-1">
                             {show.title} ({ep.date}) - Episode {ep.episodeNumber}
                         </h4>
                         
-                        {/* 2. Subtitle: Season Info */}
                         <span className="text-[11px] text-gray-500 font-medium truncate">
                             Season {ep.season}
                         </span>
 
-                        {/* 3. Duration (Bottom) */}
                         {ep.duration && (
                             <div className="flex items-center gap-1.5 text-[10px] text-gray-400 font-medium mt-auto pt-1">
                                 <Clock size={10} className="text-brand-primary" />
