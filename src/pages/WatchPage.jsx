@@ -12,14 +12,11 @@ const WatchPage = () => {
   if (!episode) return <div className="text-center p-10 text-white">Episode not found</div>;
   
   const show = shows.find(s => s.id === episode.showId);
-  // Suggest next episodes from the SAME season
   const upNext = episodes.filter(e => e.showId === episode.showId && e.id !== episodeId && e.season === episode.season);
 
   return (
-    // ব্যাকগ্রাউন্ড স্বচ্ছ করা হয়েছে যাতে গ্লোবাল এনিমেশন দেখা যায়
     <div className="min-h-screen bg-transparent pb-20">
        
-       {/* Top Bar with Back Button */}
       <div className="p-4 flex items-center gap-3 text-white">
             <Link to={`/show/${show.id}`} className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition backdrop-blur-md border border-white/5">
                 <ArrowLeft size={20} />
@@ -27,24 +24,21 @@ const WatchPage = () => {
             <span className="font-semibold text-sm drop-shadow-md tracking-wide">{show.title}</span>
       </div>
 
-      {/* --- CUSTOM PLAYER SECTION --- */}
       <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 mb-6">
           <CustomPlayer src={episode.videoUrl} poster={episode.thumbnail} />
       </div>
 
-      {/* --- CURRENT EPISODE DETAILS --- */}
       <div className="max-w-5xl mx-auto px-4">
         
         <div className="flex justify-between items-start mt-2">
             <div className="space-y-1">
+                {/* Title */}
                 <h1 className="text-xl md:text-2xl font-bold text-white leading-tight drop-shadow-md">
                     {episode.title}
                 </h1>
                 
+                {/* S4 E2 অংশটি আগেই বাদ দেওয়া হয়েছে */}
                 <div className="flex items-center gap-3 text-xs text-gray-300 font-medium">
-                    <span className="bg-white/10 px-2 py-0.5 rounded border border-white/10">
-                        S{episode.season} E{episode.episodeNumber}
-                    </span>
                     <span className="flex items-center gap-1">
                         <Calendar size={12} className="text-brand-primary"/> 
                         {episode.date}
@@ -66,7 +60,6 @@ const WatchPage = () => {
 
         <hr className="border-gray-800 my-6" />
 
-        {/* --- UP NEXT SECTION (REDESIGNED) --- */}
         <h3 className="text-white font-bold mb-4 text-sm uppercase tracking-wider opacity-90 border-l-4 border-brand-primary pl-3">
             Up Next
         </h3>
@@ -89,12 +82,8 @@ const WatchPage = () => {
                         <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
                              <PlayCircle size={32} className="text-white/90 drop-shadow-lg" />
                         </div>
-                        {/* Duration Badge on Thumbnail (Optional, can keep if you like) */}
-                        {ep.duration && (
-                            <div className="absolute bottom-1 right-1 bg-black/80 px-1.5 py-0.5 rounded text-[9px] font-bold text-white">
-                                {ep.duration}
-                            </div>
-                        )}
+                        
+                        {/* ✅ পরিবর্তন: এখান থেকে Duration Badge রিমুভ করা হয়েছে */}
                     </div>
 
                     {/* Right: Info Section */}
