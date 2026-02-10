@@ -56,11 +56,11 @@ const Footer = () => {
             <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-3">
                 <Mail size={16} className="text-brand-primary" />
-                <span>support@bengaliserial24.com</span>
+                <span>piyashmia42@gmail.com</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={16} className="text-brand-primary" />
-                <span>+880 1234 567 890</span>
+                <span>+880 1947-477291</span>
               </li>
               <li className="flex items-center gap-3">
                 <MapPin size={16} className="text-brand-primary" />
@@ -73,7 +73,7 @@ const Footer = () => {
         {/* Bottom Section: Copyright */}
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-gray-600">
-            © {new Date().getFullYear()} BengaliTVSerial24. All rights reserved.
+            © {new Date().getFullYear()} BengaliTvSerial.Net. All rights reserved.
           </p>
           <div className="flex gap-6 text-xs text-gray-500">
             <Link to="#" className="hover:text-white transition">Privacy</Link>
