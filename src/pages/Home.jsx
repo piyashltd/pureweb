@@ -29,7 +29,7 @@ const Home = () => {
       {/* 4. Kurulus Osman / Toffee Section */}
       <ContentSection 
         title="Kurulus Osman" 
-        data={getShowsByChannel('toffee')} 
+        data={getShowsByChannel('kurulus-osman')} 
         type="show" 
       />
       {/* 4. Zee Bangla Shows (Horizontal Scroll -> Click More -> Grid) */}
