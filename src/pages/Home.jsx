@@ -35,21 +35,21 @@ const Home = () => {
       {/* 4. Zee Bangla Shows (Horizontal Scroll -> Click More -> Grid) */}
       <ContentSection 
         title="Zee Bangla" 
-        data={getShowsByChannel('zee')} 
+        data={getShowsByChannel('zee-bangla)} 
         type="show" 
       />
 
        {/* 5. Star Jalsha Shows */}
        <ContentSection 
         title="Star Jalsha" 
-        data={getShowsByChannel('star')} 
+        data={getShowsByChannel('star-jalsha')} 
         type="show" 
       />
       
       {/* 6. Sun Bangla Shows */}
       <ContentSection 
         title="Sun Bangla" 
-        data={getShowsByChannel('sun')} 
+        data={getShowsByChannel('sun-bangla')} 
         type="show" 
       />
 
