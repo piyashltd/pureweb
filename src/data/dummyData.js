@@ -5,13 +5,13 @@ export const channels = [
   { 
     id: 'zee', 
     name: 'Zee Bangla', 
-    logo: 'https://ik.imagekit.io/ottstream/zee-bangla1.jpg', 
+    logo: 'https://ik.imagekit.io/ottstream/zee-bangla.png', 
     color: 'bg-red-600' 
   },
   { 
     id: 'star', 
     name: 'Star Jalsha', 
-    logo: 'https://ik.imagekit.io/ottstream/star-jalsha2.jpg', 
+    logo: 'https://ik.imagekit.io/ottstream/star-jalsha.png', 
     color: 'bg-orange-500' 
   },
   { 
