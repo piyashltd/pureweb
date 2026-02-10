@@ -10,23 +10,31 @@ body {
   margin: 0;
   padding: 0;
   color: white;
-  background-color: #000; /* ফলব্যাক কালার */
+  background-color: #000; /* যদি লোড হতে দেরি হয় তবে কালো দেখাবে */
 }
 
-/* --- Animated Gradient Class --- */
-.animated-bg {
-  /* ৪টি কালার মিক্স: Navy, Deep Blue, Purple, Black */
-  background: linear-gradient(-45deg, #0f172a, #1e1b4b, #4c1d95, #000000);
-  background-size: 400% 400%;
-  animation: gradientBG 10s ease infinite;
+/* --- Premium Deep Dark Animation Class --- */
+.premium-bg {
+  /* কালার প্যালেট: 
+     1. Pure Black (#000000)
+     2. Deep Purple (#1a0b2e) - খুব গাঢ় বেগুনি
+     3. Dark Navy (#0f172a) - ভেরিয়েশনের জন্য
+     4. Pure Black (#000000) - আবার কালোতে ফিরে আসা
+  */
+  background: linear-gradient(135deg, #000000, #1a0b2e, #0f172a, #000000);
   
-  /* এটা নিশ্চিত করবে ব্যাকগ্রাউন্ড পুরো পেজ জুড়ে আছে */
+  /* সাইজ ৩০০% রাখা হয়েছে যাতে মোবাইলেও মুভমেন্ট দ্রুত চোখে পড়ে */
+  background-size: 300% 300%;
+  
+  /* এনিমেশন ১২ সেকেন্ডে লুপ হবে */
+  animation: cosmicShift 12s ease infinite;
+  
   min-height: 100vh;
   width: 100%;
 }
 
 /* --- Animation Keyframes --- */
-@keyframes gradientBG {
+@keyframes cosmicShift {
   0% {
     background-position: 0% 50%;
   }
