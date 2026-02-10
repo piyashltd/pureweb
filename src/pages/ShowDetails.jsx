@@ -26,26 +26,26 @@ const ShowDetails = () => {
 
   const displayedEpisodes = allShowEpisodes.filter(e => e.season === parseInt(selectedSeason));
 
-  // ⚠️ লজিক চেঞ্জ: এখন এটি শুধুমাত্র 'detailsBadge' খুঁজবে। 
-  // poster এর 'badge' বা অটোমেটিক কোনো ব্যাজ এখানে কাজ করবে না।
-  // শুধুমাত্র যদি detailsBadge অবজেক্ট এবং তার টেক্সট থাকে তবেই ব্যাজ রেন্ডার হবে।
   const displayBadge = show.detailsBadge;
 
   return (
-    <div className="pb-20 min-h-screen bg-[#0a0a0a]">
+    // ⚠️ পরিবর্তন ১: এখানে 'bg-[#0a0a0a]' এর বদলে 'bg-transparent' দেওয়া হয়েছে
+    <div className="pb-20 min-h-screen bg-transparent">
+      
       {/* Poster Section */}
-      <div className="flex flex-col items-center pt-8 pb-6 px-4 bg-gradient-to-b from-[#151515] to-[#0a0a0a]">
+      {/* ⚠️ পরিবর্তন ২: ভেতরের গ্রেডিয়েন্ট সরিয়ে 'bg-transparent' দেওয়া হয়েছে যাতে এনিমেশন দেখা যায় */}
+      <div className="flex flex-col items-center pt-8 pb-6 px-4 bg-transparent">
         
         <div className="w-[150px] h-[220px] rounded-xl overflow-hidden shadow-2xl mb-5 border border-white/10 relative group">
             <img src={show.poster} alt={show.title} className="w-full h-full object-cover" />
              <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition"></div>
         </div>
 
-        <h1 className="text-2xl font-bold text-white text-center mb-3 leading-tight tracking-wide">
+        <h1 className="text-2xl font-bold text-white text-center mb-3 leading-tight tracking-wide drop-shadow-md">
             {show.title}
         </h1>
 
-        {/* Dynamic Details Badge: শুধুমাত্র detailsBadge থাকলেই দেখাবে */}
+        {/* Dynamic Details Badge */}
         {displayBadge && displayBadge.text && (
             <div className="mb-3">
                 <span 
@@ -60,7 +60,7 @@ const ShowDetails = () => {
             </div>
         )}
 
-        <p className="text-gray-400 text-xs font-medium bg-white/5 px-3 py-1 rounded-full border border-white/5">
+        <p className="text-gray-300 text-xs font-medium bg-black/20 backdrop-blur-sm px-3 py-1 rounded-full border border-white/10">
             Total Episodes: {allShowEpisodes.length}
         </p>
       </div>
@@ -74,7 +74,7 @@ const ShowDetails = () => {
                 <select 
                     value={selectedSeason} 
                     onChange={(e) => setSelectedSeason(e.target.value)}
-                    className="appearance-none bg-[#1e1e1e] text-white text-sm font-semibold pl-4 pr-10 py-2 rounded-lg border border-white/10 focus:outline-none focus:border-brand-primary"
+                    className="appearance-none bg-[#1e1e1e]/80 backdrop-blur-md text-white text-sm font-semibold pl-4 pr-10 py-2 rounded-lg border border-white/10 focus:outline-none focus:border-brand-primary"
                 >
                     {availableSeasons.length > 0 ? (
                         availableSeasons.map(season => (
@@ -91,7 +91,7 @@ const ShowDetails = () => {
            {viewMode === 'horizontal' ? (
                <button 
                 onClick={() => setViewMode('grid')}
-                className="flex items-center gap-1 text-sm text-gray-400 hover:text-white transition"
+                className="flex items-center gap-1 text-sm text-gray-300 hover:text-white transition"
                >
                    <span>See All</span>
                    <ChevronRight size={16} />
@@ -99,7 +99,7 @@ const ShowDetails = () => {
            ) : (
                <button 
                 onClick={() => setViewMode('horizontal')}
-                className="flex items-center gap-2 bg-[#1e1e1e] border border-white/10 px-3 py-1.5 rounded-full text-xs font-medium text-white hover:bg-white/10 transition"
+                className="flex items-center gap-2 bg-[#1e1e1e]/80 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-full text-xs font-medium text-white hover:bg-white/10 transition"
                >
                    <LayoutGrid size={14} />
                    <span>Carousel</span>
@@ -110,7 +110,7 @@ const ShowDetails = () => {
         {/* Content Area */}
         <AnimatePresence mode='wait'>
             {displayedEpisodes.length === 0 ? (
-                <div className="text-center text-gray-500 py-10 text-sm">No episodes found</div>
+                <div className="text-center text-gray-400 py-10 text-sm">No episodes found</div>
             ) : (
                 viewMode === 'horizontal' ? (
                     <motion.div 
