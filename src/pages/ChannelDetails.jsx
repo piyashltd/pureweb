@@ -21,10 +21,13 @@ const ChannelDetails = () => {
   if (!channel) return <div className="text-center p-10 text-white">Channel not found</div>;
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] px-4 pb-20">
+    // ⚠️ পরিবর্তন: 'bg-[#0a0a0a]' সরিয়ে 'bg-transparent' দেওয়া হয়েছে
+    // ফলে গ্লোবাল এনিমেশন এখানেও দেখা যাবে
+    <div className="min-h-screen bg-transparent px-4 pb-20">
+      
       {/* Header Section (Folder Style) */}
       <div className="pt-6 pb-4">
-         {/* Back Button (Optional) */}
+         {/* Back Button */}
          <Link to="/" className="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-4 transition">
             <ArrowLeft size={20} />
             <span>Back to Home</span>
@@ -35,12 +38,12 @@ const ChannelDetails = () => {
             <FolderOpen className="text-brand-primary" size={28} />
             
             {/* Channel Name */}
-            <h1 className="text-2xl font-bold text-white uppercase tracking-wide">
+            <h1 className="text-2xl font-bold text-white uppercase tracking-wide drop-shadow-md">
                 {channel.name}
             </h1>
             
             {/* Show Count */}
-            <span className="text-sm text-gray-500 mt-1">
+            <span className="text-sm text-gray-400 mt-1 font-medium">
                 ({channelShows.length} shows)
             </span>
          </div>
@@ -51,6 +54,7 @@ const ChannelDetails = () => {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {channelShows.map(show => (
                 <div key={show.id} className="w-full">
+                    {/* গ্রিড আইটেম */}
                     <ShowCard show={show} isLandscape={false} isGrid={true} />
                 </div>
             ))}
