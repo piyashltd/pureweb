@@ -2,7 +2,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { episodes, shows } from '../data/dummyData';
-import { ArrowLeft, Download } from 'lucide-react';
+import { ArrowLeft, Download, Clock, Calendar, PlayCircle } from 'lucide-react';
 import CustomPlayer from '../components/CustomPlayer';
 
 const WatchPage = () => {
@@ -16,54 +16,113 @@ const WatchPage = () => {
   const upNext = episodes.filter(e => e.showId === episode.showId && e.id !== episodeId && e.season === episode.season);
 
   return (
-    // ⚠️ পরিবর্তন: 'bg-[#0a0a0a]' সরিয়ে 'bg-transparent' দেওয়া হয়েছে
-    // ফলে গ্লোবাল এনিমেশন ব্যাকগ্রাউন্ডটি ভিডিও প্লেয়ারের পেছনেও দেখা যাবে
+    // ব্যাকগ্রাউন্ড স্বচ্ছ করা হয়েছে যাতে গ্লোবাল এনিমেশন দেখা যায়
     <div className="min-h-screen bg-transparent pb-20">
        
-       {/* Back Button */}
-      <div className="p-4 flex items-center gap-2 text-white">
-            <Link to={`/show/${show.id}`} className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition backdrop-blur-md">
+       {/* Top Bar with Back Button */}
+      <div className="p-4 flex items-center gap-3 text-white">
+            <Link to={`/show/${show.id}`} className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition backdrop-blur-md border border-white/5">
                 <ArrowLeft size={20} />
             </Link>
-            <span className="font-semibold text-sm drop-shadow-md">{show.title}</span>
+            <span className="font-semibold text-sm drop-shadow-md tracking-wide">{show.title}</span>
       </div>
 
-      {/* Video Player Container */}
-      <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 mb-4">
+      {/* --- CUSTOM PLAYER SECTION --- */}
+      <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 mb-6">
           <CustomPlayer src={episode.videoUrl} poster={episode.thumbnail} />
       </div>
 
-      {/* Info & Actions */}
+      {/* --- CURRENT EPISODE DETAILS --- */}
       <div className="max-w-5xl mx-auto px-4">
         
         <div className="flex justify-between items-start mt-2">
-            <div>
-                <h1 className="text-lg font-bold text-white leading-tight mb-1 drop-shadow-md">{episode.title}</h1>
-                <p className="text-xs text-gray-300 font-medium">
-                    S{episode.season} E{episode.episodeNumber} • {episode.date}
-                </p>
+            <div className="space-y-1">
+                <h1 className="text-xl md:text-2xl font-bold text-white leading-tight drop-shadow-md">
+                    {episode.title}
+                </h1>
+                
+                <div className="flex items-center gap-3 text-xs text-gray-300 font-medium">
+                    <span className="bg-white/10 px-2 py-0.5 rounded border border-white/10">
+                        S{episode.season} E{episode.episodeNumber}
+                    </span>
+                    <span className="flex items-center gap-1">
+                        <Calendar size={12} className="text-brand-primary"/> 
+                        {episode.date}
+                    </span>
+                    {episode.duration && (
+                         <span className="flex items-center gap-1">
+                            <Clock size={12} className="text-brand-primary"/> 
+                            {episode.duration}
+                        </span>
+                    )}
+                </div>
             </div>
             
-            <button className="flex items-center gap-1.5 px-3 py-1.5 bg-[#1f1f1f]/80 backdrop-blur-md border border-gray-700 rounded-md active:scale-95 transition hover:bg-gray-800">
-                <Download size={14} className="text-gray-300" />
-                <span className="text-[10px] font-bold text-gray-300">HD</span>
+            <button className="flex items-center gap-1.5 px-4 py-2 bg-[#1f1f1f]/80 backdrop-blur-md border border-gray-700 rounded-lg active:scale-95 transition hover:bg-gray-800 hover:border-brand-primary/50 group">
+                <Download size={16} className="text-gray-400 group-hover:text-brand-primary transition" />
+                <span className="text-xs font-bold text-gray-300 group-hover:text-white">Download</span>
             </button>
         </div>
 
-        <hr className="border-gray-700/50 my-6" />
+        <hr className="border-gray-800 my-6" />
 
-        {/* Up Next List */}
-        <h3 className="text-white font-bold mb-3 text-sm uppercase tracking-wide opacity-90 shadow-black drop-shadow-sm">Up Next</h3>
-        <div className="space-y-3 pb-10">
+        {/* --- UP NEXT SECTION (REDESIGNED) --- */}
+        <h3 className="text-white font-bold mb-4 text-sm uppercase tracking-wider opacity-90 border-l-4 border-brand-primary pl-3">
+            Up Next
+        </h3>
+        
+        <div className="flex flex-col gap-4 pb-10">
             {upNext.map(ep => (
-                // কার্ডগুলোর ব্যাকগ্রাউন্ড সামান্য স্বচ্ছ করা হয়েছে (backdrop-blur)
-                <Link to={`/watch/${ep.id}`} key={ep.id} className="flex gap-3 bg-[#121212]/60 backdrop-blur-sm p-2 rounded-lg border border-white/5 hover:border-white/20 transition group">
-                    <div className="w-[120px] h-[70px] rounded overflow-hidden relative flex-shrink-0">
-                        <img src={ep.thumbnail} alt={ep.title} className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                <Link 
+                    to={`/watch/${ep.id}`} 
+                    key={ep.id} 
+                    className="flex gap-4 bg-[#121212]/40 backdrop-blur-md p-3 rounded-xl border border-white/5 hover:border-white/20 hover:bg-[#1a1a1a]/60 transition group relative overflow-hidden"
+                >
+                    {/* Left: Thumbnail Image */}
+                    <div className="w-[140px] sm:w-[160px] h-[85px] rounded-lg overflow-hidden relative flex-shrink-0 shadow-lg bg-gray-900">
+                        <img 
+                            src={ep.thumbnail} 
+                            alt={ep.title} 
+                            className="w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-90 group-hover:opacity-100" 
+                        />
+                        {/* Overlay Play Icon */}
+                        <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                             <PlayCircle size={32} className="text-white/90 drop-shadow-lg" />
+                        </div>
+                        {/* Duration Badge on Thumbnail (Optional, can keep if you like) */}
+                        {ep.duration && (
+                            <div className="absolute bottom-1 right-1 bg-black/80 px-1.5 py-0.5 rounded text-[9px] font-bold text-white">
+                                {ep.duration}
+                            </div>
+                        )}
                     </div>
-                    <div className="flex flex-col justify-center">
-                        <h4 className="font-semibold text-sm text-white line-clamp-1 group-hover:text-brand-pink transition">{ep.title}</h4>
-                         <span className="text-xs text-gray-400 mt-1">S{ep.season} E{ep.episodeNumber}</span>
+
+                    {/* Right: Info Section */}
+                    <div className="flex flex-col justify-center min-w-0 flex-grow py-1">
+                        
+                        {/* 1. Date (Top) */}
+                        <div className="flex items-center gap-1.5 text-[10px] text-gray-400 font-medium mb-1">
+                            <Calendar size={10} className="text-brand-primary" />
+                            <span>{ep.date}</span>
+                        </div>
+
+                        {/* 2. Title (Bold) */}
+                        <h4 className="font-bold text-sm text-white truncate pr-2 group-hover:text-brand-primary transition leading-snug">
+                            {ep.title}
+                        </h4>
+                        
+                        {/* 3. Show Name + S/E Info */}
+                        <span className="text-[11px] text-gray-500 font-medium mt-0.5 truncate">
+                            {show.title} • Season {ep.season}
+                        </span>
+
+                        {/* 4. Duration (Bottom) */}
+                        {ep.duration && (
+                            <div className="flex items-center gap-1.5 text-[10px] text-gray-400 font-medium mt-auto pt-1">
+                                <Clock size={10} className="text-brand-primary" />
+                                <span>{ep.duration}</span>
+                            </div>
+                        )}
                     </div>
                 </Link>
             ))}
