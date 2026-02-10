@@ -28,7 +28,7 @@ const Home = () => {
       />
       {/* 4. Kurulus Osman / Toffee Section */}
       <ContentSection 
-        title="Kurulus Osman" 
+        title="Toffee Exclusive" 
         data={getShowsByChannel('toffee-turkish')} 
         type="show" 
       />
