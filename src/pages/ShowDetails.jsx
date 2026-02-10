@@ -27,7 +27,8 @@ const ShowDetails = () => {
   const displayedEpisodes = allShowEpisodes.filter(e => e.season === parseInt(selectedSeason));
 
   // ⚠️ লজিক চেঞ্জ: এখন এটি শুধুমাত্র 'detailsBadge' খুঁজবে। 
-  // poster এর 'badge' এখানে কাজ করবে না।
+  // poster এর 'badge' বা অটোমেটিক কোনো ব্যাজ এখানে কাজ করবে না।
+  // শুধুমাত্র যদি detailsBadge অবজেক্ট এবং তার টেক্সট থাকে তবেই ব্যাজ রেন্ডার হবে।
   const displayBadge = show.detailsBadge;
 
   return (
