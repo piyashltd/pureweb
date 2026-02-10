@@ -51,9 +51,9 @@ export const sliders = [
   },
   { 
     id: 10, 
-    title: "Kurulus Osman S4", 
+    title: "Kurulus Osman", 
     image: "https://ik.imagekit.io/ottstream/Ks-S4-Poster.jpg", 
-    showId: 'ks4' 
+    showId: 'ks4' // Matches the corrected Show ID
   },
   { 
     id: 4, 
@@ -74,7 +74,7 @@ export const shows = [
     poster: 'https://img.freepik.com/free-photo/portrait-young-woman-traditional-sari_23-2149539227.jpg',
     description: 'A tale of two sisters separated by destiny.',
     badge: { text: "Watch Free", color: "#e50914", textColor: "#ffffff" }, 
-    detailsBadge: null, // ভেতরে ব্যাজ দেখাবে না
+    detailsBadge: null, 
     isFree: false
   },
   
@@ -86,20 +86,19 @@ export const shows = [
     poster: 'https://img.freepik.com/free-photo/fantasy-woman-portrait-forest_23-2150795908.jpg',
     description: 'The shapeshifting serpent returns for revenge.',
     badge: { text: "Premium", color: "#1e3a8a", textColor: "#ffffff" }, 
-    detailsBadge: { text: "Premium HD", color: "#1e3a8a", textColor: "#ffffff" }, // ভেতরেও দেখাবে
+    detailsBadge: { text: "Premium HD", color: "#1e3a8a", textColor: "#ffffff" },
     isFree: true
   },
 
   // 3. Toffee / Turkish Show (Kurulus Osman)
+  // FIXED: Changed ID from '10' to 'ks4' to match episodes and slider
   {
-    id: 'kurulus-osman',
-    channelId: 'kurulus-osman',
+    id: 'ks4', 
+    channelId: 'toffee',
     title: 'Kurulus Osman',
     poster: 'https://ik.imagekit.io/ottstream/Ks-S4-Poster.jpg',
     description: 'The epic struggle of Osman Bey against enemies.',
-    // Home Page Badge
     badge: null,
-    // Inside Details Badge
     detailsBadge: { text: "Watch Free", color: "#fbbf24", textColor: "#000000" }, 
     isFree: false
   },
@@ -168,10 +167,22 @@ export const shows = [
 
 // ------------------- EPISODES -------------------
 export const episodes = [
-  // Kurulus Osman (KS4) Episodes - Season 4
+  // Kurulus Osman (KS4) Episodes
+  // FIXED: All showIds are now 'ks4' and IDs are organized
   {
-    id: 'ks-s04e01.html',
-    showId: 'kurulus-osman',
+    id: 'ks-s4-e2', // Was e11, renamed to follow pattern
+    showId: 'ks4',
+    season: 4,
+    episodeNumber: 2,
+    title: 'The Great Betrayal',
+    thumbnail: 'https://ik.imagekit.io/ottstream/KS-S04-E01.webp?tr=w-1000,q-50',
+    date: 'Feb 8, 2026',
+    duration: '45m',
+    videoUrl: 'https://stream.mux.com/uP9wqVLCyfOMLJ7DZl7ANqqUxkH5jVYdZo5SF1qz4zk.m3u8'
+  },
+  {
+    id: 'ks-s4-e1', // Was ks-s04e01.html
+    showId: 'ks4',
     season: 4,
     episodeNumber: 1,
     title: 'Rise of the Hidden Foe',
@@ -181,25 +192,14 @@ export const episodes = [
     videoUrl: 'https://stream.mux.com/uP9wqVLCyfOMLJ7DZl7ANqqUxkH5jVYdZo5SF1qz4zk.m3u8'
   },
   {
-    id: 'ks-s01e01.html',
-    showId: 'kurulus-osman',
+    id: 'ks-s1-e1', // Was ks-s01e01.html
+    showId: 'ks4',
     season: 1,
     episodeNumber: 1,
     title: 'Osman of the Hidden Foe',
     thumbnail: 'https://ik.imagekit.io/ottstream/KS-S04-E01.webp?tr=w-1000,q-50',
     date: 'Feb 7, 2026',
     duration: '22m',
-    videoUrl: 'https://stream.mux.com/uP9wqVLCyfOMLJ7DZl7ANqqUxkH5jVYdZo5SF1qz4zk.m3u8'
-  },
-  {
-    id: 'e11',
-    showId: 'ks4',
-    season: 4,
-    episodeNumber: 2,
-    title: 'The Great Betrayal',
-    thumbnail: 'https://ik.imagekit.io/ottstream/KS-S04-E01.webp?tr=w-1000,q-50',
-    date: 'Feb 8, 2026',
-    duration: '45m',
     videoUrl: 'https://stream.mux.com/uP9wqVLCyfOMLJ7DZl7ANqqUxkH5jVYdZo5SF1qz4zk.m3u8'
   },
 
