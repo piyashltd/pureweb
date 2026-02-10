@@ -8,9 +8,8 @@ const Layout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    // ✅ পরিবর্তন: এখানে 'bg-[#0a0a0a]' বা 'bg-transparent' এর বদলে 
-    // আমাদের বানানো 'animated-bg' ক্লাসটি দিন।
-    <div className="animated-bg flex flex-col min-h-screen">
+    // ✅ পরিবর্তন: আমাদের নতুন 'premium-bg' ক্লাসটি এখানে দেওয়া হলো
+    <div className="premium-bg flex flex-col min-h-screen">
       
       <Header 
         onMenuClick={() => setIsSidebarOpen(true)} 
