@@ -271,5 +271,29 @@ export const episodes = [
     date: '10 Feb 2026',
     duration: '21m',
     videoUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8' 
+  },
+
+  {
+    "id": "kurulus-osman-s04-e03",
+    "showId": "kurulus-osman",
+    "season": 4,
+    "episodeNumber": 3,
+    "title": "New Episode 3",
+    "thumbnail": "https://link.com/img3.jpg",
+    "date": "Feb 10, 2026",
+    "duration": "40m",
+    "videoUrl": "https://link.com/vid3.m3u8"
+  },
+  {
+    "id": "kurulus-osman-s04-e04",
+    "showId": "kurulus-osman",
+    "season": 4,
+    "episodeNumber": 4,
+    "title": "New Episode 4",
+    "thumbnail": "https://link.com/img4.jpg",
+    "date": "Feb 11, 2026",
+    "duration": "42m",
+    "videoUrl": "https://link.com/vid4.m3u8"
   }
+
 ];
