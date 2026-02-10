@@ -6,7 +6,8 @@ import { Play, Pause, RotateCcw, RotateCw, Volume2, VolumeX, Maximize, Settings,
 const CustomPlayer = ({ src, poster }) => {
     const videoRef = useRef(null);
     const wrapperRef = useRef(null);
-    const hlsRef = useRef(null); // HLS ইন্সট্যান্স স্টোর করার জন্য
+    const hlsRef = useRef(null);
+    const controlsTimeoutRef = useRef(null);
 
     // States
     const [isPlaying, setIsPlaying] = useState(false);
@@ -15,13 +16,16 @@ const CustomPlayer = ({ src, poster }) => {
     const [progress, setProgress] = useState(0);
     const [isMuted, setIsMuted] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
+    
+    // ✅ নতুন স্টেট: কন্ট্রোল দেখাবে কি না
+    const [showControls, setShowControls] = useState(true);
 
     // Quality States
     const [qualities, setQualities] = useState([]);
-    const [currentQuality, setCurrentQuality] = useState(-1); // -1 = Auto
+    const [currentQuality, setCurrentQuality] = useState(-1);
     const [showQualityMenu, setShowQualityMenu] = useState(false);
-    const menuTimeoutRef = useRef(null);
 
+    // 1. HLS & Video Setup
     useEffect(() => {
         const video = videoRef.current;
         let hls;
@@ -33,21 +37,14 @@ const CustomPlayer = ({ src, poster }) => {
             hls.attachMedia(video);
 
             hls.on(Hls.Events.MANIFEST_PARSED, (event, data) => {
-                // কোয়ালিটি লেভেলগুলো বের করা এবং হাই রেজুলেশন আগে রাখা
                 const levels = data.levels.map((level, index) => ({
                     id: index,
                     height: level.height,
                     bitrate: level.bitrate
                 })).reverse();
-                
                 setQualities(levels);
-                // ভিডিও লোড হলে অটো প্লে (অপশনাল)
-                // video.play().catch(() => {});
-                // setIsPlaying(true);
             });
-
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            // Safari এর জন্য
             video.src = src;
         }
 
@@ -58,17 +55,36 @@ const CustomPlayer = ({ src, poster }) => {
         };
 
         video.addEventListener('timeupdate', updateTime);
-        
-        // ক্লিনআপ ফাংশন: পরবর্তী ভিডিওতে যাতে সমস্যা না হয়
         return () => {
             if (hls) hls.destroy();
             video.removeEventListener('timeupdate', updateTime);
-            clearTimeout(menuTimeoutRef.current);
+            clearTimeout(controlsTimeoutRef.current);
         };
-    }, [src]); // src পাল্টালে পুরো সেটআপ আবার হবে
+    }, [src]);
+
+    // ✅ 2. Controls Visibility Logic (Auto Hide)
+    const handleUserActivity = () => {
+        // ইউজার নড়াচড়া করলে কন্ট্রোল দেখাও
+        setShowControls(true);
+        
+        // আগের টাইমার ক্লিয়ার করো
+        clearTimeout(controlsTimeoutRef.current);
+
+        // যদি ভিডিও চলতে থাকে এবং কোয়ালিটি মেনু ওপেন না থাকে, তবে ৩ সেকেন্ড পর হাইড করো
+        if (isPlaying && !showQualityMenu) {
+            controlsTimeoutRef.current = setTimeout(() => {
+                setShowControls(false);
+            }, 3000);
+        }
+    };
+
+    // প্লে/পজ বা কোয়ালিটি মেনু পাল্টালে টাইমার রিসেট হবে
+    useEffect(() => {
+        handleUserActivity();
+    }, [isPlaying, showQualityMenu]);
+
 
     // --- Actions ---
-
     const togglePlay = () => {
         const video = videoRef.current;
         if (video.paused) {
@@ -77,6 +93,7 @@ const CustomPlayer = ({ src, poster }) => {
         } else {
             video.pause();
             setIsPlaying(false);
+            setShowControls(true); // পজ করলে কন্ট্রোল ফিক্সড থাকবে
         }
     };
 
@@ -88,25 +105,22 @@ const CustomPlayer = ({ src, poster }) => {
 
     const skip = (amount) => {
         videoRef.current.currentTime += amount;
+        handleUserActivity(); // স্কিপ করলে কন্ট্রোল ভেসে উঠবে
     };
 
     const handleSeek = (e) => {
         const manualChange = Number(e.target.value);
         videoRef.current.currentTime = (videoRef.current.duration / 100) * manualChange;
         setProgress(manualChange);
+        handleUserActivity();
     };
 
     const toggleFullScreen = async () => {
         if (!document.fullscreenElement) {
-            try {
-                await wrapperRef.current.requestFullscreen();
-                setIsFullscreen(true);
-                // Landscape Lock (Mobile Only)
-                if (screen.orientation && screen.orientation.lock) {
-                    screen.orientation.lock('landscape').catch((e) => console.log('Rotation lock not supported'));
-                }
-            } catch (err) {
-                console.error(err);
+            await wrapperRef.current.requestFullscreen();
+            setIsFullscreen(true);
+            if (screen.orientation && screen.orientation.lock) {
+                screen.orientation.lock('landscape').catch(() => {});
             }
         } else {
             document.exitFullscreen();
@@ -115,26 +129,15 @@ const CustomPlayer = ({ src, poster }) => {
     };
 
     // --- Quality Logic ---
-
     const toggleQualityMenu = () => {
-        if (showQualityMenu) {
-            setShowQualityMenu(false);
-            clearTimeout(menuTimeoutRef.current);
-        } else {
-            setShowQualityMenu(true);
-            // ৫ সেকেন্ড পর অটো হাইড হবে
-            menuTimeoutRef.current = setTimeout(() => {
-                setShowQualityMenu(false);
-            }, 5000);
-        }
+        setShowQualityMenu(!showQualityMenu);
     };
 
     const changeQuality = (qualityId) => {
         if (hlsRef.current) {
-            hlsRef.current.currentLevel = qualityId; // -1 for Auto
+            hlsRef.current.currentLevel = qualityId;
             setCurrentQuality(qualityId);
-            setShowQualityMenu(false); // সিলেকশনের পর মেনু বন্ধ
-            clearTimeout(menuTimeoutRef.current);
+            setShowQualityMenu(false);
         }
     };
 
@@ -146,15 +149,22 @@ const CustomPlayer = ({ src, poster }) => {
     };
 
     return (
-        <div ref={wrapperRef} className="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl group select-none border border-white/10">
+        <div 
+            ref={wrapperRef} 
+            // ✅ মাউস মুভ বা ক্লিক করলে handleUserActivity কল হবে
+            onMouseMove={handleUserActivity}
+            onClick={handleUserActivity}
+            onMouseLeave={() => isPlaying && setShowControls(false)}
+            className={`relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl group select-none border border-white/10 ${showControls ? 'cursor-default' : 'cursor-none'}`}
+        >
             <video 
                 ref={videoRef} 
                 poster={poster}
-                className="w-full h-full object-contain cursor-pointer" 
+                className="w-full h-full object-contain" 
                 onClick={togglePlay}
             />
 
-            {/* --- QUALITY MENU OVERLAY (Center Screen) --- */}
+            {/* Quality Menu Overlay */}
             {showQualityMenu && (
                 <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-in fade-in duration-300">
                     <div className="bg-white/10 border border-white/20 p-6 rounded-2xl shadow-2xl flex flex-wrap justify-center gap-3 max-w-[80%]">
@@ -177,29 +187,29 @@ const CustomPlayer = ({ src, poster }) => {
                 </div>
             )}
 
-            {/* Controls Overlay */}
-            <div className={`absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent flex flex-col justify-between transition-opacity duration-300 ${isPlaying && !showQualityMenu ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'}`}>
+            {/* ✅ Controls Overlay: showControls স্টেট এর উপর ভিত্তি করে অপাসিটি চেইঞ্জ হবে */}
+            <div className={`absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent flex flex-col justify-between transition-opacity duration-300 ${showControls ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
                 
                 {/* Center Controls (Play/Pause/Skip) */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-8">
-                    <button onClick={() => skip(-10)} className="text-white/70 hover:text-white hover:scale-110 transition p-2 bg-black/20 rounded-full backdrop-blur-sm">
+                    <button onClick={(e) => { e.stopPropagation(); skip(-10); }} className="text-white/70 hover:text-white hover:scale-110 transition p-2 bg-black/20 rounded-full backdrop-blur-sm">
                         <RotateCcw size={24} />
                     </button>
 
                     <button 
-                        onClick={togglePlay}
+                        onClick={(e) => { e.stopPropagation(); togglePlay(); }}
                         className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:bg-white/30 hover:scale-110 transition shadow-lg"
                     >   
                         {isPlaying ? <Pause size={32} fill="white" /> : <Play size={32} fill="white" className="ml-1" />}
                     </button>
 
-                    <button onClick={() => skip(10)} className="text-white/70 hover:text-white hover:scale-110 transition p-2 bg-black/20 rounded-full backdrop-blur-sm">
+                    <button onClick={(e) => { e.stopPropagation(); skip(10); }} className="text-white/70 hover:text-white hover:scale-110 transition p-2 bg-black/20 rounded-full backdrop-blur-sm">
                         <RotateCw size={24} />
                     </button>
                 </div>
 
                 {/* Bottom Controls */}
-                <div className="mt-auto p-4 w-full bg-gradient-to-t from-black/80 to-transparent">
+                <div className="mt-auto p-4 w-full bg-gradient-to-t from-black/80 to-transparent" onClick={(e) => e.stopPropagation()}>
                     {/* Progress Bar */}
                     <div className="w-full h-1.5 bg-white/20 rounded-full mb-4 cursor-pointer group/progress relative">
                          <div 
@@ -230,7 +240,7 @@ const CustomPlayer = ({ src, poster }) => {
                         </div>
 
                         <div className="flex items-center gap-5">
-                            {/* Quality Settings Button */}
+                            {/* Quality Settings */}
                             <button 
                                 onClick={toggleQualityMenu} 
                                 className={`text-white/80 hover:text-white transition transform ${showQualityMenu ? 'rotate-90 text-brand-primary' : ''}`}
@@ -238,7 +248,7 @@ const CustomPlayer = ({ src, poster }) => {
                                 <Settings size={22} />
                             </button>
                             
-                            {/* Fullscreen Toggle */}
+                            {/* Fullscreen */}
                             <button onClick={toggleFullScreen} className="text-white/80 hover:text-white transition hover:scale-110">
                                 {isFullscreen ? <Minimize size={22} /> : <Maximize size={22} />}
                             </button>
