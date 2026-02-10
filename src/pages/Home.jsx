@@ -10,54 +10,47 @@ const Home = () => {
   const latestEpisodes = episodes; 
 
   return (
-    // ✅ পরিবর্তন: এখানে 'bg-transparent' দেওয়া হয়েছে যাতে পেছনের এনিমেশন দেখা যায়
+    // ⚠️ পরিবর্তন: আগের 'bg-gradient...' সরিয়ে 'bg-transparent' দেওয়া হয়েছে
+    // এতে পেছনের index.css এর এনিমেশন দেখা যাবে
     <div className="min-h-screen bg-transparent pb-20">
       
-      {/* 1. Hero Carousel */}
       <HeroSlider slides={sliders} />
       
-      {/* 2. Channel Icons */}
       <ChannelRow channels={channels} />
 
-      {/* 3. Latest Episodes */}
       <ContentSection 
         title="Latest Free Episodes" 
         data={latestEpisodes} 
         type="episode" 
       />
 
-      {/* 4. Toffee Section */}
       <ContentSection 
         title="Toffee Exclusive" 
-        data={getShowsByChannel('toffee-turkish')} 
+        data={getShowsByChannel('toffee')} 
         type="show" 
       />
 
-      {/* 5. Zee Bangla */}
       <ContentSection 
         title="Zee Bangla" 
-        data={getShowsByChannel('zee-bangla')} 
+        data={getShowsByChannel('zee')} 
         type="show" 
       />
 
-       {/* 6. Star Jalsha */}
        <ContentSection 
         title="Star Jalsha" 
-        data={getShowsByChannel('star-jalsha')} 
+        data={getShowsByChannel('star')} 
         type="show" 
       />
       
-      {/* 7. Sun Bangla */}
       <ContentSection 
         title="Sun Bangla" 
-        data={getShowsByChannel('sun-bangla')} 
+        data={getShowsByChannel('sun')} 
         type="show" 
       />
       
-      {/* 8. Colors Bangla */}
       <ContentSection 
         title="Colors Bangla" 
-        data={getShowsByChannel('colors-bangla')} 
+        data={getShowsByChannel('colors')} 
         type="show" 
       />
 
