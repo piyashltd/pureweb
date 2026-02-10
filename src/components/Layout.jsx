@@ -8,8 +8,8 @@ const Layout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    // ✅ পরিবর্তন: আমাদের নতুন 'premium-bg' ক্লাসটি এখানে দেওয়া হলো
-    <div className="premium-bg flex flex-col min-h-screen">
+    // ✅ পরিবর্তন: 'deep-navy-bg' ক্লাস ব্যবহার করা হয়েছে
+    <div className="deep-navy-bg flex flex-col min-h-screen">
       
       <Header 
         onMenuClick={() => setIsSidebarOpen(true)} 
@@ -18,7 +18,6 @@ const Layout = ({ children }) => {
       
       <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
       
-      {/* মেইন কন্টেন্ট */}
       <main className="flex-grow"> 
         {children}
       </main>
