@@ -14,7 +14,7 @@ const Footer = () => {
           {/* 1. Brand Info */}
           <div>
             <h2 className="text-2xl font-bold text-white mb-4 tracking-tight">
-              BengaliTv<span className="text-brand-primary">Serial.Net</span>
+              <span className="text-brand-primary">BengaliTvSerial.Net</span>
             </h2>
             <p className="text-sm leading-relaxed mb-6 text-gray-500">
               Watch your favorite Bengali TV serials, Natok, and movies anytime, anywhere. 
