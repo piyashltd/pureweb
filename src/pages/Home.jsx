@@ -2,58 +2,59 @@
 import React from 'react';
 import HeroSlider from '../components/HeroSlider';
 import ChannelRow from '../components/ChannelRow';
-import ContentSection from '../components/ContentSection'; // Import the new component
+import ContentSection from '../components/ContentSection';
 import { channels, sliders, shows, episodes } from '../data/dummyData';
 
 const Home = () => {
-  // Filter logic
   const getShowsByChannel = (channelId) => shows.filter(s => s.channelId === channelId);
-  
-  // For "Latest Free Episodes", we just take the episodes array (or filter strictly free ones)
   const latestEpisodes = episodes; 
 
   return (
-    <div className="pb-20">
+    // ✅ পরিবর্তন: এখানে 'bg-transparent' দেওয়া হয়েছে যাতে পেছনের এনিমেশন দেখা যায়
+    <div className="min-h-screen bg-transparent pb-20">
+      
       {/* 1. Hero Carousel */}
       <HeroSlider slides={sliders} />
       
-      {/* 2. Channel Icons (Circular) */}
+      {/* 2. Channel Icons */}
       <ChannelRow channels={channels} />
 
-      {/* 3. Latest Free Episodes (Horizontal Scroll -> Click More -> Grid) */}
+      {/* 3. Latest Episodes */}
       <ContentSection 
         title="Latest Free Episodes" 
         data={latestEpisodes} 
         type="episode" 
       />
-      {/* 4. Kurulus Osman / Toffee Section */}
+
+      {/* 4. Toffee Section */}
       <ContentSection 
         title="Toffee Exclusive" 
         data={getShowsByChannel('toffee-turkish')} 
         type="show" 
       />
-      {/* 4. Zee Bangla Shows (Horizontal Scroll -> Click More -> Grid) */}
+
+      {/* 5. Zee Bangla */}
       <ContentSection 
         title="Zee Bangla" 
         data={getShowsByChannel('zee-bangla')} 
         type="show" 
       />
 
-       {/* 5. Star Jalsha Shows */}
+       {/* 6. Star Jalsha */}
        <ContentSection 
         title="Star Jalsha" 
         data={getShowsByChannel('star-jalsha')} 
         type="show" 
       />
       
-      {/* 6. Sun Bangla Shows */}
+      {/* 7. Sun Bangla */}
       <ContentSection 
         title="Sun Bangla" 
         data={getShowsByChannel('sun-bangla')} 
         type="show" 
       />
       
-      {/* 6. Sun Bangla Shows */}
+      {/* 8. Colors Bangla */}
       <ContentSection 
         title="Colors Bangla" 
         data={getShowsByChannel('colors-bangla')} 
