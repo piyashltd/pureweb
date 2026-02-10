@@ -5,7 +5,7 @@ export const channels = [
   { 
     id: 'zee', 
     name: 'Zee Bangla', 
-    logo: 'https://ik.imagekit.io/ottstream/zee-bangla.png', 
+    logo: 'https://ik.imagekit.io/ottstream/zee-bangla1.png', 
     color: 'bg-red-600' 
   },
   { 
