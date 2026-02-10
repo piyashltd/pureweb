@@ -2,8 +2,8 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { episodes, shows } from '../data/dummyData';
-import { ArrowLeft, Download, HardDriveDownload } from 'lucide-react';
-import CustomPlayer from '../components/CustomPlayer'; // New Player
+import { ArrowLeft, Download } from 'lucide-react';
+import CustomPlayer from '../components/CustomPlayer';
 
 const WatchPage = () => {
   const { episodeId } = useParams();
@@ -12,7 +12,8 @@ const WatchPage = () => {
   if (!episode) return <div className="text-center p-10 text-white">Episode not found</div>;
   
   const show = shows.find(s => s.id === episode.showId);
-  const upNext = episodes.filter(e => e.showId === episode.showId && e.id !== episodeId);
+  // Suggest next episodes from the SAME season
+  const upNext = episodes.filter(e => e.showId === episode.showId && e.id !== episodeId && e.season === episode.season);
 
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
@@ -24,21 +25,22 @@ const WatchPage = () => {
             <span className="font-semibold text-sm">{show.title}</span>
       </div>
 
-      {/* Video Player Container (Boxed, not full screen by default) */}
-      <div className="w-full max-w-5xl mx-auto px-0 sm:px-4">
+      {/* Video Player Container with PADDING */}
+      <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 mb-4">
           <CustomPlayer src={episode.videoUrl} poster={episode.thumbnail} />
       </div>
 
       {/* Info & Actions */}
-      <div className="max-w-5xl mx-auto p-4">
+      <div className="max-w-5xl mx-auto px-4">
         
         <div className="flex justify-between items-start mt-2">
             <div>
                 <h1 className="text-lg font-bold text-white leading-tight mb-1">{episode.title}</h1>
-                <p className="text-xs text-gray-400">Episode {episode.episodeNumber} • {episode.date}</p>
+                <p className="text-xs text-gray-400">
+                    S{episode.season} E{episode.episodeNumber} • {episode.date}
+                </p>
             </div>
             
-            {/* Small Download Button */}
             <button className="flex items-center gap-1.5 px-3 py-1.5 bg-[#1f1f1f] border border-gray-700 rounded-md active:scale-95 transition hover:bg-gray-800">
                 <Download size={14} className="text-gray-300" />
                 <span className="text-[10px] font-bold text-gray-300">HD</span>
@@ -57,7 +59,7 @@ const WatchPage = () => {
                     </div>
                     <div className="flex flex-col justify-center">
                         <h4 className="font-semibold text-sm text-white line-clamp-1 group-hover:text-brand-pink transition">{ep.title}</h4>
-                         <span className="text-xs text-gray-400 mt-1">Episode {ep.episodeNumber}</span>
+                         <span className="text-xs text-gray-400 mt-1">S{ep.season} E{ep.episodeNumber}</span>
                     </div>
                 </Link>
             ))}
