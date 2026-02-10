@@ -35,7 +35,7 @@ const Home = () => {
       {/* 4. Zee Bangla Shows (Horizontal Scroll -> Click More -> Grid) */}
       <ContentSection 
         title="Zee Bangla" 
-        data={getShowsByChannel('zee-bangla)} 
+        data={getShowsByChannel('zee-bangla')} 
         type="show" 
       />
 
