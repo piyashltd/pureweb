@@ -1,4 +1,3 @@
-// File: src/pages/WatchPage.jsx
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { episodes, shows } from '../data/dummyData';
@@ -12,12 +11,12 @@ const WatchPage = () => {
   if (!episode) return <div className="text-center p-10 text-white">Episode not found</div>;
   
   const show = shows.find(s => s.id === episode.showId);
-  // Suggest next episodes from the SAME season
   const upNext = episodes.filter(e => e.showId === episode.showId && e.id !== episodeId && e.season === episode.season);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
-       {/* Back Button */}
+    // ব্যাকগ্রাউন্ড এখানে সেট করা হয়েছে
+    <div className="min-h-screen bg-gradient-to-b from-[#0f0f0f] to-[#000000] pb-20">
+      
       <div className="p-4 flex items-center gap-2 text-white">
             <Link to={`/show/${show.id}`} className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition">
                 <ArrowLeft size={20} />
@@ -25,12 +24,10 @@ const WatchPage = () => {
             <span className="font-semibold text-sm">{show.title}</span>
       </div>
 
-      {/* Video Player Container with PADDING */}
       <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 mb-4">
           <CustomPlayer src={episode.videoUrl} poster={episode.thumbnail} />
       </div>
 
-      {/* Info & Actions */}
       <div className="max-w-5xl mx-auto px-4">
         
         <div className="flex justify-between items-start mt-2">
@@ -49,7 +46,6 @@ const WatchPage = () => {
 
         <hr className="border-gray-800 my-6" />
 
-        {/* Up Next */}
         <h3 className="text-white font-bold mb-3 text-sm uppercase tracking-wide opacity-80">Up Next</h3>
         <div className="space-y-3 pb-10">
             {upNext.map(ep => (
