@@ -28,8 +28,8 @@ export const channels = [
   },
   { 
     id: 'toffee-turkish', // Changed from 'toffee'
-    name: 'Toffee / Turkish', 
-    logo: 'https://ik.imagekit.io/ottstream/Ks-S4-Poster.jpg', 
+    name: 'Toffee', 
+    logo: 'https://ik.imagekit.io/ottstream/toffee-logo.png', 
     color: 'bg-purple-600' 
   },
 ];
