@@ -101,7 +101,7 @@ export const shows = [
     badge: null,
     // Inside Details Badge
     detailsBadge: { text: "Watch Free", color: "#fbbf24", textColor: "#000000" }, 
-    isFree: true
+    isFree: false
   },
 
   // 4. Star Jalsha Show
