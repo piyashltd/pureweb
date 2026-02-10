@@ -13,33 +13,40 @@ body {
   background-color: #000;
 }
 
-/* --- Premium Deep Navy Animation --- */
+/* --- Mystic Deep Purple Animation --- */
 .deep-navy-bg {
-  /* কালার কম্বিনেশন:
-     1. #000000 (Pure Black) - বেস কালার
-     2. #020617 (Slate 950) - খুব ডার্ক নেভি
-     3. #0f172a (Slate 900) - হালকা নেভি (হাইলাইটের জন্য)
-     4. #000000 (Pure Black) - আবার কালোতে ফেরা
+  /* কালার প্যালেট:
+     1. #000000 (Pure Black) - বেস
+     2. #120820 (Deep Dark Purple/Navy) - আপনার দেওয়া ১নং কালার
+     3. #2B0135 (Rich Dark Purple) - আপনার দেওয়া ২নং কালার (হাইলাইট হিসেবে)
+     4. #000000 (Pure Black) - লুপ ক্লোজ করার জন্য
   */
-  background: linear-gradient(125deg, #000000 0%, #020617 30%, #0f172a 50%, #020617 70%, #000000 100%);
+  background: linear-gradient(
+    135deg, 
+    #000000 0%, 
+    #120820 40%, 
+    #2B0135 60%, 
+    #120820 80%, 
+    #000000 100%
+  );
   
-  /* সাইজ ৩০০% রাখা হয়েছে যাতে মোবাইলেও মুভমেন্ট চোখে পড়ে */
-  background-size: 300% 300%;
+  /* সাইজ 400% রাখা হয়েছে যাতে ট্রানজিশন স্মুথ হয় */
+  background-size: 400% 400%;
   
-  /* ১০ সেকেন্ডে খুব স্মুথলি কালার শিফট হবে */
-  animation: midnightShift 10s ease-in-out infinite;
+  /* এনিমেশন ১৫ সেকেন্ডে খুব ধীরে ধীরে হবে (Mysterious Vibe) */
+  animation: mysticFlow 15s ease infinite;
   
   min-height: 100vh;
   width: 100%;
 }
 
 /* --- Animation Keyframes --- */
-@keyframes midnightShift {
+@keyframes mysticFlow {
   0% {
     background-position: 0% 50%;
   }
   50% {
-    background-position: 100% 50%; /* আলোটা মাঝখানে আসবে */
+    background-position: 100% 50%; /* পার্পল আভা মাঝখানে আসবে */
   }
   100% {
     background-position: 0% 50%;
