@@ -92,8 +92,8 @@ export const shows = [
 
   // 3. Toffee / Turkish Show (Kurulus Osman)
   {
-    id: 'ks4',
-    channelId: 'toffee',
+    id: 'kurulus-osman',
+    channelId: 'kurulus-osman',
     title: 'Kurulus Osman',
     poster: 'https://ik.imagekit.io/ottstream/Ks-S4-Poster.jpg',
     description: 'The epic struggle of Osman Bey against enemies.',
