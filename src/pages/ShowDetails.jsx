@@ -9,36 +9,30 @@ import { motion, AnimatePresence } from 'framer-motion';
 const ShowDetails = () => {
   const { id } = useParams();
   const [viewMode, setViewMode] = useState('horizontal'); 
-  
-  // ১. শো এবং এপিসোড খুঁজে বের করা
+
   const show = shows.find(s => s.id === id);
   const allShowEpisodes = episodes.filter(e => e.showId === id);
 
-  // ২. কি কি সিজন আছে তা বের করা (যেমন: [4] অথবা [1, 2])
+  // সিজন লজিক
   const availableSeasons = [...new Set(allShowEpisodes.map(e => e.season))].sort((a,b) => a - b);
-
-  // ৩. ডিফল্ট সিজন সেট করা (যদি সিজন ৪ থাকে, তবে ৪ ই সেট হবে)
   const [selectedSeason, setSelectedSeason] = useState(availableSeasons[0] || 1);
 
-  // আইডি চেঞ্জ হলে (অন্য শো-তে গেলে) অটোমেটিক প্রথম সিজন সিলেক্ট হবে
   useEffect(() => {
-    if(availableSeasons.length > 0) {
-        setSelectedSeason(availableSeasons[0]);
-    }
+    if(availableSeasons.length > 0) setSelectedSeason(availableSeasons[0]);
     window.scrollTo(0, 0);
   }, [id]);
 
   if (!show) return <div className="text-center p-10 text-white">Show not found</div>;
 
-  // ৪. সিলেক্ট করা সিজন অনুযায়ী এপিসোড ফিল্টার
   const displayedEpisodes = allShowEpisodes.filter(e => e.season === parseInt(selectedSeason));
 
-  // ৫. ব্যাজ ডিসপ্লে লজিক
-  const displayBadge = show.detailsBadge || show.badge;
+  // ⚠️ লজিক চেঞ্জ: এখন এটি শুধুমাত্র 'detailsBadge' খুঁজবে। 
+  // poster এর 'badge' এখানে কাজ করবে না।
+  const displayBadge = show.detailsBadge;
 
   return (
     <div className="pb-20 min-h-screen bg-[#0a0a0a]">
-      {/* Top Poster Section */}
+      {/* Poster Section */}
       <div className="flex flex-col items-center pt-8 pb-6 px-4 bg-gradient-to-b from-[#151515] to-[#0a0a0a]">
         
         <div className="w-[150px] h-[220px] rounded-xl overflow-hidden shadow-2xl mb-5 border border-white/10 relative group">
@@ -50,6 +44,7 @@ const ShowDetails = () => {
             {show.title}
         </h1>
 
+        {/* Dynamic Details Badge: শুধুমাত্র detailsBadge থাকলেই দেখাবে */}
         {displayBadge && displayBadge.text && (
             <div className="mb-3">
                 <span 
@@ -72,10 +67,8 @@ const ShowDetails = () => {
       {/* Episodes Section */}
       <div className="px-4 mt-4">
         
-        {/* Controls Row */}
         <div className="flex justify-between items-center mb-5 border-b border-white/10 pb-3">
-           
-           {/* Season Dropdown (Dynamic) */}
+           {/* Season Dropdown */}
            <div className="relative">
                 <select 
                     value={selectedSeason} 
@@ -116,9 +109,7 @@ const ShowDetails = () => {
         {/* Content Area */}
         <AnimatePresence mode='wait'>
             {displayedEpisodes.length === 0 ? (
-                <div className="text-center text-gray-500 py-10 text-sm">
-                    No episodes found for Season {selectedSeason}
-                </div>
+                <div className="text-center text-gray-500 py-10 text-sm">No episodes found</div>
             ) : (
                 viewMode === 'horizontal' ? (
                     <motion.div 
