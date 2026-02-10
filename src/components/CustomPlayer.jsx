@@ -10,7 +10,7 @@ const CustomPlayer = ({ src, poster }) => {
     const controlsTimeoutRef = useRef(null);
 
     // States
-    const [isPlaying, setIsPlaying] = useState(false); // অটো প্লে-এর জন্য ডিফল্ট true করা হবে useEffect এ
+    const [isPlaying, setIsPlaying] = useState(false); 
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [progress, setProgress] = useState(0);
@@ -44,19 +44,22 @@ const CustomPlayer = ({ src, poster }) => {
                 })).reverse();
                 setQualities(levels);
                 
-                // ✅ AUTO PLAY Logic for HLS
+                // ✅ Auto Play
                 video.play().then(() => {
                     setIsPlaying(true);
+                    startHideTimer(); // অটো প্লে শুরু হলে টাইমার চালু হবে
                 }).catch((error) => {
-                    console.log("Autoplay blocked, waiting for user interaction", error);
+                    console.log("Autoplay blocked", error);
                     setIsPlaying(false);
                 });
             });
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
             video.src = src;
-            // ✅ AUTO PLAY Logic for Safari
             video.addEventListener('loadedmetadata', () => {
-                 video.play().then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
+                 video.play().then(() => {
+                    setIsPlaying(true);
+                    startHideTimer();
+                 }).catch(() => setIsPlaying(false));
             });
         }
 
@@ -68,9 +71,6 @@ const CustomPlayer = ({ src, poster }) => {
 
         video.addEventListener('timeupdate', updateTime);
         
-        // মাউস নড়াচড়া না করলে ৩ সেকেন্ড পর হাইড হবে
-        startHideTimer();
-
         return () => {
             if (hls) hls.destroy();
             video.removeEventListener('timeupdate', updateTime);
@@ -84,31 +84,34 @@ const CustomPlayer = ({ src, poster }) => {
     const startHideTimer = () => {
         clearTimeout(controlsTimeoutRef.current);
         controlsTimeoutRef.current = setTimeout(() => {
+            // শুধুমাত্র ভিডিও চলতে থাকলে এবং মেনু ওপেন না থাকলে হাইড হবে
             if (isPlaying && !showQualityMenu) {
                 setShowControls(false);
             }
-        }, 3000); // ৩ সেকেন্ড পর হাইড
+        }, 3000); 
     };
 
-    // ✅ স্ক্রিনে ক্লিক করলে Show/Hide টগল হবে (Play/Pause হবে না)
-    const handleScreenClick = () => {
-        setShowControls(prev => !prev);
-        if (!showControls) {
-            startHideTimer(); // যদি শো করি, তাহলে টাইমার চালু করো
+    // ✅ Fix: মাউস মুভ করলে এখন আর হুট করে 'showControls=true' হবে না
+    // শুধুমাত্র টাইমার রিসেট হবে যদি কন্ট্রোল অলরেডি ওপেন থাকে
+    const handleMouseMove = () => {
+        if (showControls) {
+            startHideTimer();
         }
     };
 
-    // মাউস মুভ করলে কন্ট্রোল দেখাবে
-    const handleMouseMove = () => {
-        if (!showControls) setShowControls(true);
-        startHideTimer();
+    // ✅ স্ক্রিনে ক্লিক করলে Show/Hide টগল হবে (ফাঁকা জায়গায়)
+    const handleScreenClick = () => {
+        setShowControls(prev => !prev);
+        // যদি আমরা এখন Show করি, তবে টাইমার চালু করো
+        if (!showControls) {
+            startHideTimer();
+        }
     };
 
     // --- Player Actions ---
 
     const togglePlay = (e) => {
-        // e.stopPropagation() দেওয়া হয়েছে যাতে প্যারেন্ট div এর click event ফায়ার না হয়
-        e?.stopPropagation(); 
+        e?.stopPropagation(); // প্যারেন্ট ক্লিকের সাথে কনফ্লিক্ট আটকাবে
         
         const video = videoRef.current;
         if (video.paused) {
@@ -133,12 +136,12 @@ const CustomPlayer = ({ src, poster }) => {
     const skip = (amount, e) => {
         e?.stopPropagation();
         videoRef.current.currentTime += amount;
-        setShowControls(true);
+        setShowControls(true); // স্কিপ করলে কন্ট্রোল দেখাবে
         startHideTimer();
     };
 
     const handleSeek = (e) => {
-        e.stopPropagation(); // স্লাইডার টানলে যাতে স্ক্রিন ক্লিক না হয়
+        e.stopPropagation();
         const manualChange = Number(e.target.value);
         videoRef.current.currentTime = (videoRef.current.duration / 100) * manualChange;
         setProgress(manualChange);
@@ -188,13 +191,14 @@ const CustomPlayer = ({ src, poster }) => {
             onClick={handleScreenClick} 
             onMouseMove={handleMouseMove}
             onMouseLeave={() => isPlaying && setShowControls(false)}
-            className={`relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl group select-none border border-white/10 ${showControls ? 'cursor-default' : 'cursor-none'}`}
+            className="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl group select-none border border-white/10"
+            style={{ cursor: showControls ? 'default' : 'none' }} // কার্সার হাইড লজিক
         >
             <video 
                 ref={videoRef} 
                 poster={poster}
                 className="w-full h-full object-contain"
-                autoPlay // ✅ HTML attribute for autoplay
+                autoPlay
                 playsInline
             />
 
@@ -231,7 +235,7 @@ const CustomPlayer = ({ src, poster }) => {
                     </button>
 
                     <button 
-                        onClick={togglePlay} // ✅ এই বাটনে ক্লিক করলে প্লে/পজ হবে
+                        onClick={togglePlay} // ✅ শুধুমাত্র এই বাটনে ক্লিক করলে প্লে/পজ হবে
                         className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:bg-white/30 hover:scale-110 transition shadow-lg"
                     >   
                         {isPlaying ? <Pause size={32} fill="white" /> : <Play size={32} fill="white" className="ml-1" />}
@@ -243,7 +247,6 @@ const CustomPlayer = ({ src, poster }) => {
                 </div>
 
                 {/* Bottom Controls */}
-                {/* e.stopPropagation() দেওয়া হয়েছে যাতে কন্ট্রোলার বারে ক্লিক করলে স্ক্রিন হাইড না হয়ে যায় */}
                 <div className="mt-auto p-4 w-full bg-gradient-to-t from-black/80 to-transparent" onClick={(e) => e.stopPropagation()}>
                     
                     {/* Progress Bar */}
