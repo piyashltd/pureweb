@@ -1,4 +1,3 @@
-// File: src/pages/ShowDetails.jsx
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { shows, episodes } from '../data/dummyData';
@@ -12,8 +11,6 @@ const ShowDetails = () => {
 
   const show = shows.find(s => s.id === id);
   const allShowEpisodes = episodes.filter(e => e.showId === id);
-
-  // সিজন লজিক
   const availableSeasons = [...new Set(allShowEpisodes.map(e => e.season))].sort((a,b) => a - b);
   const [selectedSeason, setSelectedSeason] = useState(availableSeasons[0] || 1);
 
@@ -25,16 +22,13 @@ const ShowDetails = () => {
   if (!show) return <div className="text-center p-10 text-white">Show not found</div>;
 
   const displayedEpisodes = allShowEpisodes.filter(e => e.season === parseInt(selectedSeason));
-
-  // ⚠️ লজিক চেঞ্জ: এখন এটি শুধুমাত্র 'detailsBadge' খুঁজবে। 
-  // poster এর 'badge' বা অটোমেটিক কোনো ব্যাজ এখানে কাজ করবে না।
-  // শুধুমাত্র যদি detailsBadge অবজেক্ট এবং তার টেক্সট থাকে তবেই ব্যাজ রেন্ডার হবে।
   const displayBadge = show.detailsBadge;
 
   return (
-    <div className="pb-20 min-h-screen bg-[#0a0a0a]">
-      {/* Poster Section */}
-      <div className="flex flex-col items-center pt-8 pb-6 px-4 bg-gradient-to-b from-[#151515] to-[#0a0a0a]">
+    // ব্যাকগ্রাউন্ড এখানে সেট করা হয়েছে
+    <div className="pb-20 min-h-screen bg-gradient-to-b from-[#172554] to-[#0f0f0f]">
+      
+      <div className="flex flex-col items-center pt-8 pb-6 px-4 bg-transparent"> {/* bg-transparent কারণ প্যারেন্ট এর কালার পাবে */}
         
         <div className="w-[150px] h-[220px] rounded-xl overflow-hidden shadow-2xl mb-5 border border-white/10 relative group">
             <img src={show.poster} alt={show.title} className="w-full h-full object-cover" />
@@ -45,7 +39,6 @@ const ShowDetails = () => {
             {show.title}
         </h1>
 
-        {/* Dynamic Details Badge: শুধুমাত্র detailsBadge থাকলেই দেখাবে */}
         {displayBadge && displayBadge.text && (
             <div className="mb-3">
                 <span 
@@ -65,11 +58,9 @@ const ShowDetails = () => {
         </p>
       </div>
 
-      {/* Episodes Section */}
       <div className="px-4 mt-4">
         
         <div className="flex justify-between items-center mb-5 border-b border-white/10 pb-3">
-           {/* Season Dropdown */}
            <div className="relative">
                 <select 
                     value={selectedSeason} 
@@ -87,27 +78,17 @@ const ShowDetails = () => {
                 <ChevronDown size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
            </div>
 
-           {/* View Toggle */}
            {viewMode === 'horizontal' ? (
-               <button 
-                onClick={() => setViewMode('grid')}
-                className="flex items-center gap-1 text-sm text-gray-400 hover:text-white transition"
-               >
-                   <span>See All</span>
-                   <ChevronRight size={16} />
+               <button onClick={() => setViewMode('grid')} className="flex items-center gap-1 text-sm text-gray-400 hover:text-white transition">
+                   <span>See All</span> <ChevronRight size={16} />
                </button>
            ) : (
-               <button 
-                onClick={() => setViewMode('horizontal')}
-                className="flex items-center gap-2 bg-[#1e1e1e] border border-white/10 px-3 py-1.5 rounded-full text-xs font-medium text-white hover:bg-white/10 transition"
-               >
-                   <LayoutGrid size={14} />
-                   <span>Carousel</span>
+               <button onClick={() => setViewMode('horizontal')} className="flex items-center gap-2 bg-[#1e1e1e] border border-white/10 px-3 py-1.5 rounded-full text-xs font-medium text-white hover:bg-white/10 transition">
+                   <LayoutGrid size={14} /> <span>Carousel</span>
                </button>
            )}
         </div>
         
-        {/* Content Area */}
         <AnimatePresence mode='wait'>
             {displayedEpisodes.length === 0 ? (
                 <div className="text-center text-gray-500 py-10 text-sm">No episodes found</div>
