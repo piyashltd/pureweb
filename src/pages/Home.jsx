@@ -52,6 +52,13 @@ const Home = () => {
         data={getShowsByChannel('sun-bangla')} 
         type="show" 
       />
+      
+      {/* 6. Sun Bangla Shows */}
+      <ContentSection 
+        title="Colors Bangla" 
+        data={getShowsByChannel('colors-bangla')} 
+        type="show" 
+      />
 
     </div>
   );
