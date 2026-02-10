@@ -13,15 +13,28 @@ body {
   color: white;
   overflow-x: hidden;
 
-  /* --- অপশন ১: প্রিমিয়াম নেভি ব্লু (Navy Blue + Deep Black) - এটাই বেস্ট --- */
-  background: linear-gradient(180deg, #1e1b4b 0%, #020617 100%);
-  background-attachment: fixed; /* স্ক্রল করলেও ব্যাকগ্রাউন্ড ফিক্সড থাকবে */
+  /* --- Animated Premium Gradient --- */
+  /* আমরা ৪টি কালার মিক্স করেছি: Navy Blue, Dark Blue, Deep Purple, Pitch Black */
+  background: linear-gradient(-45deg, #1e1b4b, #172554, #2e1065, #020617);
   
-  /* --- অপশন ২: মিস্ট্রিয়াস লুক (Navy Blue + Dark Purple) --- */
-  /* background: linear-gradient(to bottom, #172554 0%, #2e1065 100%); */
+  /* ব্যাকগ্রাউন্ড সাইজ বড় করা হলো যাতে নড়াচড়া বোঝা যায় */
+  background-size: 400% 400%;
+  
+  /* এনিমেশন সেট করা হলো (১৫ সেকেন্ড ধরে চলবে এবং লুপ হবে) */
+  animation: gradientBG 15s ease infinite;
+}
 
-  /* --- অপশন ৩: মডার্ন টেক লুক (Navy Blue + Cyan hint) --- */
-  /* background: linear-gradient(to bottom, #0f172a 0%, #000000 100%); */
+/* --- এনিমেশন কিফ্রেস (Keyframes) --- */
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Custom Scrollbar Hide */
