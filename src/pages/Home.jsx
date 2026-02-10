@@ -24,31 +24,31 @@ const Home = () => {
 
       <ContentSection 
         title="Toffee Exclusive" 
-        data={getShowsByChannel('toffee')} 
+        data={getShowsByChannel('toffee-turkish')} 
         type="show" 
       />
 
       <ContentSection 
         title="Zee Bangla" 
-        data={getShowsByChannel('zee')} 
+        data={getShowsByChannel('zee-bangla')} 
         type="show" 
       />
 
        <ContentSection 
         title="Star Jalsha" 
-        data={getShowsByChannel('star')} 
+        data={getShowsByChannel('star-jalsha')} 
         type="show" 
       />
       
       <ContentSection 
         title="Sun Bangla" 
-        data={getShowsByChannel('sun')} 
+        data={getShowsByChannel('sun-bangla')} 
         type="show" 
       />
       
       <ContentSection 
         title="Colors Bangla" 
-        data={getShowsByChannel('colors')} 
+        data={getShowsByChannel('colors-bangla')} 
         type="show" 
       />
 
