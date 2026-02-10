@@ -175,7 +175,7 @@ export const episodes = [
     title: 'The Great Betrayal',
     thumbnail: 'https://ik.imagekit.io/ottstream/KS-S04-E01.webp?tr=w-1000,q-50',
     date: 'Feb 8, 2026',
-    duration: '45m',
+    duration: '45min',
     videoUrl: 'https://stream.mux.com/uP9wqVLCyfOMLJ7DZl7ANqqUxkH5jVYdZo5SF1qz4zk.m3u8'
   },
   {
