@@ -9,22 +9,20 @@
 body {
   margin: 0;
   padding: 0;
+  width: 100%;
   min-height: 100vh;
   color: white;
   overflow-x: hidden;
 
   /* --- Animated Premium Gradient --- */
-  /* আমরা ৪টি কালার মিক্স করেছি: Navy Blue, Dark Blue, Deep Purple, Pitch Black */
-  background: linear-gradient(-45deg, #1e1b4b, #172554, #2e1065, #020617);
-  
-  /* ব্যাকগ্রাউন্ড সাইজ বড় করা হলো যাতে নড়াচড়া বোঝা যায় */
+  background: linear-gradient(-45deg, #0f172a, #1e1b4b, #312e81, #000000);
   background-size: 400% 400%;
   
-  /* এনিমেশন সেট করা হলো (১৫ সেকেন্ড ধরে চলবে এবং লুপ হবে) */
-  animation: gradientBG 15s ease infinite;
+  /* এনিমেশন চালু করা */
+  animation: gradientBG 10s ease infinite;
 }
 
-/* --- এনিমেশন কিফ্রেস (Keyframes) --- */
+/* Keyframes for moving background */
 @keyframes gradientBG {
   0% {
     background-position: 0% 50%;
