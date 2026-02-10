@@ -26,7 +26,12 @@ const Home = () => {
         data={latestEpisodes} 
         type="episode" 
       />
-
+      {/* 4. Kurulus Osman / Toffee Section */}
+      <ContentSection 
+        title="Kurulus Osman" 
+        data={getShowsByChannel('toffee')} 
+        type="show" 
+      />
       {/* 4. Zee Bangla Shows (Horizontal Scroll -> Click More -> Grid) */}
       <ContentSection 
         title="Zee Bangla" 
