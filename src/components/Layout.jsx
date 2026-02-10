@@ -2,13 +2,15 @@
 import React, { useState } from 'react';
 import Header from './Header';
 import Sidebar from './Sidebar';
-import Footer from './Footer'; // ১. এখানে ইম্পোর্ট করুন
+import Footer from './Footer';
 
 const Layout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] flex flex-col"> {/* flex-col এবং min-h-screen দেওয়া হয়েছে */}
+    // ⚠️ পরিবর্তন: আগে এখানে 'bg-[#0a0a0a]' ছিল, যা এনিমেশন ঢেকে রাখছিল।
+    // এখন 'bg-transparent' দেওয়া হয়েছে, ফলে পেছনের এনিমেশন দেখা যাবে।
+    <div className="min-h-screen bg-transparent flex flex-col">
       
       <Header 
         onMenuClick={() => setIsSidebarOpen(true)} 
@@ -22,7 +24,6 @@ const Layout = ({ children }) => {
         {children}
       </main>
 
-      {/* ২. এখানে ফুটার বসান */}
       <Footer />
     </div>
   );
