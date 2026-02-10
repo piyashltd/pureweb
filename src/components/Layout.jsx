@@ -8,9 +8,9 @@ const Layout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    // ⚠️ পরিবর্তন: আগে এখানে 'bg-[#0a0a0a]' ছিল, যা এনিমেশন ঢেকে রাখছিল।
-    // এখন 'bg-transparent' দেওয়া হয়েছে, ফলে পেছনের এনিমেশন দেখা যাবে।
-    <div className="min-h-screen bg-transparent flex flex-col">
+    // ✅ পরিবর্তন: এখানে 'bg-[#0a0a0a]' বা 'bg-transparent' এর বদলে 
+    // আমাদের বানানো 'animated-bg' ক্লাসটি দিন।
+    <div className="animated-bg flex flex-col min-h-screen">
       
       <Header 
         onMenuClick={() => setIsSidebarOpen(true)} 
@@ -19,7 +19,7 @@ const Layout = ({ children }) => {
       
       <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
       
-      {/* মেইন কন্টেন্ট এরিয়া */}
+      {/* মেইন কন্টেন্ট */}
       <main className="flex-grow"> 
         {children}
       </main>
