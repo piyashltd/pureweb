@@ -10,12 +10,10 @@ const Home = () => {
   const latestEpisodes = episodes; 
 
   return (
-    // ⚠️ পরিবর্তন: আগের 'bg-gradient...' সরিয়ে 'bg-transparent' দেওয়া হয়েছে
-    // এতে পেছনের index.css এর এনিমেশন দেখা যাবে
-    <div className="min-h-screen bg-transparent pb-20">
+    // ✅ পরিবর্তন: 'bg-transparent' থাকতে হবে
+    <div className="pb-20 bg-transparent min-h-screen">
       
       <HeroSlider slides={sliders} />
-      
       <ChannelRow channels={channels} />
 
       <ContentSection 
