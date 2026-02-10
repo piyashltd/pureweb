@@ -172,7 +172,7 @@ export const episodes = [
     showId: 'kurulus-osman',
     season: 4,
     episodeNumber: 2,
-    title: 'The Great Betrayal',
+    title: 'Kurulus Osman',
     thumbnail: 'https://ik.imagekit.io/ottstream/KS-S04-E01.webp?tr=w-1000,q-50',
     date: 'Feb 8, 2026',
     duration: '45min',
