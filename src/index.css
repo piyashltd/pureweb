@@ -12,19 +12,10 @@ body {
   min-height: 100vh;
   color: white;
   overflow-x: hidden;
-
-  /* --- অপশন ১: প্রিমিয়াম নেভি ব্লু (Navy Blue + Deep Black) - এটাই বেস্ট --- */
-  /* background: linear-gradient(180deg, #1e1b4b 0%, #020617 100%);
-  background-attachment: fixed; /* স্ক্রল করলেও ব্যাকগ্রাউন্ড ফিক্সড থাকবে */
-  
-  /* --- অপশন ২: মিস্ট্রিয়াস লুক (Navy Blue + Dark Purple) --- */
-  /* background: linear-gradient(to bottom, #172554 0%, #2e1065 100%); */
-
-  /* --- অপশন ৩: মডার্ন টেক লুক (Navy Blue + Cyan hint) --- */
-   background: linear-gradient(to bottom, #0f172a 0%, #000000 100%); */
+  background-color: #000; /* ডিফল্ট কালো, পেজ অনুযায়ী বদলাবে */
 }
 
-/* Custom Scrollbar Hide */
+/* Scrollbar Hide */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
