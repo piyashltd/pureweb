@@ -10,36 +10,36 @@ body {
   margin: 0;
   padding: 0;
   color: white;
-  background-color: #000; /* যদি লোড হতে দেরি হয় তবে কালো দেখাবে */
+  background-color: #000;
 }
 
-/* --- Premium Deep Dark Animation Class --- */
-.premium-bg {
-  /* কালার প্যালেট: 
-     1. Pure Black (#000000)
-     2. Deep Purple (#1a0b2e) - খুব গাঢ় বেগুনি
-     3. Dark Navy (#0f172a) - ভেরিয়েশনের জন্য
-     4. Pure Black (#000000) - আবার কালোতে ফিরে আসা
+/* --- Premium Deep Navy Animation --- */
+.deep-navy-bg {
+  /* কালার কম্বিনেশন:
+     1. #000000 (Pure Black) - বেস কালার
+     2. #020617 (Slate 950) - খুব ডার্ক নেভি
+     3. #0f172a (Slate 900) - হালকা নেভি (হাইলাইটের জন্য)
+     4. #000000 (Pure Black) - আবার কালোতে ফেরা
   */
-  background: linear-gradient(135deg, #000000, #1a0b2e, #0f172a, #000000);
+  background: linear-gradient(125deg, #000000 0%, #020617 30%, #0f172a 50%, #020617 70%, #000000 100%);
   
-  /* সাইজ ৩০০% রাখা হয়েছে যাতে মোবাইলেও মুভমেন্ট দ্রুত চোখে পড়ে */
+  /* সাইজ ৩০০% রাখা হয়েছে যাতে মোবাইলেও মুভমেন্ট চোখে পড়ে */
   background-size: 300% 300%;
   
-  /* এনিমেশন ১২ সেকেন্ডে লুপ হবে */
-  animation: cosmicShift 12s ease infinite;
+  /* ১০ সেকেন্ডে খুব স্মুথলি কালার শিফট হবে */
+  animation: midnightShift 10s ease-in-out infinite;
   
   min-height: 100vh;
   width: 100%;
 }
 
 /* --- Animation Keyframes --- */
-@keyframes cosmicShift {
+@keyframes midnightShift {
   0% {
     background-position: 0% 50%;
   }
   50% {
-    background-position: 100% 50%;
+    background-position: 100% 50%; /* আলোটা মাঝখানে আসবে */
   }
   100% {
     background-position: 0% 50%;
