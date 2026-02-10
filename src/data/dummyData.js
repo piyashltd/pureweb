@@ -3,31 +3,31 @@
 // ------------------- CHANNELS -------------------
 export const channels = [
   { 
-    id: 'zee', 
+    id: 'zee-bangla', // Changed from 'zee'
     name: 'Zee Bangla', 
     logo: 'https://ik.imagekit.io/ottstream/zee-bangla1.png', 
     color: 'bg-red-600' 
   },
   { 
-    id: 'star', 
+    id: 'star-jalsha', // Changed from 'star'
     name: 'Star Jalsha', 
     logo: 'https://ik.imagekit.io/ottstream/star-jalsha.png', 
     color: 'bg-orange-500' 
   },
   { 
-    id: 'colors', 
+    id: 'colors-bangla', // Changed from 'colors'
     name: 'Colors Bangla', 
     logo: 'https://ik.imagekit.io/ottstream/colors-bangla.png', 
     color: 'bg-indigo-600' 
   },
   { 
-    id: 'sun', 
+    id: 'sun-bangla', // Changed from 'sun'
     name: 'Sun Bangla', 
     logo: 'https://sund-images.sunnxt.com/194388/200x200_SunBangla_194388_9c4b5c51-1554-4507-83a8-7b54f31a8967.png', 
     color: 'bg-yellow-600' 
   },
   { 
-    id: 'toffee', 
+    id: 'toffee-turkish', // Changed from 'toffee'
     name: 'Toffee / Turkish', 
     logo: 'https://ik.imagekit.io/ottstream/Ks-S4-Poster.jpg', 
     color: 'bg-purple-600' 
@@ -39,27 +39,27 @@ export const channels = [
 export const sliders = [
   { 
     id: 1, 
-    title: "Amader Dadamoni", 
+    title: "Amader Dadamoni", // Note: This links to 'Jowar Bhanta' based on previous data
     image: "https://t3.ftcdn.net/jpg/06/15/80/36/360_F_615803658_S53m6x6x6x6x6x6x6x6x6x6x6x6x6x6x6x6x6x6x6x.jpg", 
-    showId: 's1' 
+    showId: 'jowar-bhanta' 
   },
   { 
     id: 2, 
     title: "Naagin S07 (Hindi)", 
     image: "https://img.freepik.com/free-photo/mysterious-woman-forest_23-2150795893.jpg", 
-    showId: 's2' 
+    showId: 'naagin-s07' 
   },
   { 
-    id: 10, 
+    id: 3, 
     title: "Kurulus Osman", 
     image: "https://ik.imagekit.io/ottstream/Ks-S4-Poster.jpg", 
-    showId: 'ks4' // Matches the corrected Show ID
+    showId: 'kurulus-osman' 
   },
   { 
     id: 4, 
     title: "Mithai", 
     image: "https://img.freepik.com/free-photo/wide-banner-indian_23-2149539227.jpg", 
-    showId: 's5' 
+    showId: 'mithai' 
   }
 ];
 
@@ -68,8 +68,8 @@ export const sliders = [
 export const shows = [
   // 1. Zee Bangla Show
   {
-    id: 's1',
-    channelId: 'zee',
+    id: 'jowar-bhanta', // Changed from 's1'
+    channelId: 'zee-bangla',
     title: 'Jowar Bhanta',
     poster: 'https://img.freepik.com/free-photo/portrait-young-woman-traditional-sari_23-2149539227.jpg',
     description: 'A tale of two sisters separated by destiny.',
@@ -80,8 +80,8 @@ export const shows = [
   
   // 2. Colors Bangla Show
   {
-    id: 's2',
-    channelId: 'colors',
+    id: 'naagin-s07', // Changed from 's2'
+    channelId: 'colors-bangla',
     title: 'Naagin S07 (Hindi)',
     poster: 'https://img.freepik.com/free-photo/fantasy-woman-portrait-forest_23-2150795908.jpg',
     description: 'The shapeshifting serpent returns for revenge.',
@@ -90,11 +90,10 @@ export const shows = [
     isFree: true
   },
 
-  // 3. Toffee / Turkish Show (Kurulus Osman)
-  // FIXED: Changed ID from '10' to 'ks4' to match episodes and slider
+  // 3. Toffee / Turkish Show
   {
-    id: 'ks4', 
-    channelId: 'toffee',
+    id: 'kurulus-osman', // Changed from 'ks4'
+    channelId: 'toffee-turkish',
     title: 'Kurulus Osman',
     poster: 'https://ik.imagekit.io/ottstream/Ks-S4-Poster.jpg',
     description: 'The epic struggle of Osman Bey against enemies.',
@@ -105,8 +104,8 @@ export const shows = [
 
   // 4. Star Jalsha Show
   {
-    id: 's3',
-    channelId: 'star',
+    id: 'parineeta', // Changed from 's3'
+    channelId: 'star-jalsha',
     title: 'Parineeta',
     poster: 'https://img.freepik.com/free-photo/indian-wedding-couple-posing_23-2150935835.jpg',
     description: 'A love story that defies societal norms.',
@@ -117,8 +116,8 @@ export const shows = [
 
   // 5. Sun Bangla Show
   {
-    id: 's4',
-    channelId: 'sun',
+    id: 'besh-korechi-prem-korechi', // Changed from 's4'
+    channelId: 'sun-bangla',
     title: 'Besh Korechi Prem Korechi',
     poster: 'https://img.freepik.com/free-photo/young-students-campus_23-2148522338.jpg',
     description: 'High school romance and drama.',
@@ -129,8 +128,8 @@ export const shows = [
 
   // 6. Another Zee Bangla Show
   {
-    id: 's5', 
-    channelId: 'zee', 
+    id: 'mithai', // Changed from 's5'
+    channelId: 'zee-bangla', 
     title: 'Mithai',
     poster: 'https://img.freepik.com/free-photo/sari-woman-portrait_23-2149539227.jpg',
     description: 'A sweet tale of a confectioner.',
@@ -141,8 +140,8 @@ export const shows = [
 
   // 7. Another Star Jalsha Show
   {
-    id: 's6',
-    channelId: 'star',
+    id: 'horogouri-pice-hotel', // Changed from 's6'
+    channelId: 'star-jalsha',
     title: 'Horogouri Pice Hotel',
     poster: 'https://img.freepik.com/free-photo/indian-couple_23-2150935821.jpg',
     description: 'Managing a family hotel business.',
@@ -153,8 +152,8 @@ export const shows = [
 
   // 8. Another Sun Bangla Show
   {
-    id: 's7',
-    channelId: 'sun',
+    id: 'phaguner-mohona', // Changed from 's7'
+    channelId: 'sun-bangla',
     title: 'Phaguner Mohona',
     poster: 'https://img.freepik.com/free-photo/traditional-look_23-2149539250.jpg',
     description: 'A romantic drama series.',
@@ -167,11 +166,10 @@ export const shows = [
 
 // ------------------- EPISODES -------------------
 export const episodes = [
-  // Kurulus Osman (KS4) Episodes
-  // FIXED: All showIds are now 'ks4' and IDs are organized
+  // --- Kurulus Osman Episodes ---
   {
-    id: 'ks-s4-e2', // Was e11, renamed to follow pattern
-    showId: 'ks4',
+    id: 'kurulus-osman-s04-e02',
+    showId: 'kurulus-osman',
     season: 4,
     episodeNumber: 2,
     title: 'The Great Betrayal',
@@ -181,8 +179,8 @@ export const episodes = [
     videoUrl: 'https://stream.mux.com/uP9wqVLCyfOMLJ7DZl7ANqqUxkH5jVYdZo5SF1qz4zk.m3u8'
   },
   {
-    id: 'ks-s4-e1', // Was ks-s04e01.html
-    showId: 'ks4',
+    id: 'kurulus-osman-s04-e01',
+    showId: 'kurulus-osman',
     season: 4,
     episodeNumber: 1,
     title: 'Rise of the Hidden Foe',
@@ -192,8 +190,8 @@ export const episodes = [
     videoUrl: 'https://stream.mux.com/uP9wqVLCyfOMLJ7DZl7ANqqUxkH5jVYdZo5SF1qz4zk.m3u8'
   },
   {
-    id: 'ks-s1-e1', // Was ks-s01e01.html
-    showId: 'ks4',
+    id: 'kurulus-osman-s01-e01',
+    showId: 'kurulus-osman',
     season: 1,
     episodeNumber: 1,
     title: 'Osman of the Hidden Foe',
@@ -203,10 +201,10 @@ export const episodes = [
     videoUrl: 'https://stream.mux.com/uP9wqVLCyfOMLJ7DZl7ANqqUxkH5jVYdZo5SF1qz4zk.m3u8'
   },
 
-  // Naagin Episodes (S2) - Season 7
+  // --- Naagin S07 Episodes ---
   {
-    id: 'e1',
-    showId: 's2',
+    id: 'naagin-s07-e14',
+    showId: 'naagin-s07',
     season: 7,
     episodeNumber: 14,
     title: 'Naagin Returns Home',
@@ -216,8 +214,8 @@ export const episodes = [
     videoUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8' 
   },
   {
-    id: 'e2',
-    showId: 's2',
+    id: 'naagin-s07-e13',
+    showId: 'naagin-s07',
     season: 7,
     episodeNumber: 13,
     title: 'The Mystic Ritual',
@@ -227,10 +225,10 @@ export const episodes = [
     videoUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8'
   },
 
-  // Parineeta Episodes (S3) - Season 1
+  // --- Parineeta Episodes ---
   {
-    id: 'e3',
-    showId: 's3',
+    id: 'parineeta-s01-e451',
+    showId: 'parineeta',
     season: 1,
     episodeNumber: 451,
     title: 'Wedding Bells',
@@ -240,8 +238,8 @@ export const episodes = [
     videoUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8'
   },
   {
-    id: 'e4',
-    showId: 's3',
+    id: 'parineeta-s01-e450',
+    showId: 'parineeta',
     season: 1,
     episodeNumber: 450,
     title: 'Dance Performance',
@@ -251,27 +249,27 @@ export const episodes = [
     videoUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8'
   },
 
-  // Mithai Episodes (S5) - Season 1
+  // --- Mithai Episodes ---
   {
-    id: 'e101', 
-    showId: 's5',
-    season: 1,
-    episodeNumber: 1,
-    title: 'Mithai First Meeting', 
-    thumbnail: 'https://img.freepik.com/free-photo/sweets-making_23-2150935845.jpg',
-    date: '10 Feb 2026',
-    duration: '21m',
-    videoUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8' 
-  },
-  {
-    id: 'e102',
-    showId: 's5', 
+    id: 'mithai-s01-e02', 
+    showId: 'mithai', 
     season: 1,
     episodeNumber: 2,
     title: 'The Challenge Begins',
     thumbnail: 'https://img.freepik.com/free-photo/family-drama_23-2150795925.jpg',
     date: '11 Feb 2026',
     duration: '20m',
+    videoUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8' 
+  },
+  {
+    id: 'mithai-s01-e01', 
+    showId: 'mithai',
+    season: 1,
+    episodeNumber: 1,
+    title: 'Mithai First Meeting', 
+    thumbnail: 'https://img.freepik.com/free-photo/sweets-making_23-2150935845.jpg',
+    date: '10 Feb 2026',
+    duration: '21m',
     videoUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8' 
   }
 ];
