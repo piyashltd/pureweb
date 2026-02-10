@@ -9,23 +9,36 @@
 body {
   margin: 0;
   padding: 0;
-  width: 100%;
-  min-height: 100vh;
   color: white;
-  overflow-x: hidden;
+  background-color: #000; /* ফলব্যাক কালার */
+}
 
-  /* --- Animated Gradient Background --- */
-  background: linear-gradient(-45deg, #0f172a, #1e1b4b, #312e81, #000000);
+/* --- Animated Gradient Class --- */
+.animated-bg {
+  /* ৪টি কালার মিক্স: Navy, Deep Blue, Purple, Black */
+  background: linear-gradient(-45deg, #0f172a, #1e1b4b, #4c1d95, #000000);
   background-size: 400% 400%;
   animation: gradientBG 10s ease infinite;
+  
+  /* এটা নিশ্চিত করবে ব্যাকগ্রাউন্ড পুরো পেজ জুড়ে আছে */
+  min-height: 100vh;
+  width: 100%;
 }
 
+/* --- Animation Keyframes --- */
 @keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
+/* Scrollbar Hide */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
