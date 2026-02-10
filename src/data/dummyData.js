@@ -170,11 +170,22 @@ export const shows = [
 export const episodes = [
   // Kurulus Osman (KS4) Episodes - Season 4
   {
-    id: 'e10',
-    showId: 'ks4',
+    id: 'ks-s04e01.html',
+    showId: 'kurulus-osman',
     season: 4,
     episodeNumber: 1,
     title: 'Rise of the Hidden Foe',
+    thumbnail: 'https://ik.imagekit.io/ottstream/KS-S04-E01.webp?tr=w-1000,q-50',
+    date: 'Feb 7, 2026',
+    duration: '22m',
+    videoUrl: 'https://stream.mux.com/uP9wqVLCyfOMLJ7DZl7ANqqUxkH5jVYdZo5SF1qz4zk.m3u8'
+  },
+  {
+    id: 'ks-s01e01.html',
+    showId: 'kurulus-osman',
+    season: 1,
+    episodeNumber: 1,
+    title: 'Osman of the Hidden Foe',
     thumbnail: 'https://ik.imagekit.io/ottstream/KS-S04-E01.webp?tr=w-1000,q-50',
     date: 'Feb 7, 2026',
     duration: '22m',
