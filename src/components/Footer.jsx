@@ -4,8 +4,11 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#050505] text-gray-400 border-t border-white/5 py-6 mt-auto">
-      <div className="max-w-7xl mx-auto px-4">
+    <footer className="bg-[#050505] text-gray-400 mt-auto relative">
+      {/* উপরের সরু বর্ডার */}
+      <div className="h-px bg-gradient-to-r from-transparent via-purple-600 to-transparent w-full absolute top-0"></div>
+
+      <div className="max-w-7xl mx-auto px-4 py-6">
         {/* Only Copyright Section */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-gray-600">
@@ -19,6 +22,9 @@ const Footer = () => {
           </div>
         </div>
       </div>
+
+      {/* নিচের সরু বর্ডার */}
+      <div className="h-px bg-gradient-to-r from-transparent via-purple-600 to-transparent w-full absolute bottom-0"></div>
     </footer>
   );
 };
