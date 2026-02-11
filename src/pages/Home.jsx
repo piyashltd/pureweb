@@ -1,4 +1,4 @@
-// File: src/pages/Home.jsx
+// File: src/pages/gHome.jsx
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { useLocation, useNavigationType } from 'react-router-dom';
 import HeroSlider from '../components/HeroSlider';
