@@ -18,15 +18,13 @@ const ContentSection = ({ title, data, type }) => {
 
   if (!data || data.length === 0) return null;
 
-  const displayData = data; 
-
-  // ✅ ফিক্স ১: সাইজ একটু কমিয়ে আনা হয়েছে যাতে "দূরে দূরে" মনে না হয়
-  const cardWidthClass = type === 'episode' 
-    ? "w-[200px] sm:w-[240px]"  // Episode (Landscape): আগে ছিল 240px, এখন 200px
-    : "w-[120px] sm:w-[140px]"; // Show (Portrait): আগে ছিল 140px, এখন 120px
+  // Horizontal Scroll এর জন্য ফিক্সড সাইজ (যাতে কাছাকাছি থাকে)
+  const horizontalCardWidth = type === 'episode' 
+    ? "w-[220px] sm:w-[260px]"  // Episode (Landscape)
+    : "w-[110px] sm:w-[140px]"; // Show (Portrait) - একটু ছোট করা হয়েছে মোবাইলের জন্য
 
   return (
-    <div className="px-4 mb-6"> {/* margin-bottom একটু কমানো হয়েছে (mb-8 -> mb-6) */}
+    <div className="px-4 mb-6">
       
       {/* Header */}
       <div className="flex justify-between items-center mb-3 border-b border-white/5 pb-2">
@@ -55,18 +53,22 @@ const ContentSection = ({ title, data, type }) => {
       {/* Content */}
       <AnimatePresence mode="wait">
         {isGrid ? (
-          // --- GRID VIEW ---
-          // এখানেও গ্যাপ কমানো হয়েছে (gap-3 -> gap-2)
+          // --- ✅ GRID VIEW (More) ---
+          // এখানে grid-cols ঠিক করা হয়েছে যাতে ভেঙে না যায়
           <motion.div 
             key="grid"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className={`grid gap-2 sm:gap-3 ${type === 'episode' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3' : 'grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6'}`}
+            className={`grid gap-3 ${
+                type === 'episode' 
+                ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4' // Episode Grid
+                : 'grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6' // Show Grid (মোবাইলে ৩টা করে দেখাবে)
+            }`}
           >
-            {displayData.map((item) => (
-              <div key={item.id}>
+            {data.map((item) => (
+              <div key={item.id} className="w-full"> {/* গ্রিডে ফুল উইডথ পাবে */}
                 {type === 'episode' ? (
                   <EpisodeCard episode={item} isGrid={true} />
                 ) : (
@@ -76,8 +78,8 @@ const ContentSection = ({ title, data, type }) => {
             ))}
           </motion.div>
         ) : (
-          // --- HORIZONTAL SCROLL ---
-          // ✅ ফিক্স ২: gap-3 থেকে কমিয়ে gap-2.5 করা হয়েছে (কাছাকাছি দেখাবে)
+          // --- ✅ HORIZONTAL SCROLL (Less) ---
+          // এখানে ফিক্সড উইডথ ব্যবহার করা হয়েছে যাতে কম্প্যাক্ট দেখায়
           <motion.div 
             key="horizontal"
             initial={{ opacity: 0 }}
@@ -86,8 +88,8 @@ const ContentSection = ({ title, data, type }) => {
             transition={{ duration: 0.3 }}
             className="flex gap-2.5 overflow-x-auto no-scrollbar pb-2"
           >
-            {displayData.map((item) => (
-              <div key={item.id} className={`flex-shrink-0 ${cardWidthClass}`}>
+            {data.map((item) => (
+              <div key={item.id} className={`flex-shrink-0 ${horizontalCardWidth}`}>
                 {type === 'episode' ? (
                   <EpisodeCard episode={item} />
                 ) : (
