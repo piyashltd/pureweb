@@ -1,6 +1,6 @@
 // File: src/pages/Home.jsx
 import React, { useState, useEffect, useLayoutEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigationType } from 'react-router-dom'; // ✅ useNavigationType যুক্ত করা হয়েছে
 import HeroSlider from '../components/HeroSlider';
 import ChannelRow from '../components/ChannelRow';
 import ContentSection from '../components/ContentSection';
@@ -8,40 +8,40 @@ import HomeSkeleton from '../components/skeletons/HomeSkeleton';
 import { channels, sliders, shows, episodes } from '../data/dummyData';
 
 const Home = () => {
-  // ১. লোডিং স্টেট হ্যান্ডলিং
+  const location = useLocation();
+  const navType = useNavigationType(); // ✅ ন্যাভিগেশন টাইপ চেক (PUSH / POP)
+
+  // ১. লোডিং স্টেট: যদি Back button (POP) দিয়ে আসা হয়, তবে লোডিং দেখাবো না, অন্যথায় দেখাবো
   const [isLoading, setIsLoading] = useState(() => {
-    return !sessionStorage.getItem('home_loaded');
+     return navType !== 'POP'; 
   });
 
-  const location = useLocation();
-
-  // ২. ফেক লোডিং ইফেক্ট
+  // ২. ডাটা লোডিং (শুধু নতুন করে ঢুকলে বা PUSH হলে চলবে)
   useEffect(() => {
     if (isLoading) {
       const timer = setTimeout(() => {
         setIsLoading(false);
-        sessionStorage.setItem('home_loaded', 'true');
       }, 2000);
       return () => clearTimeout(timer);
     }
   }, [isLoading]);
 
-  // ৩. ✅ স্ক্রল পজিশন রিস্টোর (useLayoutEffect ব্যবহার করা হয়েছে যাতে ফ্লিকার না করে)
+  // ৩. স্ক্রল রিস্টোর (শুধু ব্যাক করে আসলে কাজ করবে)
   useLayoutEffect(() => {
-    if (!isLoading) {
+    if (navType === 'POP' && !isLoading) { // ✅ Only restore on Back
       const savedScroll = sessionStorage.getItem('home_scroll_pos');
-      
       if (savedScroll) {
-        // একটু সময় দেওয়া হচ্ছে যাতে ContentSection গুলো 'Grid' মোডে রেন্ডার হতে পারে
-        setTimeout(() => {
-          window.scrollTo(0, parseInt(savedScroll));
-        }, 100); // 100ms delay to allow layout expansion
+         // লেআউট রেন্ডার হওয়ার জন্য সামান্য সময় দেওয়া হচ্ছে
+         setTimeout(() => {
+           window.scrollTo(0, parseInt(savedScroll));
+         }, 0);
       }
     }
-  }, [isLoading]); 
+  }, [isLoading, navType]);
 
-  // ৪. স্ক্রল পজিশন সেভ করা
+  // ৪. স্ক্রল পজিশন সেভ করা (সবসময়)
   useEffect(() => {
+    // লোডিং অবস্থায় স্ক্রল সেভ করব না
     if (isLoading) return;
 
     const handleScroll = () => {
@@ -55,6 +55,7 @@ const Home = () => {
   const getShowsByChannel = (channelId) => shows.filter(s => s.channelId === channelId);
   const latestEpisodes = episodes; 
 
+  // ৫. স্কেলিটন ডিসপ্লে
   if (isLoading) {
     return <HomeSkeleton />;
   }
@@ -64,9 +65,6 @@ const Home = () => {
       <HeroSlider slides={sliders} />
       <ChannelRow channels={channels} />
 
-      {/* Content Sections */}
-      {/* টাইটেলগুলো ইউনিক হতে হবে কারণ এগুলো দিয়েই সেশন কি তৈরি হচ্ছে */}
-      
       <ContentSection 
         title="Latest Free Episodes" 
         data={latestEpisodes} 
