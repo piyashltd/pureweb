@@ -4,42 +4,45 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    // mt-auto keeps it at bottom. px-3 adds outer spacing if needed
-    <div className="mt-auto px-3 pb-3">
-      <footer className="bg-[#050505] rounded-t-[35px] rounded-b-[35px] relative overflow-hidden border border-white/5 shadow-2xl">
+    // mt-auto: ফুটারকে নিচে ঠেলে দেয়
+    <footer className="mt-auto w-full">
+      {/* bg-[#050505]: ব্যাকগ্রাউন্ড কালার
+         rounded-t-[40px]: শুধুমাত্র উপরের দুই কোণা গোল হবে
+         border-t border-white/5: উপরে হালকা বর্ডার
+         pb-6 pt-8: ভেতরের স্পেসিং
+      */}
+      <div className="bg-[#050505] rounded-t-[40px] border-t border-white/10 relative overflow-hidden pb-6 pt-8">
         
-        {/* উপরের গ্লো ইফেক্ট - এখন বর্ডারের ভেতরে থাকবে */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[2px] bg-purple-500 blur-md"></div>
+        {/* টপ গ্লো ইফেক্ট (ঐচ্ছিক - সৌন্দর্যের জন্য) */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-[1px] bg-purple-500 shadow-[0_0_15px_rgba(168,85,247,0.5)]"></div>
 
-        <div className="max-w-7xl mx-auto px-4 py-8 text-center relative z-10">
+        <div className="max-w-7xl mx-auto px-4 text-center">
           
-          {/* ১. ব্র্যান্ড নেম (Gradient) */}
-          <div className="mb-5">
-            <h3 className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent font-bold text-lg tracking-wide inline-block">
-              BengaliTvSerial.Net
-            </h3>
-          </div>
+          {/* ব্র্যান্ড নেম */}
+          <h3 className="bg-gradient-to-r from-purple-400 via-pink-500 to-purple-400 bg-clip-text text-transparent font-bold text-lg tracking-wide inline-block mb-4">
+            BengaliTvSerial.Net
+          </h3>
 
-          {/* ২. লিঙ্কস */}
-          <div className="flex justify-center gap-6 mb-5 text-[11px] text-gray-400 font-medium tracking-wider uppercase">
+          {/* লিঙ্ক সমূহ */}
+          <div className="flex justify-center gap-6 mb-4 text-[11px] text-gray-400 font-medium tracking-wider uppercase">
             {['Privacy', 'Terms', 'Cookies'].map((item) => (
               <Link 
                 key={item}
                 to="#" 
-                className="hover:text-purple-400 transition-colors duration-300"
+                className="hover:text-white transition-colors duration-300"
               >
                 {item}
               </Link>
             ))}
           </div>
 
-          {/* ৩. কপিরাইট - খুবই হালকা কালার */}
-          <p className="text-[10px] text-gray-600 font-medium border-t border-white/5 pt-4 inline-block px-6">
+          {/* কপিরাইট */}
+          <p className="text-[10px] text-gray-600 font-medium">
             © {new Date().getFullYear()} All rights reserved.
           </p>
         </div>
-      </footer>
-    </div>
+      </div>
+    </footer>
   );
 };
 
