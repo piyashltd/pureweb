@@ -1,19 +1,17 @@
-// File: src/components/ContentSection.jsx
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { ChevronRight, LayoutGrid, ArrowRightCircle } from 'lucide-react';
+import { ChevronRight, LayoutGrid } from 'lucide-react';
 import EpisodeCard from './EpisodeCard';
 import ShowCard from './ShowCard';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const ContentSection = ({ title, data, type }) => {
-  // ১. ইউনিক কি (Key) তৈরি করছি টাইটেল দিয়ে (যেমন: section_Zee_Bangla)
+  // ১. ইউনিক কি (Key) তৈরি করছি টাইটেল দিয়ে
   const storageKey = `section_view_${title.replace(/\s+/g, '_')}`;
 
   // ২. স্টেট ইনিশিয়ালাইজেশন: সেশন স্টোরেজ থেকে রিড করবে
   const [isGrid, setIsGrid] = useState(() => {
     const savedState = sessionStorage.getItem(storageKey);
-    return savedState === 'true'; // যদি 'true' স্ট্রিং পায় তবে গ্রিড মোড অন হবে
+    return savedState === 'true'; 
   });
 
   // ৩. মোড চেঞ্জ হলে সেশনে সেভ করবে
@@ -23,8 +21,13 @@ const ContentSection = ({ title, data, type }) => {
 
   if (!data || data.length === 0) return null;
 
-  // গ্রিড মোডে সব ডাটা দেখাবে, হরাইজন্টাল মোডে সর্বোচ্চ ১০টা
-  const displayData = isGrid ? data : data.slice(0, 10);
+  // ✅ ফিক্স ১: ১০টার লিমিট তুলে দেওয়া হয়েছে, এখন সব ডাটা দেখাবে
+  const displayData = data; 
+
+  // ✅ ফিক্স ২: কার্ডের সাইজ ঠিক করা (Episode এর জন্য চওড়া, Show এর জন্য চিকন)
+  const cardWidthClass = type === 'episode' 
+    ? "w-[240px] sm:w-[280px]"  // Episode (Landscape) এর জন্য বেশি জায়গা
+    : "w-[140px] sm:w-[160px]"; // Show (Portrait) এর জন্য কম জায়গা
 
   return (
     <div className="px-4 mb-8">
@@ -35,6 +38,7 @@ const ContentSection = ({ title, data, type }) => {
           {title}
         </h2>
 
+        {/* More / Less Button */}
         <button 
           onClick={() => setIsGrid(!isGrid)}
           className="flex items-center gap-1.5 text-xs font-medium text-brand-primary hover:text-white transition bg-white/5 px-3 py-1.5 rounded-full border border-white/5 hover:bg-white/10"
@@ -63,7 +67,7 @@ const ContentSection = ({ title, data, type }) => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3"
+            className={`grid gap-3 ${type === 'episode' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3' : 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'}`}
           >
             {displayData.map((item) => (
               <div key={item.id}>
@@ -85,8 +89,9 @@ const ContentSection = ({ title, data, type }) => {
             transition={{ duration: 0.3 }}
             className="flex gap-3 overflow-x-auto no-scrollbar pb-2"
           >
+            {/* ✅ ফিক্স ৩: 'View All' বাটন সরানো হয়েছে, এখন সব আইটেম এখানেই স্ক্রল হবে */}
             {displayData.map((item) => (
-              <div key={item.id} className="flex-shrink-0 w-[160px] md:w-[200px]">
+              <div key={item.id} className={`flex-shrink-0 ${cardWidthClass}`}>
                 {type === 'episode' ? (
                   <EpisodeCard episode={item} />
                 ) : (
@@ -94,17 +99,6 @@ const ContentSection = ({ title, data, type }) => {
                 )}
               </div>
             ))}
-            
-            {/* View All Card at the end of scroll */}
-            {data.length > 10 && (
-               <button 
-                 onClick={() => setIsGrid(true)}
-                 className="flex-shrink-0 w-[100px] flex flex-col items-center justify-center bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition group"
-               >
-                  <ArrowRightCircle size={32} className="text-gray-400 group-hover:text-brand-primary mb-2 transition" />
-                  <span className="text-xs text-gray-400 font-medium">View All</span>
-               </button>
-            )}
           </motion.div>
         )}
       </AnimatePresence>
