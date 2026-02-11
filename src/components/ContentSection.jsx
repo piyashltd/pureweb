@@ -18,11 +18,11 @@ const ContentSection = ({ title, data, type }) => {
 
   if (!data || data.length === 0) return null;
 
-  // ✅ ফিক্স: 'w-' এর বদলে 'min-w-' ব্যবহার করা হয়েছে।
-  // এতে কার্ডগুলো আর চ্যাপ্টা হবে না, সম্পূর্ণ সাইজেই থাকবে।
-  const horizontalCardWidth = type === 'episode' 
-    ? "min-w-[220px] sm:min-w-[260px]"  // Episode Card: ফিক্সড বড় সাইজ
-    : "min-w-[110px] sm:min-w-[140px]"; // Show Card: ফিক্সড ছোট সাইজ
+  // ✅ কার্ডের সাইজ এখান থেকেই ঠিক করা হচ্ছে (Horizontal এর জন্য)
+  // Episode এর জন্য 260px (বেশ চওড়া) এবং Show এর জন্য 140px
+  const cardWidthClass = type === 'episode' 
+    ? "w-[260px]" 
+    : "w-[140px]"; 
 
   return (
     <div className="px-4 mb-6">
@@ -51,7 +51,6 @@ const ContentSection = ({ title, data, type }) => {
         </button>
       </div>
 
-      {/* Content */}
       <AnimatePresence mode="wait">
         {isGrid ? (
           // ==========================
@@ -65,14 +64,14 @@ const ContentSection = ({ title, data, type }) => {
             transition={{ duration: 0.3 }}
             className={`grid gap-3 ${
                 type === 'episode' 
-                ? 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5' 
-                : 'grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6' 
+                ? 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4' // Episodes
+                : 'grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6' // Shows
             }`}
           >
             {data.map((item) => (
               <div key={item.id} className="w-full">
                 {type === 'episode' ? (
-                  <EpisodeCard episode={item} isGrid={true} />
+                  <EpisodeCard episode={item} />
                 ) : (
                   <ShowCard show={item} isGrid={true} />
                 )}
@@ -89,13 +88,15 @@ const ContentSection = ({ title, data, type }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
+            // ✅ gap-3 এবং overflow-x-auto
             className="flex gap-3 overflow-x-auto no-scrollbar pb-2"
           >
             {data.map((item) => (
-              // ✅ min-w থাকার কারণে ব্রাউজার আর এটাকে চেপে ছোট করবে না
-              <div key={item.id} className={`flex-shrink-0 ${horizontalCardWidth}`}>
+              // ✅ এখানে flex-shrink-0 এবং ফিক্সড Width দেওয়া হয়েছে
+              // কার্ডের ভেতরে w-full থাকায় সে এই পুরো জায়গাটাই নেবে
+              <div key={item.id} className={`flex-shrink-0 ${cardWidthClass}`}>
                 {type === 'episode' ? (
-                  <EpisodeCard episode={item} isGrid={false} />
+                  <EpisodeCard episode={item} />
                 ) : (
                   <ShowCard show={item} isGrid={false} />
                 )}
