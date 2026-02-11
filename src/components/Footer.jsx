@@ -12,7 +12,7 @@ const Footer = () => {
          overflow-hidden: যাতে গ্লো ইফেক্ট বাইরে না যায়
          pb-6 pt-8: ভেতরের কন্টেন্ট স্পেসিং
       */}
-      <div className="bg-[#030303] rounded-t-[50px] relative overflow-hidden pb-6 pt-10">
+      <div className="bg-[#030303] rounded-t-[30px] relative overflow-hidden pb-6 pt-10">
         
         {/* === সেই লম্বা ঝলমলে লাইন (Top Glowing Line) === */}
         {/* এটি এখন একদম টপ বর্ডারের সাথে লেগে থাকবে */}
