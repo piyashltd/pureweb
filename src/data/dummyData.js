@@ -167,3 +167,133 @@ export const shows = [
 // ------------------- EPISODES -------------------
 export const episodes = [
   // --- Kurulus Osman Episodes ---
+  {
+    id: 'kurulus-osman-s04-e02',
+    showId: 'kurulus-osman',
+    season: 4,
+    episodeNumber: 2,
+    title: 'Kurulus Osman',
+    thumbnail: 'https://ik.imagekit.io/ottstream/KS-S04-E01.webp?tr=w-1000,q-50',
+    date: 'Feb 8, 2026',
+    duration: '45min',
+    videoUrl: 'https://stream.mux.com/uP9wqVLCyfOMLJ7DZl7ANqqUxkH5jVYdZo5SF1qz4zk.m3u8'
+  },
+  {
+    id: 'kurulus-osman-s04-e01',
+    showId: 'kurulus-osman',
+    season: 4,
+    episodeNumber: 1,
+    title: 'Rise of the Hidden Foe',
+    thumbnail: 'https://ik.imagekit.io/ottstream/KS-S04-E01.webp?tr=w-1000,q-50',
+    date: 'Feb 7, 2026',
+    duration: '22m',
+    videoUrl: 'https://stream.mux.com/uP9wqVLCyfOMLJ7DZl7ANqqUxkH5jVYdZo5SF1qz4zk.m3u8'
+  },
+  {
+    id: 'kurulus-osman-s01-e01',
+    showId: 'kurulus-osman',
+    season: 1,
+    episodeNumber: 1,
+    title: 'Osman of the Hidden Foe',
+    thumbnail: 'https://ik.imagekit.io/ottstream/KS-S04-E01.webp?tr=w-1000,q-50',
+    date: 'Feb 7, 2026',
+    duration: '22m',
+    videoUrl: 'https://stream.mux.com/uP9wqVLCyfOMLJ7DZl7ANqqUxkH5jVYdZo5SF1qz4zk.m3u8'
+  },
+
+  // --- Naagin S07 Episodes ---
+  {
+    id: 'naagin-s07-e14',
+    showId: 'naagin-s07',
+    season: 7,
+    episodeNumber: 14,
+    title: 'Naagin Returns Home',
+    thumbnail: 'https://img.freepik.com/free-photo/dark-forest-scene_23-2150795920.jpg',
+    date: 'Feb 8, 2026',
+    duration: '23m',
+    videoUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8' 
+  },
+  {
+    id: 'naagin-s07-e13',
+    showId: 'naagin-s07',
+    season: 7,
+    episodeNumber: 13,
+    title: 'The Mystic Ritual',
+    thumbnail: 'https://img.freepik.com/free-photo/mystic-ritual-scene_23-2150795925.jpg',
+    date: 'Feb 7, 2026',
+    duration: '22m',
+    videoUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8'
+  },
+
+  // --- Parineeta Episodes ---
+  {
+    id: 'parineeta-s01-e451',
+    showId: 'parineeta',
+    season: 1,
+    episodeNumber: 451,
+    title: 'Wedding Bells',
+    thumbnail: 'https://img.freepik.com/free-photo/indian-wedding-ceremony_23-2150935840.jpg',
+    date: 'Feb 8, 2026',
+    duration: '20m',
+    videoUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8'
+  },
+  {
+    id: 'parineeta-s01-e450',
+    showId: 'parineeta',
+    season: 1,
+    episodeNumber: 450,
+    title: 'Dance Performance',
+    thumbnail: 'https://img.freepik.com/free-photo/traditional-dance-performance_23-2150935845.jpg',
+    date: 'Feb 7, 2026',
+    duration: '21m',
+    videoUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8'
+  },
+
+  // --- Mithai Episodes ---
+  {
+    id: 'mithai-s01-e02', 
+    showId: 'mithai', 
+    season: 1,
+    episodeNumber: 2,
+    title: 'The Challenge Begins',
+    thumbnail: 'https://img.freepik.com/free-photo/family-drama_23-2150795925.jpg',
+    date: '11 Feb 2026',
+    duration: '20m',
+    videoUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8' 
+  },
+  {
+    id: 'mithai-s01-e01', 
+    showId: 'mithai',
+    season: 1,
+    episodeNumber: 1,
+    title: 'Mithai First Meeting', 
+    thumbnail: 'https://img.freepik.com/free-photo/sweets-making_23-2150935845.jpg',
+    date: '10 Feb 2026',
+    duration: '21m',
+    videoUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8' 
+  },
+
+  {
+    "id": "kurulus-osman-s04-e03",
+    "showId": "kurulus-osman",
+    "season": 4,
+    "episodeNumber": 3,
+    "title": "New Episode 3",
+    "thumbnail": "https://link.com/img3.jpg",
+    "date": "Feb 10, 2026",
+    "duration": "40m",
+    "videoUrl": "https://link.com/vid3.m3u8"
+  },
+  {
+    "id": "kurulus-osman-s04-e04",
+    "showId": "kurulus-osman",
+    "season": 4,
+    "episodeNumber": 4,
+    "title": "New Episode 4",
+    "thumbnail": "https://link.com/img4.jpg",
+    "date": "Feb 11, 2026",
+    "duration": "42m",
+    "videoUrl": "https://link.com/vid4.m3u8"
+  }
+
+];
