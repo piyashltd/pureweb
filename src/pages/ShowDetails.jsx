@@ -1,6 +1,6 @@
 // File: src/pages/ShowDetails.jsx
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation, useNavigationType } from 'react-router-dom'; // ✅ useNavigationType যুক্ত করা হয়েছে
 import { shows, episodes } from '../data/dummyData';
 import { ChevronRight, LayoutGrid, ChevronDown } from 'lucide-react'; 
 import EpisodeCard from '../components/EpisodeCard';
@@ -8,16 +8,17 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const ShowDetails = () => {
   const { id } = useParams();
+  
+  // ✅ স্মার্ট স্ক্রল লজিক হুক
+  const location = useLocation();
+  const navType = useNavigationType();
 
-  // ১. সেশন স্টোরেজ কী (Key) তৈরি - প্রতিটা শো-এর জন্য আলাদা সেটিং মনে রাখবে
   const storageKey = `show_state_${id}`;
 
   const show = shows.find(s => s.id === id);
   const allShowEpisodes = episodes.filter(e => e.showId === id);
   const availableSeasons = [...new Set(allShowEpisodes.map(e => e.season))].sort((a,b) => a - b);
 
-  // ২. স্টেট ইনিশিয়ালাইজেশন (মেমোরি থেকে ডাটা পড়ার চেষ্টা করবে)
-  // যদি আগে ভিজিট করে থাকেন, তাহলে সেই ViewMode এবং Season লোড করবে
   const [viewMode, setViewMode] = useState(() => {
     const saved = sessionStorage.getItem(storageKey);
     return saved ? JSON.parse(saved).viewMode : 'horizontal';
@@ -25,18 +26,21 @@ const ShowDetails = () => {
 
   const [selectedSeason, setSelectedSeason] = useState(() => {
     const saved = sessionStorage.getItem(storageKey);
-    // সেভ করা সিজন থাকলে সেটা, না থাকলে প্রথম সিজন
     return saved ? JSON.parse(saved).selectedSeason : (availableSeasons[0] || 1);
   });
 
-  // ৩. যখনই সিজন বা ভিউ মোড চেঞ্জ করবেন, সেটা মেমোরিতে সেভ করে রাখবে
   useEffect(() => {
     const stateToSave = { viewMode, selectedSeason };
     sessionStorage.setItem(storageKey, JSON.stringify(stateToSave));
   }, [viewMode, selectedSeason, storageKey]);
 
-  // ৪. ❌ window.scrollTo(0, 0) রিমুভ করা হয়েছে।
-  // যেহেতু আমরা স্টেট মনে রাখছি, ব্রাউজার এখন নিজে থেকেই স্ক্রল পজিশন রিস্টোর করতে পারবে।
+  // ✅ ফিক্স: স্ক্রল পজিশন কন্ট্রোল
+  useEffect(() => {
+    // যদি ন্যাভিগেশন টাইপ 'POP' (মানে ব্যাক বাটন) না হয়, তবেই টপে নিবে
+    if (navType !== 'POP') {
+        window.scrollTo(0, 0);
+    }
+  }, [location.pathname, navType]); // পাথ চেঞ্জ হলে বা ন্যাভিগেশন টাইপ চেঞ্জ হলে রান হবে
 
   if (!show) return <div className="text-center p-10 text-white">Show not found</div>;
 
