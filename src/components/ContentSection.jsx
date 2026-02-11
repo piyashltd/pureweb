@@ -18,15 +18,10 @@ const ContentSection = ({ title, data, type }) => {
 
   if (!data || data.length === 0) return null;
 
-  // ✅ ডায়নামিক সাইজ লজিক (Browser এর অবস্থা বুঝে কাজ করবে)
+  // ✅ ফিক্স: মোবাইলের জন্য সাইজ কমানো হয়েছে যাতে ২টা কার্ড দেখা যায়
   const horizontalCardWidth = type === 'episode' 
-    // Episode: মোবাইলে ঠিক ২টা কার্ড দেখাবে (৫০% - গ্যাপের জায়গা)
-    // ট্যাবলেটে বা পিসিতে ফিক্সড সাইজ (২৪০px) নেবে
-    ? "min-w-[calc(50%-8px)] sm:min-w-[240px]"  
-    
-    // Show: মোবাইলে ঠিক ৩টা কার্ড দেখাবে (৩৩% - গ্যাপের জায়গা)
-    // ট্যাবলেটে বা পিসিতে ফিক্সড সাইজ (১৪০px) নেবে
-    : "min-w-[calc(33.33%-8px)] sm:min-w-[140px]"; 
+    ? "w-[190px] sm:w-[240px]"  // Episode: মোবাইলে ১৯০px (ছোট করা হয়েছে)
+    : "w-[110px] sm:w-[140px]"; // Show: মোবাইলে ১১০px
 
   return (
     <div className="px-4 mb-6">
@@ -93,10 +88,11 @@ const ContentSection = ({ title, data, type }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            // gap-3 (12px) ব্যবহার করা হয়েছে
-            className="flex gap-3 overflow-x-auto no-scrollbar pb-2"
+            // ✅ gap-2.5 রাখা হয়েছে
+            className="flex gap-2.5 overflow-x-auto no-scrollbar pb-2"
           >
             {data.map((item) => (
+              // ✅ flex-shrink-0 এবং min-w (যাতে চেপে না যায়)
               <div key={item.id} className={`flex-shrink-0 ${horizontalCardWidth}`}>
                 {type === 'episode' ? (
                   <EpisodeCard episode={item} isGrid={false} />
