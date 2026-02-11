@@ -27,7 +27,7 @@ const WatchPage = () => {
 
     // ক্লিনআপ: পেজ থেকে বের হয়ে গেলে আবার ডিফল্ট টাইটেল সেট হবে
     return () => {
-      document.title = "BengaliTVSerial24 Clone";
+      document.title = "BengaliTvSerial.Net - Watch latest free episodes ";
     };
   }, [show, episode]); // শো বা এপিসোড পাল্টালে টাইটেলও পাল্টাবে
 
@@ -74,7 +74,7 @@ const WatchPage = () => {
             
             <button className="flex items-center gap-1.5 px-4 py-2 bg-[#1f1f1f]/80 backdrop-blur-md border border-gray-700 rounded-lg active:scale-95 transition hover:bg-gray-800 hover:border-brand-primary/50 group">
                 <Download size={16} className="text-gray-400 group-hover:text-brand-primary transition" />
-                <span className="text-xs font-bold text-gray-300 group-hover:text-white">Download</span>
+                <span className="text-xs font-bold text-gray-300 group-hover:text-white"></span>
             </button>
         </div>
 
