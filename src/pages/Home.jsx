@@ -1,6 +1,6 @@
 // File: src/pages/Home.jsx
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom'; // স্ক্রল পজিশন হ্যান্ডেল করতে লাগবে
+import React, { useState, useEffect, useLayoutEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import HeroSlider from '../components/HeroSlider';
 import ChannelRow from '../components/ChannelRow';
 import ContentSection from '../components/ContentSection';
@@ -8,64 +8,65 @@ import HomeSkeleton from '../components/skeletons/HomeSkeleton';
 import { channels, sliders, shows, episodes } from '../data/dummyData';
 
 const Home = () => {
-  // ১. লোডিং স্টেট: সেশন স্টোরেজ চেক করবে আগে লোড হয়েছে কিনা
+  // ১. লোডিং স্টেট হ্যান্ডলিং
   const [isLoading, setIsLoading] = useState(() => {
-    // যদি সেশনে 'home_loaded' থাকে, তাহলে লোডিং false, না থাকলে true
     return !sessionStorage.getItem('home_loaded');
   });
 
   const location = useLocation();
 
-  // ২. ডাটা লোডিং ইফেক্ট (ফেক API)
+  // ২. ফেক লোডিং ইফেক্ট
   useEffect(() => {
     if (isLoading) {
       const timer = setTimeout(() => {
         setIsLoading(false);
-        // লোড শেষ হলে সেশনে ফ্ল্যাগ সেট করব
         sessionStorage.setItem('home_loaded', 'true');
       }, 2000);
       return () => clearTimeout(timer);
     }
   }, [isLoading]);
 
-  // ৩. ✅ স্ক্রল পজিশন মনে রাখা এবং রিস্টোর করা
-  useEffect(() => {
-    // লোডিং শেষ হলে স্ক্রল পজিশন রিস্টোর করব
+  // ৩. ✅ স্ক্রল পজিশন রিস্টোর (useLayoutEffect ব্যবহার করা হয়েছে যাতে ফ্লিকার না করে)
+  useLayoutEffect(() => {
     if (!isLoading) {
       const savedScroll = sessionStorage.getItem('home_scroll_pos');
+      
       if (savedScroll) {
-        window.scrollTo(0, parseInt(savedScroll));
+        // একটু সময় দেওয়া হচ্ছে যাতে ContentSection গুলো 'Grid' মোডে রেন্ডার হতে পারে
+        setTimeout(() => {
+          window.scrollTo(0, parseInt(savedScroll));
+        }, 100); // 100ms delay to allow layout expansion
       }
     }
+  }, [isLoading]); 
 
-    // স্ক্রল ইভেন্ট লিসেনার: ইউজার যেখানে স্ক্রল করবে তা সেভ রাখবে
+  // ৪. স্ক্রল পজিশন সেভ করা
+  useEffect(() => {
+    if (isLoading) return;
+
     const handleScroll = () => {
-      // একটু ডিলে বা থ্রোটল ছাড়া সরাসরি সেভ করা হচ্ছে যাতে নিখুঁত থাকে
-      sessionStorage.setItem('home_scroll_pos', window.scrollY.toString());
+       sessionStorage.setItem('home_scroll_pos', window.scrollY.toString());
     };
 
     window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [isLoading]); // isLoading পাল্টালে এফেক্ট আবার রান করবে
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isLoading]);
 
   const getShowsByChannel = (channelId) => shows.filter(s => s.channelId === channelId);
   const latestEpisodes = episodes; 
 
-  // ৪. যদি লোডিং সত্য হয়, তবে Skeleton দেখাবে
   if (isLoading) {
     return <HomeSkeleton />;
   }
 
-  // ৫. লোডিং শেষ হলে আসল কন্টেন্ট দেখাবে
   return (
     <div className="pb-20 bg-transparent min-h-screen">
-      
       <HeroSlider slides={sliders} />
       <ChannelRow channels={channels} />
 
+      {/* Content Sections */}
+      {/* টাইটেলগুলো ইউনিক হতে হবে কারণ এগুলো দিয়েই সেশন কি তৈরি হচ্ছে */}
+      
       <ContentSection 
         title="Latest Free Episodes" 
         data={latestEpisodes} 
@@ -101,7 +102,6 @@ const Home = () => {
         data={getShowsByChannel('colors-bangla')} 
         type="show" 
       />
-
     </div>
   );
 };
