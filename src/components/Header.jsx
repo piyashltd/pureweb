@@ -7,7 +7,7 @@ const Header = ({ onMenuClick, onSearch }) => {
       <div className="flex items-center gap-3">
         {/* Logo Text */}
         <h1 className="text-xl font-bold text-white tracking-tight">
-          Bengalitvserial24
+          BengaliTvSerial.Net
         </h1>
       </div>
 
