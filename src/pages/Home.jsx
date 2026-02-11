@@ -11,29 +11,27 @@ const Home = () => {
   const location = useLocation();
   const navType = useNavigationType(); 
 
-  // ১. লোডিং স্টেট: সবসময় true থাকবে শুরুতে (১ সেকেন্ডের জন্য)
+  // ১. লোডিং স্টেট: সবসময় true থাকবে শুরুতে
   const [isLoading, setIsLoading] = useState(true);
 
-  // ২. বাধ্যতামূলক ১ সেকেন্ড লোডিং লজিক
+  // ২. বাধ্যতামূলক ২ সেকেন্ড লোডিং লজিক (সময় বাড়ানো হয়েছে)
   useEffect(() => {
-    // যেকোনো ভাবেই পেজে আসা হোক না কেন (Back/Reload/New), ১ সেকেন্ড Skeleton দেখাবে
     setIsLoading(true);
     
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1000); // ১০০০ ms = ১ সেকেন্ড
+    }, 2000); // ✅ ১০০০ এর বদলে ২০০০ (২ সেকেন্ড) করা হয়েছে
 
     return () => clearTimeout(timer);
-  }, [location.key]); // location.key পাল্টালে (মানে নতুন রেন্ডার হলে) ইফেক্ট রান করবে
+  }, [location.key]); 
 
-  // ৩. স্ক্রল পজিশন রিস্টোর (লোডিং শেষ হওয়ার পর রান হবে)
+  // ৩. স্ক্রল পজিশন রিস্টোর
   useLayoutEffect(() => {
     if (!isLoading) {
       const savedScroll = sessionStorage.getItem('home_scroll_pos');
       
       if (savedScroll) {
-        // লোডিং শেষ হওয়ার সাথে সাথে স্ক্রল পজিশন সেট হবে
-        // 'setTimeout' এর দরকার নেই কারণ ১ সেকেন্ডে DOM রেডি হয়ে যাবে
+        // ২ সেকেন্ড সময় পাওয়ার কারণে ব্রাউজার এখন ঠিকঠাক পজিশন সেট করতে পারবে
         window.scrollTo(0, parseInt(savedScroll));
       }
     }
@@ -41,7 +39,7 @@ const Home = () => {
 
   // ৪. স্ক্রল পজিশন সেভ করা
   useEffect(() => {
-    if (isLoading) return; // লোডিং অবস্থায় স্ক্রল সেভ করব না (কারণ তখন পজিশন ০ থাকে)
+    if (isLoading) return;
 
     const handleScroll = () => {
        sessionStorage.setItem('home_scroll_pos', window.scrollY.toString());
@@ -54,12 +52,11 @@ const Home = () => {
   const getShowsByChannel = (channelId) => shows.filter(s => s.channelId === channelId);
   const latestEpisodes = episodes; 
 
-  // ৫. স্কেলিটন ডিসপ্লে (১ সেকেন্ড পর্যন্ত এটাই দেখাবে)
+  // ৫. স্কেলিটন ডিসপ্লে (২ সেকেন্ড পর্যন্ত এটাই দেখাবে)
   if (isLoading) {
     return <HomeSkeleton />;
   }
 
-  // ৬. মেইন কন্টেন্ট
   return (
     <div className="pb-20 bg-transparent min-h-screen">
       
