@@ -1,3 +1,4 @@
+// File: src/pages/Home.jsx
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { useLocation, useNavigationType } from 'react-router-dom';
 import HeroSlider from '../components/HeroSlider';
@@ -10,27 +11,29 @@ const Home = () => {
   const location = useLocation();
   const navType = useNavigationType(); 
 
-  // ১. লোডিং স্টেট: সবসময় true থাকবে শুরুতে
+  // ১. লোডিং স্টেট: সবসময় true থাকবে শুরুতে (১ সেকেন্ডের জন্য)
   const [isLoading, setIsLoading] = useState(true);
 
-  // ২. বাধ্যতামূলক ২ সেকেন্ড লোডিং লজিক
+  // ২. বাধ্যতামূলক ১ সেকেন্ড লোডিং লজিক
   useEffect(() => {
+    // যেকোনো ভাবেই পেজে আসা হোক না কেন (Back/Reload/New), ১ সেকেন্ড Skeleton দেখাবে
     setIsLoading(true);
     
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000); // ২ সেকেন্ড সময়
+    }, 1000); // ১০০০ ms = ১ সেকেন্ড
 
     return () => clearTimeout(timer);
-  }, [location.key]); 
+  }, [location.key]); // location.key পাল্টালে (মানে নতুন রেন্ডার হলে) ইফেক্ট রান করবে
 
-  // ৩. স্ক্রল পজিশন রিস্টোর
+  // ৩. স্ক্রল পজিশন রিস্টোর (লোডিং শেষ হওয়ার পর রান হবে)
   useLayoutEffect(() => {
-    // লোডিং শেষ হওয়ার পর স্ক্রল পজিশন সেট হবে
     if (!isLoading) {
       const savedScroll = sessionStorage.getItem('home_scroll_pos');
       
       if (savedScroll) {
+        // লোডিং শেষ হওয়ার সাথে সাথে স্ক্রল পজিশন সেট হবে
+        // 'setTimeout' এর দরকার নেই কারণ ১ সেকেন্ডে DOM রেডি হয়ে যাবে
         window.scrollTo(0, parseInt(savedScroll));
       }
     }
@@ -38,7 +41,7 @@ const Home = () => {
 
   // ৪. স্ক্রল পজিশন সেভ করা
   useEffect(() => {
-    if (isLoading) return; // লোডিং অবস্থায় সেভ করব না
+    if (isLoading) return; // লোডিং অবস্থায় স্ক্রল সেভ করব না (কারণ তখন পজিশন ০ থাকে)
 
     const handleScroll = () => {
        sessionStorage.setItem('home_scroll_pos', window.scrollY.toString());
@@ -48,11 +51,10 @@ const Home = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isLoading]);
 
-  // ডেটা ফিল্টারিং হেল্পার
   const getShowsByChannel = (channelId) => shows.filter(s => s.channelId === channelId);
   const latestEpisodes = episodes; 
 
-  // ৫. স্কেলিটন ডিসপ্লে (২ সেকেন্ড পর্যন্ত)
+  // ৫. স্কেলিটন ডিসপ্লে (১ সেকেন্ড পর্যন্ত এটাই দেখাবে)
   if (isLoading) {
     return <HomeSkeleton />;
   }
