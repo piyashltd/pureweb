@@ -307,6 +307,117 @@ export const episodes = [
     "date": "Dec 20, 2020",
     "duration": "40min",
     "videoUrl": "https://stream.mux.com/Beu7ydKVvuPX86ipbAR441nJzlKMsZSxfR495SyWgkU.m3u8"
+  },
+
+  {
+    "id": "kurulus-osman-s01-e21",
+    "showId": "kurulus-osman",
+    "season": 1,
+    "episodeNumber": 21,
+    "title": "Kurulus Osman S01",
+    "thumbnail": "https://i.ibb.co.com/q3xTxMrX/KS-S01-E21.png",
+    "date": "Dec 21, 2020",
+    "duration": "45min",
+    "videoUrl": "https://stream.mux.com/Lj4FMQEULUKYODiIwLW22UFyq9b3FleqKwdG2mU4Dw4.m3u8"
+  },
+  {
+    "id": "kurulus-osman-s01-e22",
+    "showId": "kurulus-osman",
+    "season": 1,
+    "episodeNumber": 22,
+    "title": "Kurulus Osman S01",
+    "thumbnail": "https://i.ibb.co.com/21tss66Z/KS-S01-E22.png",
+    "date": "Dec 22, 2020",
+    "duration": "41min",
+    "videoUrl": "https://stream.mux.com/62lbuNX57pO7LZpQxVuYhXqtzvxQ26cp1g4TWYyo901c.m3u8"
+  },
+  {
+    "id": "kurulus-osman-s01-e23",
+    "showId": "kurulus-osman",
+    "season": 1,
+    "episodeNumber": 23,
+    "title": "Kurulus Osman S01",
+    "thumbnail": "https://i.ibb.co.com/nNmbxczF/KS-S01-E23.png",
+    "date": "Dec 23, 2020",
+    "duration": "43min",
+    "videoUrl": "https://stream.mux.com/S8IFs00UfnPYtyljef00Ki94KXLP9QEYG23nS2Gx3I100s.m3u8"
+  },
+  {
+    "id": "kurulus-osman-s01-e24",
+    "showId": "kurulus-osman",
+    "season": 1,
+    "episodeNumber": 24,
+    "title": "Kurulus Osman S01",
+    "thumbnail": "https://i.ibb.co.com/nMNLQ9Dz/KS-S01-E24.png",
+    "date": "Dec 24, 2020",
+    "duration": "44min",
+    "videoUrl": "https://stream.mux.com/1bKljZeW02Op6FKynGqdzJ6L9Iv300WbltTvDhx012Aw00E.m3u8"
+  },
+  {
+    "id": "kurulus-osman-s01-e25",
+    "showId": "kurulus-osman",
+    "season": 1,
+    "episodeNumber": 25,
+    "title": "Kurulus Osman S01",
+    "thumbnail": "https://i.ibb.co.com/rRjtfv7t/KS-S01-E25.png",
+    "date": "Dec 25, 2020",
+    "duration": "42min",
+    "videoUrl": "https://stream.mux.com/00CN64MOkw9tcf2x02CfHnuXmeT01zUScJ68jeo5MsjdWY.m3u8"
+  },
+  {
+    "id": "kurulus-osman-s01-e26",
+    "showId": "kurulus-osman",
+    "season": 1,
+    "episodeNumber": 26,
+    "title": "Kurulus Osman S01",
+    "thumbnail": "https://i.ibb.co.com/7hNY1yx/KS-S01-E26.png",
+    "date": "Dec 26, 2020",
+    "duration": "40min",
+    "videoUrl": "https://stream.mux.com/9PW02HO4wadE1ZrD2CvfauQCygR0102rVHAtFBrgn9E02tM.m3u8"
+  },
+  {
+    "id": "kurulus-osman-s01-e27",
+    "showId": "kurulus-osman",
+    "season": 1,
+    "episodeNumber": 27,
+    "title": "Kurulus Osman S01",
+    "thumbnail": "https://i.ibb.co.com/JRLsKj4d/KS-S01-E27.png",
+    "date": "Dec 27, 2020",
+    "duration": "45min",
+    "videoUrl": "https://stream.mux.com/p83aQhLe4thKVsOk4ZOj00wstvnlQ6qzM3jKu6cgHn4M.m3u8"
+  },
+  {
+    "id": "kurulus-osman-s01-e28",
+    "showId": "kurulus-osman",
+    "season": 1,
+    "episodeNumber": 28,
+    "title": "Kurulus Osman S01",
+    "thumbnail": "https://i.ibb.co.com/JwJjs8Tc/KS-S01-E28.png",
+    "date": "Dec 28, 2020",
+    "duration": "41min",
+    "videoUrl": "https://stream.mux.com/BXmCYIoF1L01xVM01LiRo01JJ5uz2f00EMRUVHf8UuZnizc.m3u8"
+  },
+  {
+    "id": "kurulus-osman-s01-e29",
+    "showId": "kurulus-osman",
+    "season": 1,
+    "episodeNumber": 29,
+    "title": "Kurulus Osman S01",
+    "thumbnail": "https://i.ibb.co.com/HLqY9XQ6/KS-S01-E29.png",
+    "date": "Dec 29, 2020",
+    "duration": "43min",
+    "videoUrl": "https://stream.mux.com/gaEwdU81AKDpD6bjqbVE3wPIxEQhOcLu5blkfM1n73c.m3u8"
+  },
+  {
+    "id": "kurulus-osman-s01-e30",
+    "showId": "kurulus-osman",
+    "season": 1,
+    "episodeNumber": 30,
+    "title": "Kurulus Osman S01",
+    "thumbnail": "https://i.ibb.co.com/dJ0XyNpf/KS-S01-E30.png",
+    "date": "Dec 30, 2020",
+    "duration": "44min",
+    "videoUrl": "https://stream.mux.com/zRnP3yYWwBCa1mlB5n6rOv01JLw8ME35J6mv9ty2GUIk.m3u8"
   }
 
 ];
