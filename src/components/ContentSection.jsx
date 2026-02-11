@@ -18,10 +18,10 @@ const ContentSection = ({ title, data, type }) => {
 
   if (!data || data.length === 0) return null;
 
-  // ✅ আপনার দেওয়া EpisodeCard এর সাইজ অনুযায়ী হুবহু সাইজ সেট করা হলো
+  // Horizontal Scroll এর জন্য ফিক্সড সাইজ (আপনার দেওয়া সাইজ অনুযায়ী)
   const horizontalCardWidth = type === 'episode' 
-    ? "w-[200px] sm:w-[240px]"  // Episode: আপনার দেওয়া কোড অনুযায়ী
-    : "w-[110px] sm:w-[140px]"; // Show: পোর্ট্রেট মোডের জন্য স্ট্যান্ডার্ড সাইজ
+    ? "w-[200px] sm:w-[240px]" 
+    : "w-[110px] sm:w-[140px]";
 
   return (
     <div className="px-4 mb-6">
@@ -54,7 +54,7 @@ const ContentSection = ({ title, data, type }) => {
       <AnimatePresence mode="wait">
         {isGrid ? (
           // ==========================
-          // 🔴 GRID VIEW (MORE)
+          // 🔴 GRID VIEW (MORE) - FIXED SIZE
           // ==========================
           <motion.div 
             key="grid"
@@ -62,10 +62,11 @@ const ContentSection = ({ title, data, type }) => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
+            // ✅ ফিক্স: এখানে কলাম সংখ্যা বাড়ানো হয়েছে যাতে কার্ড ছোট দেখায়
             className={`grid gap-3 ${
                 type === 'episode' 
-                ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4' 
-                : 'grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6' 
+                ? 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5' // Episode: মোবাইলে ২টা করে (আগে ১টা ছিল)
+                : 'grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6' // Show: মোবাইলে ৩টা করে
             }`}
           >
             {data.map((item) => (
@@ -88,13 +89,11 @@ const ContentSection = ({ title, data, type }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            // ✅ gap-3 ব্যবহার করা হয়েছে যা স্ট্যান্ডার্ড (খুব দূরে বা খুব কাছে নয়)
             className="flex gap-3 overflow-x-auto no-scrollbar pb-2"
           >
             {data.map((item) => (
               <div key={item.id} className={`flex-shrink-0 ${horizontalCardWidth}`}>
                 {type === 'episode' ? (
-                  // হরাইজন্টাল মোডে isGrid={false} যাবে, ফলে আপনার কার্ডের w-[200px] ক্লাস কাজ করবে
                   <EpisodeCard episode={item} isGrid={false} />
                 ) : (
                   <ShowCard show={item} isGrid={false} />
