@@ -26,7 +26,7 @@ const Footer = () => {
           {/* ১. ব্র্যান্ড নাম: গ্রেডিয়েন্ট কালার */}
           <div className="mb-6">
             <h3 className="bg-gradient-to-r from-purple-400 via-pink-500 to-purple-400 bg-clip-text text-transparent font-extrabold text-2xl tracking-wide inline-block drop-shadow-lg">
-              BingeBox Error
+              Binge
             </h3>
           </div>
 
