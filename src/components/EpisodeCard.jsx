@@ -3,20 +3,23 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const EpisodeCard = ({ episode, isGrid }) => {
-  const widthClass = isGrid ? 'w-full' : 'w-[200px] sm:w-[240px]';
+  // ✅ ফিক্স: ContentSection এর সাথে মিল রেখে মোবাইলে ১৯০px করা হয়েছে
+  // আগে ছিল: 'w-[200px] sm:w-[240px]'
+  const widthClass = isGrid ? 'w-full' : 'w-[190px] sm:w-[240px]';
 
   if (!episode) return null;
 
   return (
     <Link to={`/watch/${episode.id}`} className={`block group ${widthClass}`}>
       
-      {/* 1. Thumbnail Container (Clean - No Badge Here) */}
+      {/* 1. Thumbnail Container */}
       <div className="relative aspect-video rounded-lg overflow-hidden bg-gray-900 border border-gray-800">
         <img 
           src={episode.thumbnail} 
           alt={episode.title} 
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
         />
+        {/* Hover overlay */}
         <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition"></div>
       </div>
       
@@ -26,7 +29,7 @@ const EpisodeCard = ({ episode, isGrid }) => {
           {episode.title}
         </h4>
         
-        {/* 2. Meta Info Row: Flexbox দিয়ে দুই পাশে ভাগ করা হয়েছে */}
+        {/* 2. Meta Info Row */}
         <div className="flex justify-between items-center text-xs text-gray-400 mt-1.5 font-medium">
              
              {/* বাম পাশে: এপিসোড ও তারিখ */}
