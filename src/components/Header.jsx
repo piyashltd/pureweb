@@ -1,6 +1,6 @@
 // File: src/components/Header.jsx
 import React, { useState } from 'react';
-import { Menu, Search, Bell, PlayCircle } from 'lucide-react';
+import { Menu, Search, PlayCircle } from 'lucide-react';
 
 const Header = ({ onMenuClick, onSearch }) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -9,23 +9,21 @@ const Header = ({ onMenuClick, onSearch }) => {
     <header className="sticky top-0 z-50 bg-[#050505]/80 backdrop-blur-md border-b border-white/5">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
         
-        {/* === ১. লোগো সেকশন (Text + Icon) === */}
+        {/* === ১. লোগো সেকশন === */}
         <div className="flex items-center gap-2 cursor-pointer group">
-          {/* লোগো আইকন */}
           <PlayCircle className="text-purple-500 fill-purple-500/20 group-hover:scale-110 transition-transform duration-300" size={28} />
           
-          {/* লোগো টেক্সট (Gradient) */}
           <h1 className="text-xl md:text-2xl font-extrabold tracking-tight">
             <span className="bg-gradient-to-r from-white via-purple-200 to-gray-400 bg-clip-text text-transparent">
-              Bengali
+              Binge
             </span>
             <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent ml-1">
-              TvSerial
+              Error
             </span>
           </h1>
         </div>
 
-        {/* === ২. সার্চ বার এবং অ্যাকশন বাটন === */}
+        {/* === ২. সার্চ এবং মেনু === */}
         <div className="flex items-center gap-2 md:gap-4">
           
           {/* Desktop Search Bar */}
@@ -47,14 +45,6 @@ const Header = ({ onMenuClick, onSearch }) => {
             onClick={() => setIsSearchOpen(!isSearchOpen)}
           >
             <Search size={20} />
-          </button>
-
-          {/* Notification / Count Badge */}
-          <button className="relative p-2 text-gray-300 hover:text-white transition group">
-            <div className="absolute -top-1 -right-1 bg-gradient-to-r from-purple-600 to-pink-600 text-[10px] font-bold text-white h-5 w-5 flex items-center justify-center rounded-full border-2 border-[#050505]">
-              27
-            </div>
-            <Bell size={22} className="group-hover:rotate-12 transition-transform" />
           </button>
 
           {/* Menu Button */}
