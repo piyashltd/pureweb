@@ -80,16 +80,6 @@ export const shows = [
     badge: null,
     detailsBadge: { text: "Watch Free", color: "#fbbf24", textColor: "#000000" }, 
     isFree: false
-  },
-  {
-    id: 'kurulus-osman', // Changed from 'ks4'
-    channelId: 'zee-bangla',
-    title: 'Kurulus test',
-    poster: 'https://ik.imagekit.io/ottstream/Ks-S4-Poster.jpg',
-    description: 'The epic struggle of Osman Bey against enemies.',
-    badge: null,
-    detailsBadge: { text: "Watch Free", color: "#fbbf24", textColor: "#000000" }, 
-    isFree: false
   }
 ];
 
