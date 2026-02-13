@@ -3,34 +3,40 @@
 // ------------------- CHANNELS -------------------
 export const channels = [
   { 
-    id: 'zee-bangla', // Changed from 'zee'
-    name: 'Zee Bangla', 
-    logo: 'https://ik.imagekit.io/ottstream/zee-bangla1.png', 
-    color: 'bg-red-600' 
-  },
-  { 
-    id: 'star-jalsha', // Changed from 'star'
-    name: 'Star Jalsha', 
-    logo: 'https://ik.imagekit.io/ottstream/star-jalsha.png', 
-    color: 'bg-orange-500' 
-  },
-  { 
-    id: 'colors-bangla', // Changed from 'colors'
-    name: 'Colors Bangla', 
-    logo: 'https://ik.imagekit.io/ottstream/colors-bangla.png', 
-    color: 'bg-indigo-600' 
-  },
-  { 
-    id: 'sun-bangla', // Changed from 'sun'
-    name: 'Sun Bangla', 
-    logo: 'https://sund-images.sunnxt.com/194388/200x200_SunBangla_194388_9c4b5c51-1554-4507-83a8-7b54f31a8967.png', 
-    color: 'bg-yellow-600' 
-  },
-  { 
     id: 'toffee-turkish', // Changed from 'toffee'
     name: 'Toffee', 
     logo: 'https://ik.imagekit.io/ottstream/toffee-logo.png', 
     color: 'bg-purple-600' 
+  },
+  { 
+    id: 'bongo', 
+    name: 'Bongo', 
+    logo: 'https://ik.imagekit.io/ottstream/bongo.png', 
+    color: 'bg-orange-500' 
+  },
+  { 
+    id: 'chorki', 
+    name: 'Chorki', 
+    logo: 'https://ik.imagekit.io/ottstream/chorki.png', 
+    color: 'bg-indigo-600' 
+  },
+  { 
+    id: 'hoichoi', 
+    name: 'Hoichoi', 
+    logo: 'https://ik.imagekit.io/ottstream/hoichoi.png', 
+    color: 'bg-yellow-600' 
+  },
+  { 
+    id: 'binge', 
+    name: 'Binge', 
+    logo: 'https://ik.imagekit.io/ottstream/binge.png', 
+    color: 'bg-yellow-600' 
+  },
+  { 
+    id: 'sonyliv', 
+    name: 'SonyLiv', 
+    logo: 'https://ik.imagekit.io/ottstream/sonyliv.png', 
+    color: 'bg-yellow-600' 
   },
 ];
 
@@ -51,7 +57,7 @@ export const sliders = [
   },
   { 
     id: 3, 
-    title: "Kurulus Osman", 
+    title: "Kurulus Osman S1", 
     image: "https://ik.imagekit.io/ottstream/Ks-S4-Poster.jpg", 
     showId: 'kurulus-osman' 
   },
