@@ -9,7 +9,7 @@ const CustomPlayer = ({ src, poster, onEnded }) => {
     const controlsTimeoutRef = useRef(null);
 
     // States
-    const [isPlaying, setIsPlaying] = useState(false); 
+    const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [progress, setProgress] = useState(0);
@@ -19,6 +19,39 @@ const CustomPlayer = ({ src, poster, onEnded }) => {
     const [qualities, setQualities] = useState([]);
     const [currentQuality, setCurrentQuality] = useState(-1);
     const [showQualityMenu, setShowQualityMenu] = useState(false);
+
+    // Fullscreen Logic Update: Handle body class for background animation
+    useEffect(() => {
+        const handleFullscreenChange = () => {
+            const fullscreenElement = document.fullscreenElement || 
+                                      document.webkitFullscreenElement || 
+                                      document.mozFullScreenElement || 
+                                      document.msFullscreenElement;
+            
+            const isActive = !!fullscreenElement;
+            setIsFullscreen(isActive);
+
+            if (isActive) {
+                document.body.classList.add('video-fullscreen-mode');
+            } else {
+                document.body.classList.remove('video-fullscreen-mode');
+            }
+        };
+
+        document.addEventListener("fullscreenchange", handleFullscreenChange);
+        document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+        document.addEventListener("mozfullscreenchange", handleFullscreenChange);
+        document.addEventListener("msfullscreenchange", handleFullscreenChange);
+
+        return () => {
+            document.removeEventListener("fullscreenchange", handleFullscreenChange);
+            document.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
+            document.removeEventListener("mozfullscreenchange", handleFullscreenChange);
+            document.removeEventListener("msfullscreenchange", handleFullscreenChange);
+            // Cleanup on unmount
+            document.body.classList.remove('video-fullscreen-mode');
+        };
+    }, []);
 
     // Media Session
     useEffect(() => {
@@ -50,7 +83,7 @@ const CustomPlayer = ({ src, poster, onEnded }) => {
                     id: index, height: level.height, bitrate: level.bitrate
                 })).reverse();
                 setQualities(levels);
-                
+
                 video.play().then(() => {
                     setIsPlaying(true);
                     startHideTimer();
@@ -59,10 +92,10 @@ const CustomPlayer = ({ src, poster, onEnded }) => {
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
             video.src = src;
             video.addEventListener('loadedmetadata', () => {
-                 video.play().then(() => {
+                video.play().then(() => {
                     setIsPlaying(true);
                     startHideTimer();
-                 }).catch(() => setIsPlaying(false));
+                }).catch(() => setIsPlaying(false));
             });
         }
 
@@ -72,7 +105,6 @@ const CustomPlayer = ({ src, poster, onEnded }) => {
             setProgress((video.currentTime / video.duration) * 100 || 0);
         };
 
-        // ✅ ভিডিও শেষ হলে প্যারেন্টকে জানানো
         const handleVideoEnd = () => {
             setIsPlaying(false);
             if (onEnded) onEnded();
@@ -80,7 +112,7 @@ const CustomPlayer = ({ src, poster, onEnded }) => {
 
         video.addEventListener('timeupdate', updateTime);
         video.addEventListener('ended', handleVideoEnd);
-        
+
         return () => {
             if (hls) hls.destroy();
             video.removeEventListener('timeupdate', updateTime);
@@ -94,7 +126,7 @@ const CustomPlayer = ({ src, poster, onEnded }) => {
         clearTimeout(controlsTimeoutRef.current);
         controlsTimeoutRef.current = setTimeout(() => {
             if (isPlaying && !showQualityMenu) setShowControls(false);
-        }, 3000); 
+        }, 3000);
     };
 
     const handleMouseMove = () => { if (showControls) startHideTimer(); };
@@ -103,13 +135,13 @@ const CustomPlayer = ({ src, poster, onEnded }) => {
     const togglePlay = (e) => {
         e?.stopPropagation();
         const video = videoRef.current;
-        if (video.paused) { video.play(); setIsPlaying(true); startHideTimer(); } 
+        if (video.paused) { video.play(); setIsPlaying(true); startHideTimer(); }
         else { video.pause(); setIsPlaying(false); setShowControls(true); clearTimeout(controlsTimeoutRef.current); }
     };
 
     const skip = (amount, e) => {
         e?.stopPropagation();
-        if(videoRef.current) { videoRef.current.currentTime += amount; setShowControls(true); startHideTimer(); }
+        if (videoRef.current) { videoRef.current.currentTime += amount; setShowControls(true); startHideTimer(); }
     };
 
     const toggleMute = (e) => {
@@ -128,13 +160,16 @@ const CustomPlayer = ({ src, poster, onEnded }) => {
         e.stopPropagation();
         if (!document.fullscreenElement) {
             await wrapperRef.current.requestFullscreen();
-            setIsFullscreen(true);
+            // Note: State update handled by event listener above
             if (screen.orientation && screen.orientation.lock) { screen.orientation.lock('landscape').catch(() => {}); }
-        } else { document.exitFullscreen(); setIsFullscreen(false); }
+        } else {
+            document.exitFullscreen();
+            // Note: State update handled by event listener above
+        }
     };
 
     const toggleQualityMenu = (e) => { e.stopPropagation(); setShowQualityMenu(!showQualityMenu); };
-    
+
     const changeQuality = (qualityId) => {
         if (hlsRef.current) { hlsRef.current.currentLevel = qualityId; setCurrentQuality(qualityId); setShowQualityMenu(false); startHideTimer(); }
     };
@@ -149,7 +184,7 @@ const CustomPlayer = ({ src, poster, onEnded }) => {
     return (
         <div ref={wrapperRef} onClick={handleScreenClick} onMouseMove={handleMouseMove} onMouseLeave={() => isPlaying && setShowControls(false)} className="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl group select-none border border-white/10" style={{ cursor: showControls ? 'default' : 'none' }}>
             <video ref={videoRef} poster={poster} className="w-full h-full object-contain" autoPlay playsInline />
-            
+
             {showQualityMenu && (
                 <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-in fade-in duration-300">
                     <div className="bg-white/10 border border-white/20 p-6 rounded-2xl shadow-2xl flex flex-wrap justify-center gap-3 max-w-[80%]" onClick={(e) => e.stopPropagation()}>
@@ -169,9 +204,9 @@ const CustomPlayer = ({ src, poster, onEnded }) => {
                 </div>
                 <div className="mt-auto p-4 w-full bg-gradient-to-t from-black/80 to-transparent" onClick={(e) => e.stopPropagation()}>
                     <div className="w-full h-1.5 bg-white/20 rounded-full mb-4 cursor-pointer group/progress relative">
-                         <div className="absolute top-0 left-0 h-full bg-brand-primary rounded-full" style={{ width: `${progress}%` }} />
-                         <input type="range" min="0" max="100" value={progress} onChange={handleSeek} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
-                         <div className="w-3.5 h-3.5 bg-white rounded-full absolute top-1/2 -translate-y-1/2 shadow-lg opacity-0 group-hover/progress:opacity-100 transition scale-100 group-hover/progress:scale-125" style={{ left: `${progress}%`, marginLeft: '-7px' }}></div>
+                        <div className="absolute top-0 left-0 h-full bg-brand-primary rounded-full" style={{ width: `${progress}%` }} />
+                        <input type="range" min="0" max="100" value={progress} onChange={handleSeek} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
+                        <div className="w-3.5 h-3.5 bg-white rounded-full absolute top-1/2 -translate-y-1/2 shadow-lg opacity-0 group-hover/progress:opacity-100 transition scale-100 group-hover/progress:scale-125" style={{ left: `${progress}%`, marginLeft: '-7px' }}></div>
                     </div>
                     <div className="flex justify-between items-center">
                         <div className="flex items-center gap-4">
