@@ -433,7 +433,7 @@ export const episodes = [
     "season": 4,
     "episodeNumber": 1,
     "title": "Kurulus Osman S04",
-    "thumbnail": "https://ik.imagekit.io/ottstream/tr:f-webp/KS-S04-E1.png",
+    "thumbnail": "https://ik.imagekit.io/ottstream/tr:f-webp/KS-S04-E01.webp",
     "date": "Aug 22, 2025",
     "duration": "38min",
     "videoUrl": ""
@@ -444,7 +444,7 @@ export const episodes = [
     "season": 4,
     "episodeNumber": 2,
     "title": "Kurulus Osman S04",
-    "thumbnail": "https://ik.imagekit.io/ottstream/tr:f-webp/KS-S04-E2.png",
+    "thumbnail": "https://ik.imagekit.io/ottstream/tr:f-webp/KS-S04-E02.png",
     "date": "Aug 23, 2025",
     "duration": "37min",
     "videoUrl": ""
@@ -455,7 +455,7 @@ export const episodes = [
     "season": 4,
     "episodeNumber": 3,
     "title": "Kurulus Osman S04",
-    "thumbnail": "https://ik.imagekit.io/ottstream/tr:f-webp/KS-S04-E3.png",
+    "thumbnail": "https://ik.imagekit.io/ottstream/tr:f-webp/KS-S04-E03.png",
     "date": "Aug 24, 2025",
     "duration": "38min",
     "videoUrl": ""
@@ -466,7 +466,7 @@ export const episodes = [
     "season": 4,
     "episodeNumber": 4,
     "title": "Kurulus Osman S04",
-    "thumbnail": "https://ik.imagekit.io/ottstream/tr:f-webp/KS-S04-E4.png",
+    "thumbnail": "https://ik.imagekit.io/ottstream/tr:f-webp/KS-S04-E04.png",
     "date": "Aug 25, 2025",
     "duration": "37min",
     "videoUrl": ""
@@ -477,7 +477,7 @@ export const episodes = [
     "season": 4,
     "episodeNumber": 5,
     "title": "Kurulus Osman S04",
-    "thumbnail": "https://ik.imagekit.io/ottstream/tr:f-webp/KS-S04-E5.png",
+    "thumbnail": "https://ik.imagekit.io/ottstream/tr:f-webp/KS-S04-E05.png",
     "date": "Aug 26, 2025",
     "duration": "38min",
     "videoUrl": ""
@@ -488,7 +488,7 @@ export const episodes = [
     "season": 4,
     "episodeNumber": 6,
     "title": "Kurulus Osman S04",
-    "thumbnail": "https://ik.imagekit.io/ottstream/tr:f-webp/KS-S04-E6.png",
+    "thumbnail": "https://ik.imagekit.io/ottstream/tr:f-webp/KS-S04-E06.png",
     "date": "Aug 27, 2025",
     "duration": "37min",
     "videoUrl": ""
@@ -499,7 +499,7 @@ export const episodes = [
     "season": 4,
     "episodeNumber": 7,
     "title": "Kurulus Osman S04",
-    "thumbnail": "https://ik.imagekit.io/ottstream/tr:f-webp/KS-S04-E7.png",
+    "thumbnail": "https://ik.imagekit.io/ottstream/tr:f-webp/KS-S04-E07.png",
     "date": "Aug 28, 2025",
     "duration": "38min",
     "videoUrl": ""
@@ -510,7 +510,7 @@ export const episodes = [
     "season": 4,
     "episodeNumber": 8,
     "title": "Kurulus Osman S04",
-    "thumbnail": "https://ik.imagekit.io/ottstream/tr:f-webp/KS-S04-E8.png",
+    "thumbnail": "https://ik.imagekit.io/ottstream/tr:f-webp/KS-S04-E08.png",
     "date": "Aug 29, 2025",
     "duration": "37min",
     "videoUrl": ""
@@ -521,7 +521,7 @@ export const episodes = [
     "season": 4,
     "episodeNumber": 9,
     "title": "Kurulus Osman S04",
-    "thumbnail": "https://ik.imagekit.io/ottstream/tr:f-webp/KS-S04-E9.png",
+    "thumbnail": "https://ik.imagekit.io/ottstream/tr:f-webp/KS-S04-E09.png",
     "date": "Aug 30, 2025",
     "duration": "38min",
     "videoUrl": ""
