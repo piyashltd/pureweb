@@ -61,3 +61,35 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* =========================================
+   Video Fullscreen Performance Fix
+   ========================================= */
+
+/* যখন ভিডিও ফুলস্ক্রিনে থাকবে, তখন বডিতে এই ক্লাসটি যুক্ত হবে */
+body.video-fullscreen-mode {
+  overflow: hidden; /* স্ক্রল বন্ধ রাখা */
+}
+
+/* ফুলস্ক্রিন অবস্থায় পেছনের ব্যাকগ্রাউন্ড এনিমেশন বন্ধ করা */
+body.video-fullscreen-mode .deep-navy-bg {
+  /* এনিমেশন বা গ্রেডিয়েন্ট সরিয়ে সলিড কালো কালার দেওয়া */
+  background: #000 !important; 
+  background-image: none !important;
+  animation: none !important;
+  
+  /* যদি কোনো pseudo-element (::before/::after) দিয়ে এনিমেশন করা থাকে */
+}
+
+body.video-fullscreen-mode .deep-navy-bg::before,
+body.video-fullscreen-mode .deep-navy-bg::after {
+  display: none !important;
+  animation: none !important;
+}
+
+/* অতিরিক্ত সুরক্ষা: ভিডিও কন্টেইনার ছাড়া বাকি সবকিছুর রেন্ডারিং কমিয়ে দেওয়া */
+body.video-fullscreen-mode *:not(:fullscreen):not(:fullscreen *) {
+  /* এটি সব ব্যাকগ্রাউন্ড প্রসেস ভিজ্যুয়ালি বন্ধ রাখে */
+  /* pointer-events: none; (অপশনাল) */
+}
+
