@@ -536,6 +536,51 @@ export const episodes = [
     "date": "Aug 31, 2025",
     "duration": "37min",
     "videoUrl": ""
+  },
+
+  {
+    "id": "kurulus-osman-s04-e11",
+    "showId": "kurulus-osman",
+    "season": 4,
+    "episodeNumber": 11,
+    "title": "Kurulus Osman S04",
+    "thumbnail": "https://ik.imagekit.io/ottstream/tr:f-webp/KS-S04-E11.png",
+    "date": "Sep 01, 2025",
+    "duration": "38min",
+    "videoUrl": ""
+  },
+  {
+    "id": "kurulus-osman-s04-e12",
+    "showId": "kurulus-osman",
+    "season": 4,
+    "episodeNumber": 12,
+    "title": "Kurulus Osman S04",
+    "thumbnail": "https://ik.imagekit.io/ottstream/tr:f-webp/KS-S04-E12.png",
+    "date": "Sep 02, 2025",
+    "duration": "37min",
+    "videoUrl": ""
+  },
+  {
+    "id": "kurulus-osman-s04-e13",
+    "showId": "kurulus-osman",
+    "season": 4,
+    "episodeNumber": 13,
+    "title": "Kurulus Osman S04",
+    "thumbnail": "https://ik.imagekit.io/ottstream/tr:f-webp/KS-S04-E13.png",
+    "date": "Sep 03, 2025",
+    "duration": "38min",
+    "videoUrl": ""
+  },
+  {
+    "id": "kurulus-osman-s04-e14",
+    "showId": "kurulus-osman",
+    "season": 4,
+    "episodeNumber": 14,
+    "title": "Kurulus Osman S04",
+    "thumbnail": "https://ik.imagekit.io/ottstream/tr:f-webp/KS-S04-E14.png",
+    "date": "Sep 04, 2025",
+    "duration": "37min",
+    "videoUrl": ""
   }
 
 ];
