@@ -80,7 +80,7 @@ export const shows = [
   {
     id: 'kurulus-osman', // Changed from 'ks4'
     channelId: 'toffee-turkish',
-    title: '',
+    title: 'Kurulus Osman',
     poster: 'https://m.media-amazon.com/images/M/MV5BNmJhY2RmYzQtYWFkNi00YzU4LTk2NzEtMzM1OGRhM2MyYzc1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg',
     description: 'The series focuses on the life of Osman Bey, the son of Ertugrul Gazi and the founder of the Ottoman Empire.',
     badge: null,
@@ -90,7 +90,7 @@ export const shows = [
   {
     id: 'dirilis-ertugrul', // Changed from 'ks4'
     channelId: 'toffee-turkish',
-    title: '',
+    title: 'Dirilis Ertugrul',
     poster: 'https://m.media-amazon.com/images/M/MV5BYjllOTc4OTctY2E4MC00YTM3LTlkZGUtMDZiZTE2YzBmOWIyXkEyXkFqcGc@._V1_FMjpg_UX640_.jpg',
     description: 'The heroic story of Ertugrul Ghazi, the father of Osman (Uthman) who founded the Ottoman Empire.',
     badge: null,
