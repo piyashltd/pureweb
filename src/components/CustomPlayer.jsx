@@ -20,7 +20,7 @@ const CustomPlayer = ({ src, poster, onEnded }) => {
     const [currentQuality, setCurrentQuality] = useState(-1);
     const [showQualityMenu, setShowQualityMenu] = useState(false);
 
-    // Fullscreen Logic Update: Handle body class for background animation
+    // Fullscreen Logic
     useEffect(() => {
         const handleFullscreenChange = () => {
             const fullscreenElement = document.fullscreenElement || 
@@ -48,7 +48,6 @@ const CustomPlayer = ({ src, poster, onEnded }) => {
             document.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
             document.removeEventListener("mozfullscreenchange", handleFullscreenChange);
             document.removeEventListener("msfullscreenchange", handleFullscreenChange);
-            // Cleanup on unmount
             document.body.classList.remove('video-fullscreen-mode');
         };
     }, []);
@@ -61,18 +60,41 @@ const CustomPlayer = ({ src, poster, onEnded }) => {
                 title: detectedTitle,
                 artwork: [{ src: poster, sizes: '512x512', type: 'image/jpeg' }]
             });
-            navigator.mediaSession.setActionHandler('play', () => videoRef.current.play());
-            navigator.mediaSession.setActionHandler('pause', () => videoRef.current.pause());
+            navigator.mediaSession.setActionHandler('play', () => videoRef.current?.play());
+            navigator.mediaSession.setActionHandler('pause', () => videoRef.current?.pause());
             navigator.mediaSession.setActionHandler('seekbackward', () => skip(-10));
             navigator.mediaSession.setActionHandler('seekforward', () => skip(10));
         }
     }, [src, poster]);
 
+    // Main Video Logic (Updated for MP4 + HLS)
     useEffect(() => {
         const video = videoRef.current;
         let hls;
 
-        if (Hls.isSupported() && src) {
+        // Reset states when source changes
+        setIsPlaying(false);
+        setQualities([]);
+        setCurrentQuality(-1);
+        setShowQualityMenu(false);
+
+        if (!src) return;
+
+        // Check if the source is HLS (.m3u8)
+        const isHLS = src.includes('.m3u8') || src.includes('application/x-mpegURL');
+
+        const playVideo = () => {
+            video.play().then(() => {
+                setIsPlaying(true);
+                startHideTimer();
+            }).catch((error) => {
+                console.log("Autoplay prevented:", error);
+                setIsPlaying(false);
+            });
+        };
+
+        if (isHLS && Hls.isSupported()) {
+            // Case 1: HLS is supported via hls.js
             hls = new Hls();
             hlsRef.current = hls;
             hls.loadSource(src);
@@ -83,20 +105,22 @@ const CustomPlayer = ({ src, poster, onEnded }) => {
                     id: index, height: level.height, bitrate: level.bitrate
                 })).reverse();
                 setQualities(levels);
+                playVideo();
+            });
 
-                video.play().then(() => {
-                    setIsPlaying(true);
-                    startHideTimer();
-                }).catch(() => setIsPlaying(false));
+            hls.on(Hls.Events.ERROR, (event, data) => {
+                console.error("HLS Error:", data);
             });
-        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+
+        } else if (isHLS && video.canPlayType('application/vnd.apple.mpegurl')) {
+            // Case 2: Native HLS support (Safari)
             video.src = src;
-            video.addEventListener('loadedmetadata', () => {
-                video.play().then(() => {
-                    setIsPlaying(true);
-                    startHideTimer();
-                }).catch(() => setIsPlaying(false));
-            });
+            video.addEventListener('loadedmetadata', playVideo);
+        } else {
+            // Case 3: Direct File (MP4, WebM, etc.)
+            video.src = src;
+            video.load(); // Ensure the new source is loaded
+            video.addEventListener('loadedmetadata', playVideo);
         }
 
         const updateTime = () => {
@@ -117,6 +141,7 @@ const CustomPlayer = ({ src, poster, onEnded }) => {
             if (hls) hls.destroy();
             video.removeEventListener('timeupdate', updateTime);
             video.removeEventListener('ended', handleVideoEnd);
+            video.removeEventListener('loadedmetadata', playVideo);
             clearTimeout(controlsTimeoutRef.current);
         };
     }, [src]);
@@ -135,24 +160,40 @@ const CustomPlayer = ({ src, poster, onEnded }) => {
     const togglePlay = (e) => {
         e?.stopPropagation();
         const video = videoRef.current;
-        if (video.paused) { video.play(); setIsPlaying(true); startHideTimer(); }
-        else { video.pause(); setIsPlaying(false); setShowControls(true); clearTimeout(controlsTimeoutRef.current); }
+        if (video.paused) { 
+            video.play(); 
+            setIsPlaying(true); 
+            startHideTimer(); 
+        } else { 
+            video.pause(); 
+            setIsPlaying(false); 
+            setShowControls(true); 
+            clearTimeout(controlsTimeoutRef.current); 
+        }
     };
 
     const skip = (amount, e) => {
         e?.stopPropagation();
-        if (videoRef.current) { videoRef.current.currentTime += amount; setShowControls(true); startHideTimer(); }
+        if (videoRef.current) { 
+            videoRef.current.currentTime += amount; 
+            setShowControls(true); 
+            startHideTimer(); 
+        }
     };
 
     const toggleMute = (e) => {
-        e.stopPropagation(); videoRef.current.muted = !videoRef.current.muted; setIsMuted(videoRef.current.muted);
+        e.stopPropagation(); 
+        videoRef.current.muted = !videoRef.current.muted; 
+        setIsMuted(videoRef.current.muted);
     };
 
     const handleSeek = (e) => {
         e.stopPropagation();
         const manualChange = Number(e.target.value);
-        videoRef.current.currentTime = (videoRef.current.duration / 100) * manualChange;
-        setProgress(manualChange);
+        if(videoRef.current.duration) {
+            videoRef.current.currentTime = (videoRef.current.duration / 100) * manualChange;
+            setProgress(manualChange);
+        }
         startHideTimer();
     };
 
@@ -160,32 +201,54 @@ const CustomPlayer = ({ src, poster, onEnded }) => {
         e.stopPropagation();
         if (!document.fullscreenElement) {
             await wrapperRef.current.requestFullscreen();
-            // Note: State update handled by event listener above
-            if (screen.orientation && screen.orientation.lock) { screen.orientation.lock('landscape').catch(() => {}); }
+            if (window.screen.orientation && window.screen.orientation.lock) { 
+                window.screen.orientation.lock('landscape').catch(() => {}); 
+            }
         } else {
             document.exitFullscreen();
-            // Note: State update handled by event listener above
         }
     };
 
-    const toggleQualityMenu = (e) => { e.stopPropagation(); setShowQualityMenu(!showQualityMenu); };
+    const toggleQualityMenu = (e) => { 
+        e.stopPropagation(); 
+        if (qualities.length > 0) {
+            setShowQualityMenu(!showQualityMenu); 
+        }
+    };
 
     const changeQuality = (qualityId) => {
-        if (hlsRef.current) { hlsRef.current.currentLevel = qualityId; setCurrentQuality(qualityId); setShowQualityMenu(false); startHideTimer(); }
+        if (hlsRef.current) { 
+            hlsRef.current.currentLevel = qualityId; 
+            setCurrentQuality(qualityId); 
+            setShowQualityMenu(false); 
+            startHideTimer(); 
+        }
     };
 
     const formatTime = (time) => {
-        if (!time) return "0:00";
+        if (!time || isNaN(time)) return "0:00";
         const minutes = Math.floor(time / 60);
         const seconds = Math.floor(time % 60);
         return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     };
 
     return (
-        <div ref={wrapperRef} onClick={handleScreenClick} onMouseMove={handleMouseMove} onMouseLeave={() => isPlaying && setShowControls(false)} className="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl group select-none border border-white/10" style={{ cursor: showControls ? 'default' : 'none' }}>
-            <video ref={videoRef} poster={poster} className="w-full h-full object-contain" autoPlay playsInline />
+        <div 
+            ref={wrapperRef} 
+            onClick={handleScreenClick} 
+            onMouseMove={handleMouseMove} 
+            onMouseLeave={() => isPlaying && setShowControls(false)} 
+            className="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl group select-none border border-white/10" 
+            style={{ cursor: showControls ? 'default' : 'none' }}
+        >
+            <video 
+                ref={videoRef} 
+                poster={poster} 
+                className="w-full h-full object-contain" 
+                playsInline 
+            />
 
-            {showQualityMenu && (
+            {showQualityMenu && qualities.length > 0 && (
                 <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-in fade-in duration-300">
                     <div className="bg-white/10 border border-white/20 p-6 rounded-2xl shadow-2xl flex flex-wrap justify-center gap-3 max-w-[80%]" onClick={(e) => e.stopPropagation()}>
                         <button onClick={() => changeQuality(-1)} className={`px-5 py-2 rounded-lg text-sm font-bold tracking-wide transition transform hover:scale-105 ${currentQuality === -1 ? 'bg-brand-primary text-white shadow-lg' : 'bg-black/40 text-gray-300 hover:bg-white/20'}`}>AUTO</button>
@@ -214,7 +277,10 @@ const CustomPlayer = ({ src, poster, onEnded }) => {
                             <span className="text-xs font-semibold text-gray-200 tracking-wide">{formatTime(currentTime)} / {formatTime(duration)}</span>
                         </div>
                         <div className="flex items-center gap-5">
-                            <button onClick={toggleQualityMenu} className={`text-white/80 hover:text-white transition transform ${showQualityMenu ? 'rotate-90 text-brand-primary' : ''}`}><Settings size={22} /></button>
+                            {/* Only show Settings icon if qualities are available (HLS) */}
+                            {qualities.length > 0 && (
+                                <button onClick={toggleQualityMenu} className={`text-white/80 hover:text-white transition transform ${showQualityMenu ? 'rotate-90 text-brand-primary' : ''}`}><Settings size={22} /></button>
+                            )}
                             <button onClick={toggleFullScreen} className="text-white/80 hover:text-white transition hover:scale-110">{isFullscreen ? <Minimize size={22} /> : <Maximize size={22} />}</button>
                         </div>
                     </div>
