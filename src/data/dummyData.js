@@ -457,7 +457,7 @@ export const episodes = [
     "thumbnail": "https://ik.imagekit.io/ottstream/tr:f-webp/KS-S04-E02.png",
     "date": "Aug 23, 2025",
     "duration": "37min",
-    "videoUrl": ""
+    "videoUrl": "https://archive.org/download/telegram-bot-upload-1764264432/Test%20file.mp4"
   },
   {
     "id": "kurulus-osman-s04-e03",
