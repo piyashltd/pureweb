@@ -446,7 +446,7 @@ export const episodes = [
     "thumbnail": "https://ik.imagekit.io/ottstream/tr:f-webp/KS-S04-E01.webp",
     "date": "Aug 22, 2025",
     "duration": "38min",
-    "videoUrl": ""
+    "videoUrl": "https://pub-d572b99c0cef489bbbee1e244303b4c2.r2.dev/d0dec32f-d0b8-4f19-a6c4-846a52970f8c.mp4"
   },
   {
     "id": "kurulus-osman-s04-e02",
