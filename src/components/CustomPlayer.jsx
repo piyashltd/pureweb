@@ -7,6 +7,7 @@ const CustomPlayer = ({ src, poster, onEnded }) => {
     const wrapperRef = useRef(null);
     const hlsRef = useRef(null);
     const controlsTimeoutRef = useRef(null);
+    const isDragging = useRef(false); // New Ref for fix
 
     // States
     const [isPlaying, setIsPlaying] = useState(false);
@@ -27,27 +28,14 @@ const CustomPlayer = ({ src, poster, onEnded }) => {
                                       document.webkitFullscreenElement || 
                                       document.mozFullScreenElement || 
                                       document.msFullscreenElement;
-            
-            const isActive = !!fullscreenElement;
-            setIsFullscreen(isActive);
-
-            if (isActive) {
-                document.body.classList.add('video-fullscreen-mode');
-            } else {
-                document.body.classList.remove('video-fullscreen-mode');
-            }
+            setIsFullscreen(!!fullscreenElement);
+            if (!!fullscreenElement) document.body.classList.add('video-fullscreen-mode');
+            else document.body.classList.remove('video-fullscreen-mode');
         };
 
         document.addEventListener("fullscreenchange", handleFullscreenChange);
-        document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
-        document.addEventListener("mozfullscreenchange", handleFullscreenChange);
-        document.addEventListener("msfullscreenchange", handleFullscreenChange);
-
         return () => {
             document.removeEventListener("fullscreenchange", handleFullscreenChange);
-            document.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
-            document.removeEventListener("mozfullscreenchange", handleFullscreenChange);
-            document.removeEventListener("msfullscreenchange", handleFullscreenChange);
             document.body.classList.remove('video-fullscreen-mode');
         };
     }, []);
@@ -67,20 +55,21 @@ const CustomPlayer = ({ src, poster, onEnded }) => {
         }
     }, [src, poster]);
 
-    // Main Video Logic (Updated for MP4 + HLS)
+    // Video Logic
     useEffect(() => {
         const video = videoRef.current;
         let hls;
 
-        // Reset states when source changes
         setIsPlaying(false);
         setQualities([]);
         setCurrentQuality(-1);
         setShowQualityMenu(false);
+        // Reset progress on new video load
+        setProgress(0);
+        setCurrentTime(0);
 
         if (!src) return;
 
-        // Check if the source is HLS (.m3u8)
         const isHLS = src.includes('.m3u8') || src.includes('application/x-mpegURL');
 
         const playVideo = () => {
@@ -94,12 +83,10 @@ const CustomPlayer = ({ src, poster, onEnded }) => {
         };
 
         if (isHLS && Hls.isSupported()) {
-            // Case 1: HLS is supported via hls.js
             hls = new Hls();
             hlsRef.current = hls;
             hls.loadSource(src);
             hls.attachMedia(video);
-
             hls.on(Hls.Events.MANIFEST_PARSED, (event, data) => {
                 const levels = data.levels.map((level, index) => ({
                     id: index, height: level.height, bitrate: level.bitrate
@@ -107,23 +94,19 @@ const CustomPlayer = ({ src, poster, onEnded }) => {
                 setQualities(levels);
                 playVideo();
             });
-
-            hls.on(Hls.Events.ERROR, (event, data) => {
-                console.error("HLS Error:", data);
-            });
-
         } else if (isHLS && video.canPlayType('application/vnd.apple.mpegurl')) {
-            // Case 2: Native HLS support (Safari)
             video.src = src;
             video.addEventListener('loadedmetadata', playVideo);
         } else {
-            // Case 3: Direct File (MP4, WebM, etc.)
             video.src = src;
-            video.load(); // Ensure the new source is loaded
+            video.load();
             video.addEventListener('loadedmetadata', playVideo);
         }
 
         const updateTime = () => {
+            // FIX: Don't update progress if user is dragging
+            if (isDragging.current) return;
+
             setCurrentTime(video.currentTime);
             setDuration(video.duration || 0);
             setProgress((video.currentTime / video.duration) * 100 || 0);
@@ -187,15 +170,35 @@ const CustomPlayer = ({ src, poster, onEnded }) => {
         setIsMuted(videoRef.current.muted);
     };
 
-    const handleSeek = (e) => {
-        e.stopPropagation();
+    // --- FIX: UPDATED SEEK LOGIC START ---
+    const handleSeekMouseDown = () => {
+        isDragging.current = true;
+    };
+
+    const handleSeekChange = (e) => {
         const manualChange = Number(e.target.value);
-        if(videoRef.current.duration) {
-            videoRef.current.currentTime = (videoRef.current.duration / 100) * manualChange;
-            setProgress(manualChange);
+        setProgress(manualChange); // Update visual slider instantly
+        
+        // Update the time numbers instantly while dragging
+        if (duration) {
+            setCurrentTime((duration / 100) * manualChange);
         }
+    };
+
+    const handleSeekMouseUp = (e) => {
+        const manualChange = Number(e.target.value);
+        if (videoRef.current && videoRef.current.duration) {
+            videoRef.current.currentTime = (videoRef.current.duration / 100) * manualChange;
+        }
+        
+        // Slight delay before re-enabling auto-update to prevent jumping
+        setTimeout(() => {
+            isDragging.current = false;
+        }, 100);
+        
         startHideTimer();
     };
+    // --- FIX: UPDATED SEEK LOGIC END ---
 
     const toggleFullScreen = async (e) => {
         e.stopPropagation();
@@ -211,9 +214,7 @@ const CustomPlayer = ({ src, poster, onEnded }) => {
 
     const toggleQualityMenu = (e) => { 
         e.stopPropagation(); 
-        if (qualities.length > 0) {
-            setShowQualityMenu(!showQualityMenu); 
-        }
+        if (qualities.length > 0) setShowQualityMenu(!showQualityMenu); 
     };
 
     const changeQuality = (qualityId) => {
@@ -241,12 +242,7 @@ const CustomPlayer = ({ src, poster, onEnded }) => {
             className="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl group select-none border border-white/10" 
             style={{ cursor: showControls ? 'default' : 'none' }}
         >
-            <video 
-                ref={videoRef} 
-                poster={poster} 
-                className="w-full h-full object-contain" 
-                playsInline 
-            />
+            <video ref={videoRef} poster={poster} className="w-full h-full object-contain" playsInline />
 
             {showQualityMenu && qualities.length > 0 && (
                 <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-in fade-in duration-300">
@@ -268,7 +264,21 @@ const CustomPlayer = ({ src, poster, onEnded }) => {
                 <div className="mt-auto p-4 w-full bg-gradient-to-t from-black/80 to-transparent" onClick={(e) => e.stopPropagation()}>
                     <div className="w-full h-1.5 bg-white/20 rounded-full mb-4 cursor-pointer group/progress relative">
                         <div className="absolute top-0 left-0 h-full bg-brand-primary rounded-full" style={{ width: `${progress}%` }} />
-                        <input type="range" min="0" max="100" value={progress} onChange={handleSeek} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
+                        
+                        {/* FIX: UPDATED INPUT RANGE */}
+                        <input 
+                            type="range" 
+                            min="0" 
+                            max="100" 
+                            value={progress} 
+                            onMouseDown={handleSeekMouseDown}
+                            onTouchStart={handleSeekMouseDown}
+                            onChange={handleSeekChange}
+                            onMouseUp={handleSeekMouseUp}
+                            onTouchEnd={handleSeekMouseUp}
+                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" 
+                        />
+                        
                         <div className="w-3.5 h-3.5 bg-white rounded-full absolute top-1/2 -translate-y-1/2 shadow-lg opacity-0 group-hover/progress:opacity-100 transition scale-100 group-hover/progress:scale-125" style={{ left: `${progress}%`, marginLeft: '-7px' }}></div>
                     </div>
                     <div className="flex justify-between items-center">
@@ -277,7 +287,6 @@ const CustomPlayer = ({ src, poster, onEnded }) => {
                             <span className="text-xs font-semibold text-gray-200 tracking-wide">{formatTime(currentTime)} / {formatTime(duration)}</span>
                         </div>
                         <div className="flex items-center gap-5">
-                            {/* Only show Settings icon if qualities are available (HLS) */}
                             {qualities.length > 0 && (
                                 <button onClick={toggleQualityMenu} className={`text-white/80 hover:text-white transition transform ${showQualityMenu ? 'rotate-90 text-brand-primary' : ''}`}><Settings size={22} /></button>
                             )}
