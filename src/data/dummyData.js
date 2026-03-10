@@ -102,6 +102,50 @@ export const shows = [
 
 // ------------------- EPISODES -------------------
 export const episodes = [
+  {
+    "id": "chiroshokha-s01-e405",
+    "showId": "chiroshokha",
+    "season": 1,
+    "episodeNumber": 405,
+    "title": "Chiroshokha S01",
+    "thumbnail": "https://image.mux.com/72xmdMz5uyTG54LJGUf3aSa8ZKfX7cjpjSiThJxYaj00/thumbnail.jpg",
+    "date": "Mar 10, 2026",
+    "duration": "20min",
+    "videoUrl": "https://stream.mux.com/72xmdMz5uyTG54LJGUf3aSa8ZKfX7cjpjSiThJxYaj00.m3u8"
+  },
+  {
+    "id": "grihoprobesh-s01-e451",
+    "showId": "grihoprobesh",
+    "season": 1,
+    "episodeNumber": 451,
+    "title": "Grihoprobesh S01",
+    "thumbnail": "https://image.mux.com/As8z2bQH8nxTBwoKE02pBgElkenFbHwckJtJLXOyL022A/thumbnail.jpg",
+    "date": "Mar 10, 2026",
+    "duration": "20min",
+    "videoUrl": "https://stream.mux.com/As8z2bQH8nxTBwoKE02pBgElkenFbHwckJtJLXOyL022A.m3u8"
+  },
+  {
+    "id": "milon-hobe-kotodine-s01-e96",
+    "showId": "milon-hobe-kotodine",
+    "season": 1,
+    "episodeNumber": 96,
+    "title": "Milon Hobe Kotodine S01",
+    "thumbnail": "https://image.mux.com/MxFUIWEOATjHh7erwytT02cFVhVJ9AZwL3Qslo7WRnaI/thumbnail.jpg",
+    "date": "Mar 10, 2026",
+    "duration": "24min",
+    "videoUrl": "https://stream.mux.com/MxFUIWEOATjHh7erwytT02cFVhVJ9AZwL3Qslo7WRnaI.m3u8"
+  },
+  {
+    "id": "sudhu-tomari-jonyo-s01-e21",
+    "showId": "sudhu-tomari-jonyo",
+    "season": 1,
+    "episodeNumber": 21,
+    "title": "Sudhu Tomari Jonyo S01",
+    "thumbnail": "https://image.mux.com/Qp7HMbw7uIo4C6joPfYaQN702O7fCXPfdRjmUXAmyVjk/thumbnail.jpg",
+    "date": "Mar 10, 2026",
+    "duration": "24min",
+    "videoUrl": "https://stream.mux.com/Qp7HMbw7uIo4C6joPfYaQN702O7fCXPfdRjmUXAmyVjk.m3u8"
+  },
   // --- Kurulus Osman Episodes ---,
 
   {
