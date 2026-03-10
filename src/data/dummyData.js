@@ -74,7 +74,38 @@ export const sliders = [
 export const shows = [
   // 1. Zee Bangla Show
    //<>
-  
+  ,{
+    id: 'chiroshokha',
+    channelId: 'sonyliv',
+    title: 'Chiroshokha',
+    poster: 'https://image.mux.com/72xmdMz5uyTG54LJGUf3aSa8ZKfX7cjpjSiThJxYaj00/thumbnail.jpg',
+    description: 'একটি রোমান্টিক ড্রামা সিরিজ।',
+    isFree: true
+  },
+  {
+    id: 'grihoprobesh',
+    channelId: 'chorki',
+    title: 'Grihoprobesh',
+    poster: 'https://image.mux.com/As8z2bQH8nxTBwoKE02pBgElkenFbHwckJtJLXOyL022A/thumbnail.jpg',
+    description: 'পারিবারিক গল্পের একটি সিরিয়াল।',
+    isFree: true
+  },
+  {
+    id: 'milon-hobe-kotodine',
+    channelId: 'bongo',
+    title: 'Milon Hobe Kotodine',
+    poster: 'https://image.mux.com/MxFUIWEOATjHh7erwytT02cFVhVJ9AZwL3Qslo7WRnaI/thumbnail.jpg',
+    description: 'হারিয়ে যাওয়া সম্পর্কের গল্প।',
+    isFree: true
+  },
+  {
+    id: 'sudhu-tomari-jonyo',
+    channelId: 'hoichoi',
+    title: 'Sudhu Tomari Jonyo',
+    poster: 'https://image.mux.com/Qp7HMbw7uIo4C6joPfYaQN702O7fCXPfdRjmUXAmyVjk/thumbnail.jpg',
+    description: 'নতুন প্রজন্মের ভালোবাসার কাহিনী।',
+    isFree: true
+  },
   // 2. Colors Bangla Show
   // 3. Toffee / Turkish Show
   {
