@@ -79,6 +79,28 @@ export const shows = [
 // ------------------- EPISODES -------------------
 export const episodes = [
   {
+    "id": "bholebaba-paar-karega-s02-e175",
+    "showId": "bholebaba-paar-karega",
+    "season": 2,
+    "episodeNumber": 175,
+    "title": "Bholebaba Paar Karega S02",
+    "thumbnail": "https://image.mux.com/rxv3Q200p8HOoPO01uRLRFNBvg00ATwff101i02wsZHoXpcg/thumbnail.jpg",
+    "date": "12 Nov 2026",
+    "duration": "23min",
+    "videoUrl": "https://stream.mux.com/rxv3Q200p8HOoPO01uRLRFNBvg00ATwff101i02wsZHoXpcg.m3u8"
+  },
+  {
+    "id": "compass-s01-e198",
+    "showId": "compass",
+    "season": 1,
+    "episodeNumber": 198,
+    "title": "Compass S01",
+    "thumbnail": "https://image.mux.com/l5ZffsqGW2iH8KeZ5SWYon004k8aBdOn46xlOPiDuURQ/thumbnail.jpg",
+    "date": "12 Nov 2026",
+    "duration": "20min",
+    "videoUrl": "https://stream.mux.com/l5ZffsqGW2iH8KeZ5SWYon004k8aBdOn46xlOPiDuURQ.m3u8"
+  },
+  {
     id: "chiroshokha-s01-e405",
     showId: "chiroshokha",
     season: 1,
