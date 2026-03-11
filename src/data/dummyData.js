@@ -79,6 +79,17 @@ export const shows = [
 // ------------------- EPISODES -------------------
 export const episodes = [
   {
+    "id": "tumi-chherona-haat-pothe-s01-e154",
+    "showId": "tumi-chherona-haat-pothe",
+    "season": 1,
+    "episodeNumber": 154,
+    "title": "Tumi Chherona Haat Pothe S01",
+    "thumbnail": "https://image.mux.com/5fVcMhjrFfWL82V8YhZAcIG01NTwOModkH1yJvrLf38M/thumbnail.jpg",
+    "date": "10 Mar 2026",
+    "duration": "114min",
+    "videoUrl": "https://stream.mux.com/5fVcMhjrFfWL82V8YhZAcIG01NTwOModkH1yJvrLf38M.m3u8"
+  },
+  {
     "id": "bholebaba-paar-karega-s02-e175",
     "showId": "bholebaba-paar-karega",
     "season": 2,
