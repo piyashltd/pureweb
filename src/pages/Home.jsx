@@ -80,19 +80,19 @@ const Home = () => {
 
       <ContentSection 
         title="Zee Bangla" 
-        data={getShowsByChannel('zee-bangla')} 
+        data={getShowsByChannel('zee5')} 
         type="show" 
       />
 
        <ContentSection 
         title="Star Jalsha" 
-        data={getShowsByChannel('star-jalsha')} 
+        data={getShowsByChannel('jiohotstar')} 
         type="show" 
       />
       
       <ContentSection 
-        title="Sun Bangla" 
-        data={getShowsByChannel('sun-bangla')} 
+        title="Bongo Exclusive" 
+        data={getShowsByChannel('bongo')} 
         type="show" 
       />
       
