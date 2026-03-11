@@ -3,11 +3,13 @@
 // ------------------- CHANNELS -------------------
 export const channels = [
   { id: 'toffee-turkish', name: 'Toffee', logo: 'https://ik.imagekit.io/ottstream/toffee-logo.png', color: 'bg-purple-600' },
+  { id: 'jiohotstar', name: 'JioHotstar', logo: 'https://i.ibb.co/4nZvqSwF/20260311-064050.png', color: 'bg-orange-500' },
+  { id: 'zee5', name: 'Zee5', logo: 'https://i.ibb.co/Kc7j6qsk/20260311-064212.png', color: 'bg-orange-500' },
   { id: 'bongo', name: 'Bongo', logo: 'https://ik.imagekit.io/ottstream/bongo.png', color: 'bg-orange-500' },
   { id: 'chorki', name: 'Chorki', logo: 'https://ik.imagekit.io/ottstream/chorki.png', color: 'bg-indigo-600' },
   { id: 'hoichoi', name: 'Hoichoi', logo: 'https://ik.imagekit.io/ottstream/hoichoi.png', color: 'bg-yellow-600' },
   { id: 'binge', name: 'Binge', logo: 'https://ik.imagekit.io/ottstream/binge.png', color: 'bg-yellow-600' },
-  { id: 'sonyliv', name: 'SonyLiv', logo: 'https://ik.imagekit.io/ottstream/sonyliv.png', color: 'bg-yellow-600' },
+  { id: 'sonyliv', name: 'SonyLiv', logo: 'https://i.ibb.co/DgtNWtHv/20260311-064353.png', color: 'bg-yellow-600' },
 ];
 
 // ------------------- HERO SLIDER -------------------
