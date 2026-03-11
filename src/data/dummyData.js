@@ -37,44 +37,172 @@ export const sliders = [
 // ------------------- SHOWS / SERIALS -------------------
 export const shows = [
   {
-    id: 'chiroshokha',
-    channelId: 'sonyliv',
-    title: 'Chiroshokha',
-    poster: 'https://image.mux.com/72xmdMz5uyTG54LJGUf3aSa8ZKfX7cjpjSiThJxYaj00/thumbnail.jpg',
-    description: 'একটি রোমান্টিক ড্রামা সিরিজ।',
-    isFree: true
+    id: 'tumi-chherona-haat-pothe',
+    channelId: 'jiohotstar',
+    title: 'Tumi Chherona Haat Pothe',
+    poster: ''
+  },
+  {
+    id: 'behula',
+    channelId: 'jiohotstar',
+    title: 'Behula',
+    poster: ''
+  },
+  {
+    id: 'nishir-daak',
+    channelId: 'jiohotstar',
+    title: 'Nishir Daak',
+    poster: ''
+  },
+  {
+    id: 'sadhok-bamakhyapa',
+    channelId: 'jiohotstar',
+    title: 'Sadhok Bamakhyapa',
+    poster: ''
+  },
+  {
+    id: 'bholebaba-paar-karega',
+    channelId: 'jiohotstar',
+    title: 'Bholebaba Paar Karega',
+    poster: ''
+  },
+  {
+    id: 'compass',
+    channelId: 'jiohotstar',
+    title: 'Compass',
+    poster: ''
+  },
+  {
+    id: 'lokkhi-jhnapi',
+    channelId: 'jiohotstar',
+    title: 'Lokkhi Jhnapi',
+    poster: ''
+  },
+  {
+    id: 'o-mor-dorodiya',
+    channelId: 'jiohotstar',
+    title: 'O Mor Dorodiya',
+    poster: ''
   },
   {
     id: 'grihoprobesh',
-    channelId: 'chorki',
+    channelId: 'jiohotstar',
     title: 'Grihoprobesh',
-    poster: 'https://image.mux.com/As8z2bQH8nxTBwoKE02pBgElkenFbHwckJtJLXOyL022A/thumbnail.jpg',
-    description: 'পারিবারিক গল্পের একটি সিরিয়াল।',
-    isFree: true
-  },
-  {
-    id: 'milon-hobe-kotodine',
-    channelId: 'bongo',
-    title: 'Milon Hobe Kotodine',
-    poster: 'https://image.mux.com/MxFUIWEOATjHh7erwytT02cFVhVJ9AZwL3Qslo7WRnaI/thumbnail.jpg',
-    description: 'হারিয়ে যাওয়া সম্পর্কের গল্প।',
-    isFree: true
+    poster: ''
   },
   {
     id: 'sudhu-tomari-jonyo',
-    channelId: 'hoichoi',
+    channelId: 'jiohotstar',
     title: 'Sudhu Tomari Jonyo',
-    poster: 'https://image.mux.com/Qp7HMbw7uIo4C6joPfYaQN702O7fCXPfdRjmUXAmyVjk/thumbnail.jpg',
-    description: 'নতুন প্রজন্মের ভালোবাসার কাহিনী।',
-    isFree: true
+    poster: ''
+  },
+  {
+    id: 'chiroshokha',
+    channelId: 'jiohotstar',
+    title: 'Chiroshokha',
+    poster: ''
+  },
+  {
+    id: 'rannaghar',
+    channelId: 'zee5',
+    title: 'Rannaghar',
+    poster: ''
+  },
+  {
+    id: 'didi-no-1-season-9',
+    channelId: 'zee5',
+    title: 'Didi No 1 Season 9',
+    poster: ''
+  },
+  {
+    id: 'milon-hobe-kotodine',
+    channelId: 'jiohotstar',
+    title: 'Milon Hobe Kotodine',
+    poster: ''
+  },
+  {
+    id: 'tui-amaar-hero',
+    channelId: 'zee5',
+    title: 'Tui Amaar Hero',
+    poster: ''
+  },
+  {
+    id: 'chirodini-tumi-je-amar',
+    channelId: 'zee5',
+    title: 'Chirodini Tumi Je Amar',
+    poster: ''
+  },
+  {
+    id: 'besh-korechhi-prem-korechhi',
+    channelId: 'zee5',
+    title: 'Besh Korechhi Prem Korechhi',
+    poster: ''
+  },
+  {
+    id: 'gangaa',
+    channelId: 'jiohotstar',
+    title: 'Gangaa',
+    poster: ''
+  },
+  {
+    id: 'parashuram-ajker-nayok',
+    channelId: 'jiohotstar',
+    title: 'Parashuram Ajker Nayok',
+    poster: ''
+  },
+  {
+    id: 'rangamoti-tirandaj',
+    channelId: 'jiohotstar',
+    title: 'Rangamoti Tirandaj',
+    poster: ''
+  },
+  {
+    id: 'kusum',
+    channelId: 'zee5',
+    title: 'Kusum',
+    poster: ''
+  },
+  {
+    id: 'tare-dhori-dhori-mone-kori',
+    channelId: 'zee5',
+    title: 'Tare Dhori Dhori Mone Kori',
+    poster: ''
+  },
+  {
+    id: 'parineeta',
+    channelId: 'zee5',
+    title: 'Parineeta',
+    poster: ''
+  },
+  {
+    id: 'jowar-bhanta',
+    channelId: 'zee5',
+    title: 'Jowar Bhanta',
+    poster: ''
+  },
+  {
+    id: 'professor-bidya-banerjee',
+    channelId: 'jiohotstar',
+    title: 'Professor Bidya Banerjee',
+    poster: ''
+  },
+  {
+    id: 'kone-dekhaa-alo',
+    channelId: 'zee5',
+    title: 'Kone Dekhaa Alo',
+    poster: ''
+  },
+  {
+    id: 'anondi',
+    channelId: 'zee5',
+    title: 'Anondi',
+    poster: ''
   },
   {
     id: 'kurulus-osman',
     channelId: 'toffee-turkish',
     title: 'Kurulus Osman',
-    poster: 'https://m.media-amazon.com/images/M/MV5BNmJhY2RmYzQtYWFkNi00YzU4LTk2NzEtMzM1OGRhM2MyYzc1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg',
-    description: 'The series focuses on the life of Osman Bey.',
-    isFree: false
+    poster: ''
   }
 ];
 
