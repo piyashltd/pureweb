@@ -142,19 +142,19 @@ export const shows = [
     id: 'gangaa',
     channelId: 'jiohotstar',
     title: 'Gangaa',
-    poster: ''
+    poster: 'https://img10.hotstar.com/image/upload/f_auto,q_auto/sources/r1/cms/prod/9958/1772452099958-i'
   },
   {
     id: 'parashuram-ajker-nayok',
     channelId: 'jiohotstar',
     title: 'Parashuram Ajker Nayok',
-    poster: ''
+    poster: 'https://img10.hotstar.com/image/upload/f_auto,q_auto/sources/r1/cms/prod/5724/1741362245724-i'
   },
   {
     id: 'rangamoti-tirandaj',
     channelId: 'jiohotstar',
     title: 'Rangamoti Tirandaj',
-    poster: ''
+    poster: 'https://img10.hotstar.com/image/upload/f_auto,q_auto/sources/r1/cms/prod/3931/1736862803931-i'
   },
   {
     id: 'kusum',
@@ -166,43 +166,43 @@ export const shows = [
     id: 'tare-dhori-dhori-mone-kori',
     channelId: 'zee5',
     title: 'Tare Dhori Dhori Mone Kori',
-    poster: ''
+    poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz_hzXt7dAZryTFQuAMd9IB93ZNKHg1TYNpuxqs9mDLi-ANktYj-EjtKE&s=10'
   },
   {
     id: 'parineeta',
     channelId: 'zee5',
     title: 'Parineeta',
-    poster: ''
+    poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvGlqfKLmMEI8zDKY-2Tr67LMS9DH-BTrteZVunjLFUujjRbZMgZGQ5MVm&s=10'
   },
   {
     id: 'jowar-bhanta',
     channelId: 'zee5',
     title: 'Jowar Bhanta',
-    poster: ''
+    poster: 'https://is1-ssl.mzstatic.com/image/thumb/cLVbqCB5SfWiGR2z243Luw/1200x675.jpg'
   },
   {
     id: 'professor-bidya-banerjee',
     channelId: 'jiohotstar',
     title: 'Professor Bidya Banerjee',
-    poster: ''
+    poster: 'https://img10.hotstar.com/image/upload/f_auto,q_auto/sources/r1/cms/prod/7893/1762863657893-i'
   },
   {
     id: 'kone-dekhaa-alo',
     channelId: 'zee5',
     title: 'Kone Dekhaa Alo',
-    poster: ''
+    poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjL_WouBigdsgIpD3WMArxGTZMXNGLbLSNFGba3uR2hZ2ZhQaBXa41qbU&s=10'
   },
   {
     id: 'anondi',
     channelId: 'zee5',
     title: 'Anondi',
-    poster: ''
+    poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToliUOVtozUMmk4tStwUwCyxnPvwT3tNyu73dXB7LS5bfDa10Y0q6pN54p&s=10'
   },
   {
     id: 'kurulus-osman',
     channelId: 'toffee-turkish',
     title: 'Kurulus Osman',
-    poster: ''
+    poster: 'https://m.media-amazon.com/images/I/811bv0RCnaL._AC_UF1000,1000_QL80_.jpg'
   }
 ];
 
