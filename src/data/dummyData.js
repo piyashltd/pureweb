@@ -215,6 +215,149 @@ export const shows = [
 // ------------------- EPISODES -------------------
 export const episodes = [
   {
+    "id": "bholebaba-paar-karega-s02-e177",
+    "showId": "bholebaba-paar-karega",
+    "season": 2,
+    "episodeNumber": 177,
+    "title": "Bholebaba Paar Karega S02",
+    "thumbnail": "https://image.mux.com/jVmqtT8VRU88ud3lnP5w7CRFGofYdOZGpINHo01uuHPc/thumbnail.jpg",
+    "date": "12 Mar 2026",
+    "duration": "23min",
+    "videoUrl": "https://stream.mux.com/jVmqtT8VRU88ud3lnP5w7CRFGofYdOZGpINHo01uuHPc.m3u8"
+  },
+  {
+    "id": "behula-s01-e67",
+    "showId": "behula",
+    "season": 1,
+    "episodeNumber": 67,
+    "title": "Behula S01",
+    "thumbnail": "https://image.mux.com/4pRKRVxGR5aG9LonnDiDaXQFCuvP7cp02yNr56EdpSd00/thumbnail.jpg",
+    "date": "12 Mar 2026",
+    "duration": "43min",
+    "videoUrl": "https://stream.mux.com/4pRKRVxGR5aG9LonnDiDaXQFCuvP7cp02yNr56EdpSd00.m3u8"
+  },
+  {
+    "id": "nishir-daak-s01-e66",
+    "showId": "nishir-daak",
+    "season": 1,
+    "episodeNumber": 66,
+    "title": "Nishir Daak S01",
+    "thumbnail": "https://image.mux.com/2zDknqC89AVFIexXmE73exDUrFkqGUoaZT1cTGbTDk4/thumbnail.jpg",
+    "date": "12 Mar 2026",
+    "duration": "43min",
+    "videoUrl": "https://stream.mux.com/2zDknqC89AVFIexXmE73exDUrFkqGUoaZT1cTGbTDk4.m3u8"
+  },
+  {
+    "id": "chiroshokha-s01-e407",
+    "showId": "chiroshokha",
+    "season": 1,
+    "episodeNumber": 407,
+    "title": "Chiroshokha S01",
+    "thumbnail": "https://image.mux.com/ErJcMgekPyWfHjErsDpoA3Uec013JTtahBx9nxj6A9fc/thumbnail.jpg",
+    "date": "12 Mar 2026",
+    "duration": "23min",
+    "videoUrl": "https://stream.mux.com/ErJcMgekPyWfHjErsDpoA3Uec013JTtahBx9nxj6A9fc.m3u8"
+  },
+  {
+    "id": "gangaa-s01-e03",
+    "showId": "gangaa",
+    "season": 1,
+    "episodeNumber": 3,
+    "title": "Gangaa S01",
+    "thumbnail": "https://image.mux.com/pRgroc00m014qC8002dX701YvdXZQiQ02LTDgiOhERp1KKtc/thumbnail.jpg",
+    "date": "12 Mar 2026",
+    "duration": "24min",
+    "videoUrl": "https://stream.mux.com/pRgroc00m014qC8002dX701YvdXZQiQ02LTDgiOhERp1KKtc.m3u8"
+  },
+  {
+    "id": "lokkhi-jhnapi-s01-e227",
+    "showId": "lokkhi-jhnapi",
+    "season": 1,
+    "episodeNumber": 227,
+    "title": "Lokkhi Jhnapi S01",
+    "thumbnail": "https://image.mux.com/ijxqpZICRQavbqyyxag1lHBma5HydiyhwhdAgP9j4I00/thumbnail.jpg",
+    "date": "12 Mar 2026",
+    "duration": "23min",
+    "videoUrl": "https://stream.mux.com/ijxqpZICRQavbqyyxag1lHBma5HydiyhwhdAgP9j4I00.m3u8"
+  },
+  {
+    "id": "tumi-chherona-haat-pothe-s01-e156",
+    "showId": "tumi-chherona-haat-pothe",
+    "season": 1,
+    "episodeNumber": 156,
+    "title": "Tumi Chherona Haat Pothe S01",
+    "thumbnail": "https://image.mux.com/1kOPOJ002eZPWYeddaf4t25QQODG02pJHQfIbU9PgPFxg/thumbnail.jpg",
+    "date": "12 Mar 2026",
+    "duration": "119min",
+    "videoUrl": "https://stream.mux.com/1kOPOJ002eZPWYeddaf4t25QQODG02pJHQfIbU9PgPFxg.m3u8"
+  },
+  {
+    "id": "compass-s01-e200",
+    "showId": "compass",
+    "season": 1,
+    "episodeNumber": 200,
+    "title": "Compass S01",
+    "thumbnail": "https://image.mux.com/ztYjlMpJRgK6tfIjrxsVXNGQTy2dP7kEwmrYZYvgZ02M/thumbnail.jpg",
+    "date": "12 Mar 2026",
+    "duration": "21min",
+    "videoUrl": "https://stream.mux.com/ztYjlMpJRgK6tfIjrxsVXNGQTy2dP7kEwmrYZYvgZ02M.m3u8"
+  },
+  {
+    "id": "sadhok-bamakhyapa-s01-e116",
+    "showId": "sadhok-bamakhyapa",
+    "season": 1,
+    "episodeNumber": 116,
+    "title": "Sadhok Bamakhyapa S01",
+    "thumbnail": "https://image.mux.com/al6Rti2Lr1SgT5drcQ3tbN2x3j6JoKuoEbftI9o01ySc/thumbnail.jpg",
+    "date": "12 Mar 2026",
+    "duration": "44min",
+    "videoUrl": "https://stream.mux.com/al6Rti2Lr1SgT5drcQ3tbN2x3j6JoKuoEbftI9o01ySc.m3u8"
+  },
+  {
+    "id": "sudhu-tomari-jonyo-s01-e23",
+    "showId": "sudhu-tomari-jonyo",
+    "season": 1,
+    "episodeNumber": 23,
+    "title": "Sudhu Tomari Jonyo S01",
+    "thumbnail": "https://image.mux.com/NKGLi01KCF9uE3D01yLWr9rOoC00BxzJYg02Pp8XSDz00QFw/thumbnail.jpg",
+    "date": "12 Mar 2026",
+    "duration": "21min",
+    "videoUrl": "https://stream.mux.com/NKGLi01KCF9uE3D01yLWr9rOoC00BxzJYg02Pp8XSDz00QFw.m3u8"
+  },
+  {
+    "id": "grihoprobesh-s01-e453",
+    "showId": "grihoprobesh",
+    "season": 1,
+    "episodeNumber": 453,
+    "title": "Grihoprobesh S01",
+    "thumbnail": "https://image.mux.com/I00cwpek2H02Igq02lKY4dm3pWDmwCGM00t7dvl46A5y2QM/thumbnail.jpg",
+    "date": "12 Mar 2026",
+    "duration": "21min",
+    "videoUrl": "https://stream.mux.com/I00cwpek2H02Igq02lKY4dm3pWDmwCGM00t7dvl46A5y2QM.m3u8"
+  },
+  {
+    "id": "o-mor-dorodiya-s01-e157",
+    "showId": "o-mor-dorodiya",
+    "season": 1,
+    "episodeNumber": 157,
+    "title": "O Mor Dorodiya S01",
+    "thumbnail": "https://image.mux.com/vu8zXGXmLjvqLQLOaeSdhGl8vUu2goEyGXQBwRR3NRg/thumbnail.jpg",
+    "date": "12 Mar 2026",
+    "duration": "23min",
+    "videoUrl": "https://stream.mux.com/vu8zXGXmLjvqLQLOaeSdhGl8vUu2goEyGXQBwRR3NRg.m3u8"
+  },
+  {
+    "id": "milon-hobe-kotodine-s01-e98",
+    "showId": "milon-hobe-kotodine",
+    "season": 1,
+    "episodeNumber": 98,
+    "title": "Milon Hobe Kotodine S01",
+    "thumbnail": "https://image.mux.com/IWByLH01eU7cG9WuVqgk7z9LA00X18qPvenGt00OvN4VVY/thumbnail.jpg",
+    "date": "12 Mar 2026",
+    "duration": "21min",
+    "videoUrl": "https://stream.mux.com/IWByLH01eU7cG9WuVqgk7z9LA00X18qPvenGt00OvN4VVY.m3u8"
+  },
+  {
     "id": "milon-hobe-kotodine-s01-e97",
     "showId": "milon-hobe-kotodine",
     "season": 1,
