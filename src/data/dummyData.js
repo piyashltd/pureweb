@@ -103,6 +103,12 @@ export const shows = [
     poster: 'https://img10.hotstar.com/image/upload/f_auto,q_auto/sources/r1/cms/prod/5930/1766415145930-i'
   },
   {
+    id: 'kusum',
+    channelId: 'zee5',
+    title: 'Kusum',
+    poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLRnB548YrUMVfb471-fdkOP42Hn9XXd_qlSf_pB_I90cjlxAYFzHBsb0Y&s=10'
+  },
+  {
     id: 'rannaghar',
     channelId: 'zee5',
     title: 'Rannaghar',
@@ -155,12 +161,6 @@ export const shows = [
     channelId: 'jiohotstar',
     title: 'Rangamoti Tirandaj',
     poster: 'https://img10.hotstar.com/image/upload/f_auto,q_auto/sources/r1/cms/prod/3931/1736862803931-i'
-  },
-  {
-    id: 'kusum',
-    channelId: 'zee5',
-    title: 'Kusum',
-    poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLRnB548YrUMVfb471-fdkOP42Hn9XXd_qlSf_pB_I90cjlxAYFzHBsb0Y&s=10'
   },
   {
     id: 'tare-dhori-dhori-mone-kori',
