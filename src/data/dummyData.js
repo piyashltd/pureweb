@@ -46,97 +46,97 @@ export const shows = [
     id: 'behula',
     channelId: 'jiohotstar',
     title: 'Behula',
-    poster: ''
+    poster: 'https://img10.hotstar.com/image/upload/f_auto,q_auto/sources/r1/cms/prod/4320/1767368034320-i'
   },
   {
     id: 'nishir-daak',
     channelId: 'jiohotstar',
     title: 'Nishir Daak',
-    poster: ''
+    poster: 'https://img10.hotstar.com/image/upload/f_auto,q_auto/sources/r1/cms/prod/4634/1766152144634-i'
   },
   {
     id: 'sadhok-bamakhyapa',
     channelId: 'jiohotstar',
     title: 'Sadhok Bamakhyapa',
-    poster: ''
+    poster: 'https://img10.hotstar.com/image/upload/f_auto,q_auto/sources/r1/cms/prod/2449/1763287792449-i'
   },
   {
     id: 'bholebaba-paar-karega',
     channelId: 'jiohotstar',
     title: 'Bholebaba Paar Karega',
-    poster: ''
+    poster: 'https://www.gillitv.xyz/wp-content/uploads/2025/09/bholebaba-paar-karega.jpg'
   },
   {
     id: 'compass',
     channelId: 'jiohotstar',
     title: 'Compass',
-    poster: ''
+    poster: 'https://img10.hotstar.com/image/upload/f_auto,q_auto/sources/r1/cms/prod/4252/1755894044252-i'
   },
   {
     id: 'lokkhi-jhnapi',
     channelId: 'jiohotstar',
     title: 'Lokkhi Jhnapi',
-    poster: ''
+    poster: 'https://xstreamcp-assets-msp.streamready.in/assets/HOTSTAR_DTH/SERIES/690e0ba2b6cbfa2407ec0c63/images/PORTRAIT/1761924667815-v'
   },
   {
     id: 'o-mor-dorodiya',
     channelId: 'jiohotstar',
     title: 'O Mor Dorodiya',
-    poster: ''
+    poster: 'https://www.jiocinemaus.com/wp-content/uploads/2025/10/O-Mor-Dorodiya.jpg'
   },
   {
     id: 'grihoprobesh',
     channelId: 'jiohotstar',
     title: 'Grihoprobesh',
-    poster: ''
+    poster: 'https://img10.hotstar.com/image/upload/f_auto,q_auto/sources/r1/cms/prod/7918/1736943557918-i'
   },
   {
     id: 'sudhu-tomari-jonyo',
     channelId: 'jiohotstar',
     title: 'Sudhu Tomari Jonyo',
-    poster: ''
+    poster: 'https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/5235/1770968595235-i'
   },
   {
     id: 'chiroshokha',
     channelId: 'jiohotstar',
     title: 'Chiroshokha',
-    poster: ''
+    poster: 'https://img10.hotstar.com/image/upload/f_auto,q_auto/sources/r1/cms/prod/5930/1766415145930-i'
   },
   {
     id: 'rannaghar',
     channelId: 'zee5',
     title: 'Rannaghar',
-    poster: ''
+    poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgEU0zdCiaof1X_7isdexxd0bsxWEjfvZvTDzO9kFMp3MJ9ai4J3pZQWg&s=10'
   },
   {
     id: 'didi-no-1-season-9',
     channelId: 'zee5',
     title: 'Didi No 1 Season 9',
-    poster: ''
+    poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTp9YLQw9QAnsJWzBv3A9OSSgxzEwRMh4zYk-b6edfVoCWPRDKm2cjPODRj&s=10'
   },
   {
     id: 'milon-hobe-kotodine',
     channelId: 'jiohotstar',
     title: 'Milon Hobe Kotodine',
-    poster: ''
+    poster: 'https://img10.hotstar.com/image/upload/f_auto,q_auto/sources/r1/cms/prod/3246/1770032413246-i'
   },
   {
     id: 'tui-amaar-hero',
     channelId: 'zee5',
     title: 'Tui Amaar Hero',
-    poster: ''
+    poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz0x5Xfw3RjhdhJTc_UakUlKjGI5U7k0fQXytI4FF9hynxQ1zkD3KamN4&s=10'
   },
   {
     id: 'chirodini-tumi-je-amar',
     channelId: 'zee5',
     title: 'Chirodini Tumi Je Amar',
-    poster: ''
+    poster: 'https://akamaividz2.zee5.com/image/upload/w_480,h_270,c_scale,f_webp,q_auto:eco/resources/0-1-6z5718305/list/0000000028c8f723acfc9c4ba68d612a57c33bc705.jpg'
   },
   {
     id: 'besh-korechhi-prem-korechhi',
     channelId: 'zee5',
     title: 'Besh Korechhi Prem Korechhi',
-    poster: ''
+    poster: 'https://i.ytimg.com/vi/I9u7qHrARXk/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBQklhgxH5MT-UzxzR0dtll0pFvLA'
   },
   {
     id: 'gangaa',
@@ -160,7 +160,7 @@ export const shows = [
     id: 'kusum',
     channelId: 'zee5',
     title: 'Kusum',
-    poster: ''
+    poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLRnB548YrUMVfb471-fdkOP42Hn9XXd_qlSf_pB_I90cjlxAYFzHBsb0Y&s=10'
   },
   {
     id: 'tare-dhori-dhori-mone-kori',
