@@ -55,6 +55,12 @@ export const shows = [
     poster: 'https://img10.hotstar.com/image/upload/f_auto,q_auto/sources/r1/cms/prod/4634/1766152144634-i'
   },
   {
+    id: 'amader-dadamoni',
+    channelId: 'zee5',
+    title: 'Amader Dadamoni',
+    poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuQ35ibJkiszfO9Wrzl-QtZgu7HzLg1tGzAbaRtvti-oywObGWiQOmdzc&s=10'
+  },
+  {
     id: 'sadhok-bamakhyapa',
     channelId: 'jiohotstar',
     title: 'Sadhok Bamakhyapa',
