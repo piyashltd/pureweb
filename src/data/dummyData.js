@@ -40,7 +40,7 @@ export const shows = [
     id: 'tumi-chherona-haat-pothe',
     channelId: 'jiohotstar',
     title: 'Tumi Chherona Haat Pothe',
-    poster: ''
+    poster: 'https://img10.hotstar.com/image/upload/f_auto,q_auto/sources/r1/cms/prod/2475/1770889012475-i'
   },
   {
     id: 'behula',
