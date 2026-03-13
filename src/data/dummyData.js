@@ -136,7 +136,7 @@ export const shows = [
     id: 'tui-amaar-hero',
     channelId: 'zee5',
     title: 'Tui Amaar Hero',
-    poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz0x5Xfw3RjhdhJTc_UakUlKjGI5U7k0fQXytI4FF9hynxQ1zkD3KamN4&s=10'
+    poster: 'https://akamaividz2.zee5.com/image/upload/w_293,h_440,c_scale,f_webp,q_auto:eco/resources/0-6-4z5715484/portrait/1920x7704debe4d7ffed46249cb406a9a15744e4fc407eb392ee432792271ac006263129.jpg'
   },
   {
     id: 'chirodini-tumi-je-amar',
@@ -148,19 +148,19 @@ export const shows = [
     id: 'besh-korechhi-prem-korechhi',
     channelId: 'zee5',
     title: 'Besh Korechhi Prem Korechhi',
-    poster: 'https://i.ytimg.com/vi/I9u7qHrARXk/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBQklhgxH5MT-UzxzR0dtll0pFvLA'
+    poster: 'https://akamaividz2.zee5.com/image/upload/w_293,h_440,c_scale,f_webp,q_auto:eco/resources/0-6-4z5869835/portrait/1920x7704ab0046ea23d423b80e3dcadc1c656242126358d2c1a4fafb812b404fdb0d8e8.jpg'
   },
   {
     id: 'gangaa',
     channelId: 'jiohotstar',
     title: 'Gangaa',
-    poster: 'https://img10.hotstar.com/image/upload/f_auto,q_auto/sources/r1/cms/prod/9958/1772452099958-i'
+    poster: 'https://i.ibb.co/ch6cCY00/IMG-20260313-095327.jpg'
   },
   {
     id: 'parashuram-ajker-nayok',
     channelId: 'jiohotstar',
     title: 'Parashuram Ajker Nayok',
-    poster: 'https://img10.hotstar.com/image/upload/f_auto,q_auto/sources/r1/cms/prod/5724/1741362245724-i'
+    poster: 'https://i.ibb.co/HTTdDz30/IMG-20260313-095838.jpg'
   },
   {
     id: 'rangamoti-tirandaj',
