@@ -215,6 +215,171 @@ export const shows = [
 // ------------------- EPISODES -------------------
 export const episodes = [
   {
+    "id": "anondi-s01-e448",
+    "showId": "anondi",
+    "season": 1,
+    "episodeNumber": 448,
+    "title": "Anondi S01",
+    "thumbnail": "https://image.mux.com/Qa2iOhSRTje8Y1eqC2KDTi6FAssM9swgSfIZI7ekyCY/thumbnail.jpg",
+    "date": "12 Mar 2026",
+    "duration": "31min",
+    "videoUrl": "https://stream.mux.com/Qa2iOhSRTje8Y1eqC2KDTi6FAssM9swgSfIZI7ekyCY.m3u8"
+  },
+  {
+    "id": "chirodini-tumi-je-amar-s01-e368",
+    "showId": "chirodini-tumi-je-amar",
+    "season": 1,
+    "episodeNumber": 368,
+    "title": "Chirodini Tumi Je Amar S01",
+    "thumbnail": "https://image.mux.com/x02n8YbTsCupINta5Eit029omR16MqipUX4SPHFEIHHdM/thumbnail.jpg",
+    "date": "12 Mar 2026",
+    "duration": "24min",
+    "videoUrl": "https://stream.mux.com/x02n8YbTsCupINta5Eit029omR16MqipUX4SPHFEIHHdM.m3u8"
+  },
+  {
+    "id": "professor-bidya-banerjee-s01-e115",
+    "showId": "professor-bidya-banerjee",
+    "season": 1,
+    "episodeNumber": 115,
+    "title": "Professor Bidya Banerjee S01",
+    "thumbnail": "https://image.mux.com/dBbhBdjwyXcOKr00sNRqYS00JeWRsDvFmgdI1ylsz6mxQ/thumbnail.jpg",
+    "date": "12 Mar 2026",
+    "duration": "23min",
+    "videoUrl": "https://stream.mux.com/dBbhBdjwyXcOKr00sNRqYS00JeWRsDvFmgdI1ylsz6mxQ.m3u8"
+  },
+  {
+    "id": "kone-dekhaa-alo-s01-e143",
+    "showId": "kone-dekhaa-alo",
+    "season": 1,
+    "episodeNumber": 143,
+    "title": "Kone Dekhaa Alo S01",
+    "thumbnail": "https://image.mux.com/1PgvAbjy4ooUgegIwTpz6PHExqemHXEREuPRZu00PDfA/thumbnail.jpg",
+    "date": "12 Mar 2026",
+    "duration": "35min",
+    "videoUrl": "https://stream.mux.com/1PgvAbjy4ooUgegIwTpz6PHExqemHXEREuPRZu00PDfA.m3u8"
+  },
+  {
+    "id": "kusum-s01-e282",
+    "showId": "kusum",
+    "season": 1,
+    "episodeNumber": 282,
+    "title": "Kusum S01",
+    "thumbnail": "https://image.mux.com/zsD7dOVYUf5nwe6LHlSN2N9rTxePqfdQn4lz8WI9Mn00/thumbnail.jpg",
+    "date": "12 Mar 2026",
+    "duration": "24min",
+    "videoUrl": "https://stream.mux.com/zsD7dOVYUf5nwe6LHlSN2N9rTxePqfdQn4lz8WI9Mn00.m3u8"
+  },
+  {
+    "id": "parineeta-s01-e483",
+    "showId": "parineeta",
+    "season": 1,
+    "episodeNumber": 483,
+    "title": "Parineeta S01",
+    "thumbnail": "https://image.mux.com/7Q00VcHvD1XlvFU4jsdzEEMatZDL79oQRahVfOxLszX4/thumbnail.jpg",
+    "date": "12 Mar 2026",
+    "duration": "24min",
+    "videoUrl": "https://stream.mux.com/7Q00VcHvD1XlvFU4jsdzEEMatZDL79oQRahVfOxLszX4.m3u8"
+  },
+  {
+    "id": "amader-dadamoni-s01-e219",
+    "showId": "amader-dadamoni",
+    "season": 1,
+    "episodeNumber": 219,
+    "title": "Amader Dadamoni S01",
+    "thumbnail": "https://image.mux.com/kPWMWKz0200FGvF2o7w9EhOX2P7C4zb7Pib701DKFFv39s/thumbnail.jpg",
+    "date": "12 Mar 2026",
+    "duration": "23min",
+    "videoUrl": "https://stream.mux.com/kPWMWKz0200FGvF2o7w9EhOX2P7C4zb7Pib701DKFFv39s.m3u8"
+  },
+  {
+    "id": "jowar-bhanta-s01-e167",
+    "showId": "jowar-bhanta",
+    "season": 1,
+    "episodeNumber": 167,
+    "title": "Jowar Bhanta S01",
+    "thumbnail": "https://image.mux.com/WDRUs7cpNXVJzKfp00AKev2q01KZKyAGk76197bj3Q6aI/thumbnail.jpg",
+    "date": "12 Mar 2026",
+    "duration": "24min",
+    "videoUrl": "https://stream.mux.com/WDRUs7cpNXVJzKfp00AKev2q01KZKyAGk76197bj3Q6aI.m3u8"
+  },
+  {
+    "id": "tare-dhori-dhori-mone-kori-s01-e88",
+    "showId": "tare-dhori-dhori-mone-kori",
+    "season": 1,
+    "episodeNumber": 88,
+    "title": "Tare Dhori Dhori Mone Kori S01",
+    "thumbnail": "https://image.mux.com/kMD7HwjoSFXa7ZLiga7CnXs3SvrkUJ00tPEXLTfUKkqg/thumbnail.jpg",
+    "date": "12 Mar 2026",
+    "duration": "24min",
+    "videoUrl": "https://stream.mux.com/kMD7HwjoSFXa7ZLiga7CnXs3SvrkUJ00tPEXLTfUKkqg.m3u8"
+  },
+  {
+    "id": "rangamoti-tirandaj-s01-e527",
+    "showId": "rangamoti-tirandaj",
+    "season": 1,
+    "episodeNumber": 527,
+    "title": "Rangamoti Tirandaj S01",
+    "thumbnail": "https://image.mux.com/IAZurMQ216C8bo1mo45vr6JS9ueer9mkRSuZUsuppW4/thumbnail.jpg",
+    "date": "12 Mar 2026",
+    "duration": "24min",
+    "videoUrl": "https://stream.mux.com/IAZurMQ216C8bo1mo45vr6JS9ueer9mkRSuZUsuppW4.m3u8"
+  },
+  {
+    "id": "besh-korechhi-prem-korechhi-s01-e94",
+    "showId": "besh-korechhi-prem-korechhi",
+    "season": 1,
+    "episodeNumber": 94,
+    "title": "Besh Korechhi Prem Korechhi S01",
+    "thumbnail": "https://image.mux.com/ECDWVDN9lk5QdyzQz7KFauUrPZedE4lZpD56CPuzNbY/thumbnail.jpg",
+    "date": "12 Mar 2026",
+    "duration": "19min",
+    "videoUrl": "https://stream.mux.com/ECDWVDN9lk5QdyzQz7KFauUrPZedE4lZpD56CPuzNbY.m3u8"
+  },
+  {
+    "id": "parashuram-ajker-nayok-s01-e366",
+    "showId": "parashuram-ajker-nayok",
+    "season": 1,
+    "episodeNumber": 366,
+    "title": "Parashuram Ajker Nayok S01",
+    "thumbnail": "https://image.mux.com/dCNKjjmyAXnpMWWsJ58yeUkr0100xU8yYI00ayD81iqHLI/thumbnail.jpg",
+    "date": "12 Mar 2026",
+    "duration": "23min",
+    "videoUrl": "https://stream.mux.com/dCNKjjmyAXnpMWWsJ58yeUkr0100xU8yYI00ayD81iqHLI.m3u8"
+  },
+  {
+    "id": "didi-no-1-season-9-s01-e1473",
+    "showId": "didi-no-1-season-9",
+    "season": 1,
+    "episodeNumber": 1473,
+    "title": "Didi No 1 Season 9 S01",
+    "thumbnail": "https://image.mux.com/Uuda3fovPuMMe55KNq3W02K00c01LN6b7oUEX202lMrY9FQ/thumbnail.jpg",
+    "date": "12 Mar 2026",
+    "duration": "45min",
+    "videoUrl": "https://stream.mux.com/Uuda3fovPuMMe55KNq3W02K00c01LN6b7oUEX202lMrY9FQ.m3u8"
+  },
+  {
+    "id": "tui-amaar-hero-s01-e367",
+    "showId": "tui-amaar-hero",
+    "season": 1,
+    "episodeNumber": 367,
+    "title": "Tui Amaar Hero S01",
+    "thumbnail": "https://image.mux.com/OY5RxrPOL00Qjz8D4GtUAT8s5mPlt82Tz9xY01VOqAnVc/thumbnail.jpg",
+    "date": "12 Mar 2026",
+    "duration": "20min",
+    "videoUrl": "https://stream.mux.com/OY5RxrPOL00Qjz8D4GtUAT8s5mPlt82Tz9xY01VOqAnVc.m3u8"
+  },
+  {
+    "id": "rannaghar-s01-e5623",
+    "showId": "rannaghar",
+    "season": 1,
+    "episodeNumber": 5623,
+    "title": "Rannaghar S01",
+    "thumbnail": "https://image.mux.com/ZaxJgA02VkefI1MaZuGV6tMsOLf6t01202eciLilqeq024c/thumbnail.jpg",
+    "date": "12 Mar 2026",
+    "duration": "22min",
+    "videoUrl": "https://stream.mux.com/ZaxJgA02VkefI1MaZuGV6tMsOLf6t01202eciLilqeq024c.m3u8"
+  },
+  {
     "id": "bholebaba-paar-karega-s02-e177",
     "showId": "bholebaba-paar-karega",
     "season": 2,
