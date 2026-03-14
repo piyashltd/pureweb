@@ -215,6 +215,138 @@ export const shows = [
 // ------------------- EPISODES -------------------
 export const episodes = [
   {
+    "id": "tumi-chherona-haat-pothe-s01-e158",
+    "showId": "tumi-chherona-haat-pothe",
+    "season": 1,
+    "episodeNumber": 158,
+    "title": "Tumi Chherona Haat Pothe S01",
+    "thumbnail": "https://image.mux.com/IuguJtKSmyw000001adI0102H01Fke7OrBC2tZLX7EdDSJY4w/thumbnail.jpg",
+    "date": "14 Mar 2026",
+    "duration": "89min",
+    "videoUrl": "https://stream.mux.com/IuguJtKSmyw000001adI0102H01Fke7OrBC2tZLX7EdDSJY4w.m3u8"
+  },
+  {
+    "id": "sadhok-bamakhyapa-s01-e118",
+    "showId": "sadhok-bamakhyapa",
+    "season": 1,
+    "episodeNumber": 118,
+    "title": "Sadhok Bamakhyapa S01",
+    "thumbnail": "https://image.mux.com/02ze01ftu5DI1EFD7ie7Ya2khIpP00W92FHkRNLIR02DOt8/thumbnail.jpg",
+    "date": "14 Mar 2026",
+    "duration": "44min",
+    "videoUrl": "https://stream.mux.com/02ze01ftu5DI1EFD7ie7Ya2khIpP00W92FHkRNLIR02DOt8.m3u8"
+  },
+  {
+    "id": "nishir-daak-s01-e68",
+    "showId": "nishir-daak",
+    "season": 1,
+    "episodeNumber": 68,
+    "title": "Nishir Daak S01",
+    "thumbnail": "https://image.mux.com/S00mw00evGjsRzxg1UxxDvWV7bwEYYHa3go02NlkXS5bqw/thumbnail.jpg",
+    "date": "14 Mar 2026",
+    "duration": "43min",
+    "videoUrl": "https://stream.mux.com/S00mw00evGjsRzxg1UxxDvWV7bwEYYHa3go02NlkXS5bqw.m3u8"
+  },
+  {
+    "id": "behula-s01-e69",
+    "showId": "behula",
+    "season": 1,
+    "episodeNumber": 69,
+    "title": "Behula S01",
+    "thumbnail": "https://image.mux.com/MckkPWDttcfSaao7hygqzw1BzgO01GYId8YFHX7UVYwE/thumbnail.jpg",
+    "date": "14 Mar 2026",
+    "duration": "43min",
+    "videoUrl": "https://stream.mux.com/MckkPWDttcfSaao7hygqzw1BzgO01GYId8YFHX7UVYwE.m3u8"
+  },
+  {
+    "id": "bholebaba-paar-karega-s02-e179",
+    "showId": "bholebaba-paar-karega",
+    "season": 2,
+    "episodeNumber": 179,
+    "title": "Bholebaba Paar Karega S02",
+    "thumbnail": "https://image.mux.com/5P3oyDJFugc2O2YzJj9JsSvC8do7z8am9PcH6872rDQ/thumbnail.jpg",
+    "date": "14 Mar 2026",
+    "duration": "23min",
+    "videoUrl": "https://stream.mux.com/5P3oyDJFugc2O2YzJj9JsSvC8do7z8am9PcH6872rDQ.m3u8"
+  },
+  {
+    "id": "gangaa-s01-e05",
+    "showId": "gangaa",
+    "season": 1,
+    "episodeNumber": 5,
+    "title": "Gangaa S01",
+    "thumbnail": "https://image.mux.com/F4HCfvPrfRa2UvM3HUl00n02tk3Wdd01vtexO7z9YMG3N00/thumbnail.jpg",
+    "date": "14 Mar 2026",
+    "duration": "24min",
+    "videoUrl": "https://stream.mux.com/F4HCfvPrfRa2UvM3HUl00n02tk3Wdd01vtexO7z9YMG3N00.m3u8"
+  },
+  {
+    "id": "lokkhi-jhnapi-s01-e229",
+    "showId": "lokkhi-jhnapi",
+    "season": 1,
+    "episodeNumber": 229,
+    "title": "Lokkhi Jhnapi S01",
+    "thumbnail": "https://image.mux.com/ku6asjYbjLL8cNtg8M75NnMSFvKDyQ1JKnn9ijT24Go/thumbnail.jpg",
+    "date": "14 Mar 2026",
+    "duration": "43min",
+    "videoUrl": "https://stream.mux.com/ku6asjYbjLL8cNtg8M75NnMSFvKDyQ1JKnn9ijT24Go.m3u8"
+  },
+  {
+    "id": "jowar-bhanta-s01-e169",
+    "showId": "jowar-bhanta",
+    "season": 1,
+    "episodeNumber": 169,
+    "title": "Jowar Bhanta S01",
+    "thumbnail": "https://image.mux.com/nr3RG01zFseTNAatPNEbDj5COnPPWBBpCGq02WOOiK101M/thumbnail.jpg",
+    "date": "14 Mar 2026",
+    "duration": "23min",
+    "videoUrl": "https://stream.mux.com/nr3RG01zFseTNAatPNEbDj5COnPPWBBpCGq02WOOiK101M.m3u8"
+  },
+  {
+    "id": "rannaghar-s01-e5625",
+    "showId": "rannaghar",
+    "season": 1,
+    "episodeNumber": 5625,
+    "title": "Rannaghar S01",
+    "thumbnail": "https://image.mux.com/zS79SpTArSaPJeWSJlrhv5N02rBX7aPGfvS01Em901AeLw/thumbnail.jpg",
+    "date": "14 Mar 2026",
+    "duration": "22min",
+    "videoUrl": "https://stream.mux.com/zS79SpTArSaPJeWSJlrhv5N02rBX7aPGfvS01Em901AeLw.m3u8"
+  },
+  {
+    "id": "didi-no-1-season-9-s01-e1475",
+    "showId": "didi-no-1-season-9",
+    "season": 1,
+    "episodeNumber": 1475,
+    "title": "Didi No 1 Season 9 S01",
+    "thumbnail": "https://image.mux.com/ZGHp02GJN6WRpNy8YUI01cgEhIkJ00VKRd00hLh0001lnuojQ/thumbnail.jpg",
+    "date": "14 Mar 2026",
+    "duration": "45min",
+    "videoUrl": "https://stream.mux.com/ZGHp02GJN6WRpNy8YUI01cgEhIkJ00VKRd00hLh0001lnuojQ.m3u8"
+  },
+  {
+    "id": "parineeta-s01-e485",
+    "showId": "parineeta",
+    "season": 1,
+    "episodeNumber": 485,
+    "title": "Parineeta S01",
+    "thumbnail": "https://image.mux.com/T6LjU6i007SpA1cLXzo6I17RaW01u3L1AwrJkZWsc4JzY/thumbnail.jpg",
+    "date": "14 Mar 2026",
+    "duration": "23min",
+    "videoUrl": "https://stream.mux.com/T6LjU6i007SpA1cLXzo6I17RaW01u3L1AwrJkZWsc4JzY.m3u8"
+  },
+  {
+    "id": "compass-s01-e202",
+    "showId": "compass",
+    "season": 1,
+    "episodeNumber": 202,
+    "title": "Compass S01",
+    "thumbnail": "https://image.mux.com/I2FTQtfWoCfBbY6fZPSRg02Fa701wY4vXZ55ObFi9D9KU/thumbnail.jpg",
+    "date": "14 Mar 2026",
+    "duration": "43min",
+    "videoUrl": "https://stream.mux.com/I2FTQtfWoCfBbY6fZPSRg02Fa701wY4vXZ55ObFi9D9KU.m3u8"
+  },
+  {
     "id": "chiroshokha-s01-e408",
     "showId": "chiroshokha",
     "season": 1,
