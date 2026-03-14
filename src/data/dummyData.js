@@ -215,6 +215,17 @@ export const shows = [
 // ------------------- EPISODES -------------------
 export const episodes = [
   {
+    "id": "anondi-s01-e447",
+    "showId": "anondi",
+    "season": 1,
+    "episodeNumber": 447,
+    "title": "Anondi S01",
+    "thumbnail": "https://image.mux.com/XcI8tWE1niLNohVkIQ2EyFOf4fx9pCY9VsEgdDkVcSw/thumbnail.jpg",
+    "date": "11 Mar 2026",
+    "duration": "31min",
+    "videoUrl": "https://stream.mux.com/XcI8tWE1niLNohVkIQ2EyFOf4fx9pCY9VsEgdDkVcSw.m3u8"
+  },
+  {
     "id": "tumi-chherona-haat-pothe-s01-e158",
     "showId": "tumi-chherona-haat-pothe",
     "season": 1,
